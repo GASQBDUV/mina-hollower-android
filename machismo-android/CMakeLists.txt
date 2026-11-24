@@ -1,0 +1,149 @@
+cmake_minimum_required(VERSION 3.16)
+project(machismo C CXX)
+
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
+
+option(BUILD_WRAPGEN "Build the wrapgen utility" ON)
+option(BUILD_TESTS "Build test fixtures" ON)
+# Process-wide host-library malloc/mmap interposition for the built-in heaptrack
+# tracer. OFF by default: when off the exe does not interpose host allocations at
+# all (zero overhead, and it dodges the lazy-resolver recursion that stack-
+# overflowed on an ArkOS device build). Turn ON only for a leak-hunting build;
+# the reverse-symbol index used by the crash handler is always compiled in, and
+# guest-side tracing via the libsystem shim still works regardless. See
+# src/heaptrack_trace.c.
+option(MACHISMO_HEAPTRACK_BUILD "Interpose host-library malloc/mmap for heaptrack tracing" OFF)
+
+# --- machismo loader executable ---
+
+set(MACHISMO_SOURCES
+    src/machismo.c
+    src/commpage.c
+    src/resolver.c
+    src/trampoline.c
+    src/gdb_jit.c
+    src/heaptrack_trace.c
+    src/crash_handler.c
+    src/patcher.c
+    src/config.c
+    src/bgfx_shim.c
+    src/fps.c
+    src/sdl_window_shim.c
+    src/splash_kms.c
+    src/eh_frame.c
+    src/dylib_loader.c
+    src/isa_emul.c
+    src/lua_entity_opt.c
+    src/elfcalls/elfcalls.c
+    src/elfcalls/threads.c
+)
+
+add_executable(machismo ${MACHISMO_SOURCES})
+
+target_include_directories(machismo PRIVATE src)
+target_compile_options(machismo PRIVATE -Wall -O2 -g -fno-omit-frame-pointer)
+target_compile_definitions(machismo PRIVATE
+    INSTALL_PREFIX=""
+    SYSTEM_ROOT=""
+    _GNU_SOURCE
+)
+if(MACHISMO_HEAPTRACK_BUILD)
+    target_compile_definitions(machismo PRIVATE MACHISMO_HEAPTRACK_BUILD)
+endif()
+target_link_libraries(machismo PRIVATE dl rt pthread m stdc++)
+target_link_options(machismo PRIVATE -rdynamic)
+
+# libdrm powers the early in-process KMS load splash (src/splash_kms.c). We use
+# its HEADERS at build time but resolve the library itself via dlopen at runtime
+# (never linked) — machismo is built on a host that ships libdrm but deployed to
+# handhelds that may not, and a NEEDED libdrm.so.2 would make the dynamic loader
+# refuse to start machismo there. With dlopen the splash just no-ops when libdrm
+# is absent. When the headers themselves are missing the splash compiles to inert
+# stubs. (dl is already linked above.)
+find_package(PkgConfig QUIET)
+if(PkgConfig_FOUND)
+    pkg_check_modules(LIBDRM libdrm)
+endif()
+if(LIBDRM_FOUND)
+    target_include_directories(machismo PRIVATE ${LIBDRM_INCLUDE_DIRS})
+    target_compile_definitions(machismo PRIVATE HAVE_LIBDRM)
+else()
+    message(STATUS "machismo: libdrm headers not found — early KMS load splash disabled")
+endif()
+
+# --- libsystem_shim.so ---
+
+add_library(system_shim SHARED
+    src/shim/libsystem_shim.c
+)
+set_target_properties(system_shim PROPERTIES
+    OUTPUT_NAME "system_shim"
+    PREFIX "lib"
+)
+target_compile_options(system_shim PRIVATE -Wall -O2 -g -fno-omit-frame-pointer)
+target_link_libraries(system_shim PRIVATE m pthread dl)
+target_link_options(system_shim PRIVATE
+    -Wl,--version-script=${CMAKE_CURRENT_SOURCE_DIR}/src/shim/libsystem_shim.ver
+)
+
+# --- libgalaxy_shim.so (GOG Galaxy SDK stub for DLC ownership) ---
+
+add_library(galaxy_shim SHARED
+    src/shim/libgalaxy_shim.c
+)
+set_target_properties(galaxy_shim PROPERTIES
+    OUTPUT_NAME "galaxy_shim"
+    PREFIX "lib"
+)
+target_compile_options(galaxy_shim PRIVATE -Wall -O2 -g)
+target_link_options(galaxy_shim PRIVATE
+    -Wl,--version-script=${CMAKE_CURRENT_SOURCE_DIR}/src/shim/libgalaxy_shim.ver
+)
+
+# --- wrapgen utility ---
+
+if(BUILD_WRAPGEN)
+    add_executable(wrapgen tools/wrapgen.cpp)
+    target_compile_options(wrapgen PRIVATE -Wall -O2 -g)
+    target_link_libraries(wrapgen PRIVATE dl)
+endif()
+
+# --- test_lse_emul ---
+
+if(BUILD_TESTS)
+    add_executable(test_lse_emul tests/test_lse_emul.c src/isa_emul.c)
+    target_include_directories(test_lse_emul PRIVATE src)
+    target_compile_options(test_lse_emul PRIVATE -Wall -O2 -g)
+    target_compile_definitions(test_lse_emul PRIVATE _GNU_SOURCE)
+    target_link_libraries(test_lse_emul PRIVATE pthread)
+
+    add_executable(test_necrolevel_rng tests/test_necrolevel_rng.c src/dylib_loader.c)
+    target_include_directories(test_necrolevel_rng PRIVATE src)
+    target_compile_options(test_necrolevel_rng PRIVATE -Wall -O2 -g)
+    target_compile_definitions(test_necrolevel_rng PRIVATE _GNU_SOURCE)
+    target_link_libraries(test_necrolevel_rng PRIVATE dl m)
+
+    # Crash handler: -O0 + frame pointers so the test's call chain unwinds
+    # deterministically (the handler itself, in machismo, is built with frame
+    # pointers regardless).
+    add_executable(test_crash_handler tests/test_crash_handler.c src/crash_handler.c)
+    target_include_directories(test_crash_handler PRIVATE src)
+    target_compile_options(test_crash_handler PRIVATE -Wall -g -O0 -fno-omit-frame-pointer)
+    target_compile_definitions(test_crash_handler PRIVATE _GNU_SOURCE)
+    target_link_libraries(test_crash_handler PRIVATE pthread)
+endif()
+
+# --- per-game shim libraries (libgame_patches, libsugar_patches_*, pcm_cache_write) ---
+# Moved OUT of machismo into the machismo-ports umbrella repo. machismo proper
+# builds only the loader + generic shims; the game-specific override libraries
+# are built by the umbrella CMake against machismo's headers.
+# See ../ports/ and ../CMakeLists.txt in the machismo-ports workspace.
+
+# --- install ---
+
+install(TARGETS machismo RUNTIME DESTINATION bin)
+install(TARGETS system_shim LIBRARY DESTINATION lib)
+if(BUILD_WRAPGEN)
+    install(TARGETS wrapgen RUNTIME DESTINATION bin)
+endif()

@@ -1,0 +1,47 @@
+# Build artifacts
+machismo
+wrapgen
+libsystem_shim.so
+*.o
+
+# CMake
+build/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# External library builds
+build-bgfx/
+build-gl4es/
+build-libcxx/
+build-libcxx-standard/
+build-luajit/
+build-sfml/
+
+# Test fixtures (built from source)
+tests/fixtures/exit42
+tests/fixtures/exit0
+tests/fixtures/hello_write
+tests/fixtures/fat_binary
+tests/fixtures/fat_stub_x86
+tests/fixtures/with_lc_main
+tests/fixtures/trampoline_target
+tests/fixtures/libtest_native.so
+tests/test_bgfx_gles
+
+# Runtime
+userdata/
+test_lse_emul
+test_necrolevel_rng
+
+# Claude agent instruction files — kept local, never tracked (matches in any dir)
+CLAUDE.md
+
+# CMake compiler detection artifacts
+cinctest.c
+clang_major.c
+clang_major.cpp
+clang_c_major
+clang_cpp_major
+src/include/

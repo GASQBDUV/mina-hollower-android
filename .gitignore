@@ -1,0 +1,23 @@
+# build outputs
+build/
+build-android/
+out/
+.gradle/
+*.apk
+*.so
+*.o
+*.a
+local.properties
+.cxx/
+__pycache__/
+
+# anything derived from game data must never be committed
+*.yc
+*.pak
+saveData*
+shaders_gles/
+shaders_spv/
+mapassets/
+_levels/
+_out/
+worldmap*.png

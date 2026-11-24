@@ -1,0 +1,58 @@
+diff --git a/src/renderer_gl.h b/src/renderer_gl.h
+index 4c2942a03..36d3ef8f6 100644
+--- a/src/renderer_gl.h
++++ b/src/renderer_gl.h
+@@ -1381,20 +1381,15 @@ namespace bgfx { namespace gl
+ 		void update(uint32_t _offset, uint32_t _size, void* _data, bool _discard = false)
+ 		{
+ 			BX_ASSERT(0 != m_id, "Updating invalid index buffer.");
+-
++			GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_id) );
+ 			if (_discard)
+ 			{
+-				// orphan buffer...
+-				destroy();
+-				create(m_size, NULL, m_flags);
++				GL_CHECK(glBufferData(GL_ELEMENT_ARRAY_BUFFER, _size, _data, GL_DYNAMIC_DRAW) );
++			}
++			else
++			{
++				GL_CHECK(glBufferSubData(GL_ELEMENT_ARRAY_BUFFER, _offset, _size, _data) );
+ 			}
+-
+-			GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_id) );
+-			GL_CHECK(glBufferSubData(GL_ELEMENT_ARRAY_BUFFER
+-				, _offset
+-				, _size
+-				, _data
+-				) );
+ 			GL_CHECK(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0) );
+ 		}
+ 
+@@ -1429,20 +1424,15 @@ namespace bgfx { namespace gl
+ 		void update(uint32_t _offset, uint32_t _size, void* _data, bool _discard = false)
+ 		{
+ 			BX_ASSERT(0 != m_id, "Updating invalid vertex buffer.");
+-
++			GL_CHECK(glBindBuffer(m_target, m_id) );
+ 			if (_discard)
+ 			{
+-				// orphan buffer...
+-				destroy();
+-				create(m_size, NULL, m_layoutHandle, 0);
++				GL_CHECK(glBufferData(m_target, _size, _data, GL_DYNAMIC_DRAW) );
++			}
++			else
++			{
++				GL_CHECK(glBufferSubData(m_target, _offset, _size, _data) );
+ 			}
+-
+-			GL_CHECK(glBindBuffer(m_target, m_id) );
+-			GL_CHECK(glBufferSubData(m_target
+-				, _offset
+-				, _size
+-				, _data
+-				) );
+ 			GL_CHECK(glBindBuffer(m_target, 0) );
+ 		}
+ 

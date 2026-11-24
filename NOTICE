@@ -1,0 +1,6 @@
+This repository contains no game data. "Mina the Hollower" and its assets are the property of Yacht Club
+Games. This project is an independent, unofficial interoperability effort and is not affiliated with or
+endorsed by them. You must own a legitimate copy of the game.
+
+machismo-android/ is a modified copy of machismo (https://github.com/bmdhacks/machismo, GPL-3.0),
+based on upstream commit 75d38caf. The whole repository is distributed under GPL-3.0 (see LICENSE).

@@ -1,0 +1,59 @@
+/*
+ * INI-style config file parser for machismo.
+ *
+ * Format:
+ *   [general]
+ *   dylib_map = dylib_map.conf
+ *   patches = patches/necrodancer.conf
+ *
+ *   lib_dir = /data/app/.../lib/arm64      (Android: nativeLibraryDir)
+ *   lib_alias = libSDL2-2.0.so.0=libSDL2.so (repeatable)
+ *
+ *   [trampoline.sdl2]
+ *   lib = libSDL2-2.0.so.0
+ *   prefix = _SDL_
+ *
+ *   [trampoline.bgfx]
+ *   lib = ./build-bgfx/libbgfx-shared.so
+ *   prefix = _bgfx_
+ *   prefix = __ZN4bgfx
+ *   init_wrapper = true
+ *   renderer = opengles
+ */
+
+#ifndef CONFIG_H
+#define CONFIG_H
+
+#define CONFIG_MAX_TRAMPOLINES 8
+#define CONFIG_MAX_PREFIXES    8
+#define CONFIG_MAX_LIB_ALIASES 16
+
+typedef struct {
+	char* name;                              /* section suffix, e.g. "sdl2" */
+	char* lib;                               /* native .so path */
+	char* prefixes[CONFIG_MAX_PREFIXES];     /* symbol prefix patterns */
+	int num_prefixes;
+	int init_wrapper;                        /* intercept bgfx init */
+	char* renderer;                          /* force renderer type */
+	char* override_lib;                      /* .so with exact-symbol replacements */
+	int match_local;                         /* override pass also matches LOCAL (non-N_EXT) defined symbols */
+} machismo_trampoline_config_t;
+
+typedef struct {
+	char* dylib_map;
+	char* patches;
+	char* splash_image;                      /* early KMS load splash PNG (relative to CWD) */
+	char* lib_dir;                           /* colon list: dirs searched first for native .so (e.g. nativeLibraryDir) */
+	char* lib_aliases[CONFIG_MAX_LIB_ALIASES]; /* "from=to" e.g. "libSDL2-2.0.so.0=libSDL2.so" */
+	int num_lib_aliases;
+	machismo_trampoline_config_t trampolines[CONFIG_MAX_TRAMPOLINES];
+	int num_trampolines;
+} machismo_config_t;
+
+/* Load config from file. Returns 0 on success, -1 if file not found (not an error). */
+int config_load(const char* path, machismo_config_t* cfg);
+
+/* Free all allocated strings in config. */
+void config_free(machismo_config_t* cfg);
+
+#endif /* CONFIG_H */

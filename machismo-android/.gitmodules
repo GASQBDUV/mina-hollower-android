@@ -1,0 +1,21 @@
+[submodule "extern/bgfx"]
+	path = extern/bgfx
+	url = https://github.com/bkaradzic/bgfx.git
+	ignore = dirty
+[submodule "extern/bimg"]
+	path = extern/bimg
+	url = https://github.com/bkaradzic/bimg.git
+[submodule "extern/bx"]
+	path = extern/bx
+	url = https://github.com/bkaradzic/bx.git
+[submodule "extern/sfml"]
+	path = extern/sfml
+	url = https://github.com/SFML/SFML.git
+[submodule "extern/llvm-project"]
+	path = extern/llvm-project
+	url = https://github.com/bmdhacks/llvm-project.git
+	ignore = dirty
+	branch = darwin-abi-compat
+[submodule "extern/LuaJIT"]
+	path = extern/LuaJIT
+	url = https://github.com/LuaJIT/LuaJIT.git

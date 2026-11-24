@@ -1,0 +1,762 @@
+--------- beginning of main
+11-24 15:03:12.542 E/MinaPort(15901): mappanel: shown on display 2
+11-24 15:03:12.626 E/MinaPort(15901): dlopen libSDL2.so -> OK
+11-24 15:03:12.628 E/MinaPort(15901): dlopen libglibc_compat.so -> OK
+11-24 15:03:12.630 E/MinaPort(15901): dlopen libgcc_sg.so -> OK
+11-24 15:03:12.638 E/MinaPort(15901): dlopen libstdcxxg.so -> OK
+11-24 15:03:12.639 E/MinaPort(15901): dlopen libcxxabig.so -> OK
+11-24 15:03:12.641 E/MinaPort(15901): s_glBindAttribLocation: bind attrib 0 name position
+11-24 15:03:12.642 E/MinaPort(15901): s_glBindAttribLocation: bind attrib 1 name color
+11-24 15:03:12.642 E/MinaPort(15901): s_glBindAttribLocation: bind attrib 2 name localCoord
+11-24 15:03:12.645 E/MinaPort(15901): dlopen libatomicg.so -> OK
+11-24 15:03:12.649 E/MinaPort(15901): dlopen libcxxg.so -> OK
+11-24 15:03:12.651 E/MinaPort(15901): dlopen libgfxshim_sdl.so -> OK
+11-24 15:03:12.654 E/MinaPort(15901): libsystem_shim: pthread wrappers initialized (real=0x767b8332ec68)
+11-24 15:03:12.654 E/MinaPort(15901): s_glBindAttribLocation: bind attrib 0 name position
+11-24 15:03:12.654 E/MinaPort(15901): s_glBindAttribLocation: bind attrib 1 name color
+11-24 15:03:12.655 E/MinaPort(15901): dlopen libsystem_shim.so -> OK
+11-24 15:03:12.657 E/MinaPort(15901): s_glBindAttribLocation: bind attrib 0 name position
+11-24 15:03:12.657 E/MinaPort(15901): s_glBindAttribLocation: bind attrib 1 name color
+11-24 15:03:12.659 E/MinaPort(15901): dlopen libmachismo.so -> OK
+11-24 15:03:12.663 E/MinaPort(15901): dlopen libgothic_patches.so -> OK
+11-24 15:03:12.663 E/MinaPort(15901): gothic: libgothic_patches.so loaded (GLES RHI backend; P0 scaffold)
+11-24 15:03:12.692 E/MinaPort(15901): dlopen libmachismo_unwind.so -> OK
+11-24 15:03:12.692 E/MinaPort(15901): starting guest /data/user/0/com.mina.port/files/gdroot/gamedata/Mina the Hollower.app/Contents/MacOS/MinaTheHollower
+11-24 15:03:12.726 E/MinaPort(15901): machismo: LC_LOAD_DYLINKER found (/usr/lib/dyld) — ignored in standalone mode
+11-24 15:03:12.726 E/MinaPort(15901): machismo: loaded config from /data/user/0/com.mina.port/files/conf/machismo.conf
+11-24 15:03:12.726 E/MinaPort(15901): libpath: dir=/data/app/~~By5Bx1sAgARniBvFveIHJQ==/com.mina.port-viz6DwZkELhlU9ypapcGUA==/lib/arm64 nalias=14
+11-24 15:03:12.726 E/MinaPort(15901): machismo: hwcap=0x19b native_lse_rcpc=0
+11-24 15:03:12.726 E/MinaPort(15901): machismo: LSE island pool at 0x105298000 (adjacent to segments)
+11-24 15:03:12.788 E/MinaPort(15901): machismo: downgraded 4 ARMv8.3 RCPC instructions to ARMv8.0
+11-24 15:03:12.788 E/MinaPort(15901): machismo: patched 197 ARMv8.1 LSE atomics with LDXR/STXR islands
+11-24 15:03:12.788 E/MinaPort(15901): resolver: mach header at 0x100000000, slide=0x0
+11-24 15:03:12.788 E/MinaPort(15901): resolver: found 19 dylibs, LC_DYLD_INFO (bind=3968 rebase=17184 weak=152 lazy=9400 bytes)
+11-24 15:03:12.788 E/MinaPort(15901): resolver: loaded 24 dylib mappings from conf/dylib_map.conf
+11-24 15:03:12.789 E/MinaPort(15901): libpath: dlopen('/data/app/~~By5Bx1sAgARniBvFveIHJQ==/com.mina.port-viz6DwZkELhlU9ypapcGUA==/lib/arm64/libcxxg.so') -> ok
+11-24 15:03:12.792 E/MinaPort(15901): resolver: dylib[1] 'libc++.1.dylib' → 'libs/libc++.so.1' — loaded
+11-24 15:03:12.792 E/MinaPort(15901): libpath: dlopen('/data/app/~~By5Bx1sAgARniBvFveIHJQ==/com.mina.port-viz6DwZkELhlU9ypapcGUA==/lib/arm64/libsystem_shim.so') -> ok
+11-24 15:03:12.792 E/MinaPort(15901): resolver: dylib[2] 'libSystem.B.dylib' → 'libs/libsystem_shim.so' — loaded
+11-24 15:03:12.792 E/MinaPort(15901): resolver: dylib[3] 'libiconv.2.dylib' — stubbed
+11-24 15:03:12.792 E/MinaPort(15901): resolver: dylib[4] 'libsteam_api.dylib' — stubbed
+11-24 15:03:12.792 E/MinaPort(15901): resolver: dylib[5] 'Foundation' — skipped
+11-24 15:03:12.792 E/MinaPort(15901): resolver: dylib[6] 'ForceFeedback' — skipped
+11-24 15:03:12.792 E/MinaPort(15901): resolver: dylib[7] 'AudioToolbox' — skipped
+11-24 15:03:12.793 E/MinaPort(15901): resolver: dylib[8] 'Carbon' — skipped
+11-24 15:03:12.793 E/MinaPort(15901): resolver: dylib[9] 'CoreAudio' — skipped
+11-24 15:03:12.793 E/MinaPort(15901): libpath: dlopen('/data/app/~~By5Bx1sAgARniBvFveIHJQ==/com.mina.port-viz6DwZkELhlU9ypapcGUA==/lib/arm64/libgothic_patches.so') -> ok
+11-24 15:03:12.793 E/MinaPort(15901): resolver: dylib[10] 'Metal' → 'libs/libgothic_patches.so' — loaded
+11-24 15:03:12.793 E/MinaPort(15901): resolver: dylib[11] 'IOKit' — skipped
+11-24 15:03:12.793 E/MinaPort(15901): resolver: dylib[12] 'AppKit' — skipped
+11-24 15:03:12.793 E/MinaPort(15901): resolver: dylib[13] 'IOSurface' — skipped
+11-24 15:03:12.793 E/MinaPort(15901): resolver: dylib[14] 'CoreGraphics' — skipped
+11-24 15:03:12.793 E/MinaPort(15901): resolver: dylib[15] 'CoreFoundation' — skipped
+11-24 15:03:12.793 E/MinaPort(15901): resolver: dylib[16] 'QuartzCore' — skipped
+11-24 15:03:12.793 E/MinaPort(15901): resolver: dylib[17] 'CoreServices' — skipped
+11-24 15:03:12.793 E/MinaPort(15901): resolver: dylib[18] 'CoreVideo' — skipped
+11-24 15:03:12.794 E/MinaPort(15901): libpath: dlopen('/data/app/~~By5Bx1sAgARniBvFveIHJQ==/com.mina.port-viz6DwZkELhlU9ypapcGUA==/lib/arm64/libgothic_patches.so') -> ok
+11-24 15:03:12.794 E/MinaPort(15901): resolver: dylib[19] 'libobjc.A.dylib' → 'libs/libgothic_patches.so' — loaded
+11-24 15:03:12.794 E/MinaPort(15901): libpath: 'libgcc_s.so.1' is aliased to '-' (not available here)
+11-24 15:03:12.799 E/MinaPort(15901): resolver: symbol 'dyld_stub_binder' not found in 'libs/libsystem_shim.so'
+11-24 15:03:12.799 E/MinaPort(15901): resolver: symbol 'OBJC_CLASS_' not found in 'libs/libgothic_patches.so'
+11-24 15:03:12.799 E/MinaPort(15901): resolver: symbol 'OBJC_CLASS_' not found in 'libs/libgothic_patches.so'
+11-24 15:03:12.799 E/MinaPort(15901): resolver: symbol 'OBJC_CLASS_' not found in 'libs/libgothic_patches.so'
+11-24 15:03:12.799 E/MinaPort(15901): resolver: symbol 'OBJC_CLASS_' not found in 'libs/libgothic_patches.so'
+11-24 15:03:12.799 E/MinaPort(15901): resolver: symbol 'OBJC_CLASS_' not found in 'libs/libgothic_patches.so'
+11-24 15:03:12.808 E/MinaPort(15901): resolver: done — 247 binds resolved, 15 stubbed, 381 failed, 58774 rebases, 0 ctor/dtor ABI adapters, 4 variadic thunks
+11-24 15:03:12.810 E/MinaPort(15901): machismo: TLV image at 0x0, size 0 + 4744 bss
+11-24 15:03:12.811 E/MinaPort(15901): libpath: dlopen('/data/app/~~By5Bx1sAgARniBvFveIHJQ==/com.mina.port-viz6DwZkELhlU9ypapcGUA==/lib/arm64/libsystem_shim.so') -> ok
+11-24 15:03:12.812 E/MinaPort(15901): machismo: TLV info set in shim
+11-24 15:03:12.813 E/MinaPort(15901): eh_frame: __unwind_info v1: 91 common encodings, 2 personalities, 20 index entries
+11-24 15:03:12.813 E/MinaPort(15901): eh_frame: personality[1]: GOT at 0x100da4128 → 0x767afaabdfd0
+11-24 15:03:12.813 E/MinaPort(15901): eh_frame: personality[2]: GOT at 0x100da4120 → 0x767afd7d8960
+11-24 15:03:12.816 E/MinaPort(15901): eh_frame: 18860 entries: 13003 FRAME, 5832 FRAMELESS, 23 DWARF, 2 zero-enc, 4313 with LSDA
+11-24 15:03:12.830 E/MinaPort(15901): eh_frame: generated 18837 FDEs (837276 bytes) in synthetic .eh_frame
+11-24 15:03:12.831 E/MinaPort(15901): eh_frame: parsed 23 native FDEs from __eh_frame (1492 bytes)
+11-24 15:03:12.839 E/MinaPort(15901): eh_frame: built .eh_frame_hdr (301780 bytes, 18860 entries: 18837 synthetic + 23 native)
+11-24 15:03:12.845 E/MinaPort(15901): eh_frame: registered synthetic FDEs (837276 bytes, 18837 FDEs) with unwinder via RTLD_DEFAULT [LLVM libunwind style]
+11-24 15:03:12.845 E/MinaPort(15901): eh_frame: registered native __eh_frame (1492 bytes, 23 FDEs) with unwinder via RTLD_DEFAULT [LLVM libunwind style]
+11-24 15:03:12.848 E/MinaPort(15901): eh_frame: registered synthetic FDEs (837276 bytes, 1 section) with unwinder via mapped library [libgcc style]
+11-24 15:03:12.848 E/MinaPort(15901): eh_frame: registered native __eh_frame (1492 bytes, 1 section) with unwinder via mapped library [libgcc style]
+11-24 15:03:12.849 E/MinaPort(15901): libpath: dlopen('/data/app/~~By5Bx1sAgARniBvFveIHJQ==/com.mina.port-viz6DwZkELhlU9ypapcGUA==/lib/arm64/libgcc_sg.so') -> ok
+11-24 15:03:12.849 E/MinaPort(15901): libpath: dlopen('/data/app/~~By5Bx1sAgARniBvFveIHJQ==/com.mina.port-viz6DwZkELhlU9ypapcGUA==/lib/arm64/libmachismo_unwind.so') -> ok
+11-24 15:03:12.854 E/MinaPort(15901): eh_frame: registered synthetic FDEs (837276 bytes, 18837 FDEs) with unwinder via libmachismo_unwind.so [LLVM libunwind style]
+11-24 15:03:12.854 E/MinaPort(15901): eh_frame: registered native __eh_frame (1492 bytes, 23 FDEs) with unwinder via libmachismo_unwind.so [LLVM libunwind style]
+11-24 15:03:12.856 E/MinaPort(15901): libpath: dlopen('/data/app/~~By5Bx1sAgARniBvFveIHJQ==/com.mina.port-viz6DwZkELhlU9ypapcGUA==/lib/arm64/libc++abi.so') -> dlopen failed: library "/data/app/~~By5Bx1sAgARniBvFveIHJQ==/com.mina.port-viz6DwZkELhlU9ypapcGUA==/lib/arm64/libc++abi.so" not found
+11-24 15:03:12.857 E/MinaPort(15901): libpath:   open() fd=-1 errno=2
+11-24 15:03:12.858 E/MinaPort(15901): libpath: dlopen('libc++abi.so') -> dlopen failed: library "libc++abi.so" not found
+11-24 15:03:12.866 E/MinaPort(15901): libpath: dlopen('/data/app/~~By5Bx1sAgARniBvFveIHJQ==/com.mina.port-viz6DwZkELhlU9ypapcGUA==/lib/arm64/libc++.so') -> dlopen failed: library "/data/app/~~By5Bx1sAgARniBvFveIHJQ==/com.mina.port-viz6DwZkELhlU9ypapcGUA==/lib/arm64/libc++.so" not found
+11-24 15:03:12.867 E/MinaPort(15901): libpath:   open() fd=-1 errno=2
+11-24 15:03:12.867 E/MinaPort(15901): libpath: dlopen('libc++.so') -> dlopen failed: library "libc++.so" not found
+11-24 15:03:12.867 E/MinaPort(15901): libpath: dlopen('/data/app/~~By5Bx1sAgARniBvFveIHJQ==/com.mina.port-viz6DwZkELhlU9ypapcGUA==/lib/arm64/libunwind.so') -> dlopen failed: library "/data/app/~~By5Bx1sAgARniBvFveIHJQ==/com.mina.port-viz6DwZkELhlU9ypapcGUA==/lib/arm64/libunwind.so" not found
+11-24 15:03:12.867 E/MinaPort(15901): libpath:   open() fd=-1 errno=2
+11-24 15:03:12.867 E/MinaPort(15901): libpath: dlopen('libunwind.so') -> dlopen failed: library "libunwind.so" not found
+11-24 15:03:12.867 E/MinaPort(15901): trampoline: island pool at 0x105318000 (1024 KB)
+11-24 15:03:12.867 E/MinaPort(15901): libpath: dlopen('/data/app/~~By5Bx1sAgARniBvFveIHJQ==/com.mina.port-viz6DwZkELhlU9ypapcGUA==/lib/arm64/libSDL2.so') -> ok
+11-24 15:03:12.867 E/MinaPort(15901): trampoline: 316 patched, 0 mangling-fixed, 0 trapped from libSDL2-2.0.so.0
+11-24 15:03:12.867 E/MinaPort(15901): trampoline: 0 patched, 0 mangling-fixed, 0 trapped from STUB
+11-24 15:03:12.867 E/MinaPort(15901): libpath: dlopen('/data/app/~~By5Bx1sAgARniBvFveIHJQ==/com.mina.port-viz6DwZkELhlU9ypapcGUA==/lib/arm64/libgothic_patches.so') -> ok
+11-24 15:03:12.880 E/MinaPort(15901): trampoline: override: __ZN7ycAudio11FileManager13InitBankQueueEPv -> 0x767afaabc2e4
+11-24 15:03:12.882 E/MinaPort(15901): trampoline: override: __ZN6ycFile4ReadERK11ycStringRefP11ycAllocatorPy -> 0x767afaabaed0
+11-24 15:03:12.884 E/MinaPort(15901): trampoline: override: __ZN5ycDir6ExistsEPKc -> 0x767afaabab40
+11-24 15:03:12.884 E/MinaPort(15901): trampoline: override: __ZN15ycRenderCmdList7ExecuteEv -> 0x767afaaad3a4
+11-24 15:03:12.885 E/MinaPort(15901): trampoline: override: __ZN14ycRenderWindow13InitSwapChainEv -> 0x767afaaad390
+11-24 15:03:12.885 E/MinaPort(15901): trampoline: override: __ZN8ycThread5StartEPKcPFvPvES2_yyy -> 0x767afaabacb0
+11-24 15:03:12.983 E/MinaPort(15901): trampoline: override: _SDL_GetBasePath -> 0x767afaabab70
+11-24 15:03:12.986 E/MinaPort(15901): trampoline: override: 7 functions replaced (incl. local symbols)
+11-24 15:03:12.986 E/MinaPort(15901): trampoline: stale data symbol: _SDL_log_function at 0x100e216f0
+11-24 15:03:12.986 E/MinaPort(15901): trampoline: stale data symbol: _SDL_CPUFeatures at 0x100e216f8
+11-24 15:03:12.986 E/MinaPort(15901): trampoline: stale data symbol: _SDL_userevents at 0x100e216fc
+11-24 15:03:12.986 E/MinaPort(15901): trampoline: stale data symbol: _SDL_scancode_names at 0x100e21700
+11-24 15:03:12.988 E/MinaPort(15901): trampoline: stale data symbol: _SDL_ChooseBlitFunc.features at 0x100e22ca8
+11-24 15:03:12.988 E/MinaPort(15901): trampoline: stale data symbol: _SDL_GeneratedBlitFuncTable at 0x100e22cb0
+11-24 15:03:12.988 E/MinaPort(15901): trampoline: stale data symbol: _SDL_expand_byte at 0x100e23a98
+11-24 15:03:12.988 E/MinaPort(15901): trampoline: stale data symbol: _SDL_HIDAPI_DriverCombined at 0x100e23dc8
+11-24 15:03:12.988 E/MinaPort(15901): trampoline: stale data symbol: _SDL_HIDAPI_DriverGameCube at 0x100e23e60
+11-24 15:03:12.988 E/MinaPort(15901): trampoline: stale data symbol: _SDL_HIDAPI_DriverLuna at 0x100e23ef8
+11-24 15:03:12.988 E/MinaPort(15901): trampoline: stale data symbol: _SDL_HIDAPI_DriverPS3 at 0x100e23f90
+11-24 15:03:12.988 E/MinaPort(15901): trampoline: stale data symbol: _SDL_HIDAPI_DriverPS3ThirdParty at 0x100e24028
+11-24 15:03:12.988 E/MinaPort(15901): trampoline: stale data symbol: _SDL_HIDAPI_DriverPS4 at 0x100e240c0
+11-24 15:03:12.988 E/MinaPort(15901): trampoline: stale data symbol: _SDL_HIDAPI_DriverPS5 at 0x100e24158
+11-24 15:03:12.988 E/MinaPort(15901): trampoline: stale data symbol: _SDL_HIDAPI_DriverShield at 0x100e241f0
+11-24 15:03:12.988 E/MinaPort(15901): trampoline: stale data symbol: _SDL_HIDAPI_DriverStadia at 0x100e24288
+11-24 15:03:12.988 E/MinaPort(15901): trampoline: stale data symbol: _SDL_HIDAPI_DriverSteam at 0x100e24320
+11-24 15:03:12.988 E/MinaPort(15901): trampoline: stale data symbol: _SDL_HIDAPI_DriverSteamDeck at 0x100e243b8
+11-24 15:03:12.988 E/MinaPort(15901): trampoline: stale data symbol: _SDL_HIDAPI_DriverNintendoClassic at 0x100e24450
+11-24 15:03:12.988 E/MinaPort(15901): trampoline: stale data symbol: _SDL_HIDAPI_DriverJoyCons at 0x100e244e8
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_HIDAPI_DriverSwitch at 0x100e24580
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_HIDAPI_DriverWii at 0x100e24618
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_HIDAPI_DriverXbox360 at 0x100e246b0
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_HIDAPI_DriverXbox360W at 0x100e24748
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_HIDAPI_DriverXboxOne at 0x100e247e0
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_HIDAPI_JoystickDriver at 0x100e24878
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_HIDAPI_combine_joycons at 0x100e24920
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_DARWIN_JoystickDriver at 0x100e24948
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_IOS_JoystickDriver at 0x100e249f0
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_VIRTUAL_JoystickDriver at 0x100e24aa0
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_DUMMY_SensorDriver at 0x100e24b48
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_hints at 0x100e5d320
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_ChooseAudioConverters.converters_chosen at 0x100e5d498
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_SendDrop.app_is_dropping at 0x100e5d4b0
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_keyboard at 0x100e5dd50
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_haptics at 0x100e5eac8
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_next_joystick_instance_id at 0x100e5eb48
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_joystick_allows_background_events at 0x100e5eb4c
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_tls_allocated at 0x100e5ebc0
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_timer_data at 0x100e5ec90
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_DUMMY_UpdateWindowFramebuffer.frame_number at 0x100e5ed80
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_OFFSCREEN_UpdateWindowFramebuffer.frame_number at 0x100e5ed84
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_opengl_async_dispatch at 0x100e5eda0
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_Convert_S8_to_F32 at 0x105063568
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_Convert_U8_to_F32 at 0x105063570
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_Convert_S16_to_F32 at 0x105063578
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_Convert_U16_to_F32 at 0x105063580
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_Convert_S32_to_F32 at 0x105063588
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_Convert_F32_to_S8 at 0x105063590
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_Convert_F32_to_U8 at 0x105063598
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_Convert_F32_to_S16 at 0x1050635a0
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_Convert_F32_to_U16 at 0x1050635a8
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_Convert_F32_to_S32 at 0x1050635b0
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_joystick_magic at 0x1050635b8
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: stale data symbol: _SDL_AppleTVRemoteOpenedAsJoystick at 0x1050635bc
+11-24 15:03:12.989 E/MinaPort(15901): trampoline: __DATA guard: 55 library data symbols, 0 pages guarded, 7 mixed pages (cannot guard)
+11-24 15:03:12.996 E/MinaPort(15901): gdb_jit: registered 32488 symbols (1937120 bytes ELF, code at 0x100000000-0x100da4000)
+11-24 15:03:13.005 E/MinaPort(15901): patcher: 0x1001e832c: 370800e8 -> d503201f
+11-24 15:03:13.005 E/MinaPort(15901): patcher: applied 1 patches from conf/patches/gothic.conf
+11-24 15:03:13.032 E/MinaPort(15901): machismo: crash handler installed (SIGSEGV/SIGBUS/SIGILL/SIGFPE/SIGTRAP/SIGABRT; 1 Mach-O image(s), 37 ELF code range(s))
+11-24 15:03:13.032 E/MinaPort(15901): machismo: running 94 static constructors from __mod_init_func
+11-24 15:03:13.032 E/MinaPort(15901): machismo: mod_init[0/94] at 0x100c8354c
+11-24 15:03:13.032 E/MinaPort(15901): machismo: mod_init[1/94] at 0x100c83610
+11-24 15:03:13.032 E/MinaPort(15901): machismo: mod_init[2/94] at 0x100c83644
+11-24 15:03:13.032 E/MinaPort(15901): machismo: mod_init[3/94] at 0x100c836e0
+11-24 15:03:13.034 E/MinaPort(15901): machismo: mod_init[4/94] at 0x100c8380c
+11-24 15:03:13.035 E/MinaPort(15901): machismo: mod_init[5/94] at 0x100c83840
+11-24 15:03:13.035 E/MinaPort(15901): machismo: mod_init[6/94] at 0x100c83874
+11-24 15:03:13.035 E/MinaPort(15901): machismo: mod_init[7/94] at 0x100c838bc
+11-24 15:03:13.035 E/MinaPort(15901): machismo: mod_init[8/94] at 0x100c8395c
+11-24 15:03:13.035 E/MinaPort(15901): machismo: mod_init[9/94] at 0x100c83990
+11-24 15:03:13.035 E/MinaPort(15901): machismo: mod_init[10/94] at 0x100c83a90
+11-24 15:03:13.035 E/MinaPort(15901): machismo: mod_init[11/94] at 0x100c83b40
+11-24 15:03:13.037 E/MinaPort(15901): machismo: mod_init[12/94] at 0x100c83d3c
+11-24 15:03:13.037 E/MinaPort(15901): machismo: mod_init[13/94] at 0x100c83d70
+11-24 15:03:13.037 E/MinaPort(15901): machismo: mod_init[14/94] at 0x100c83dac
+11-24 15:03:13.039 E/MinaPort(15901): machismo: mod_init[15/94] at 0x100c83e88
+11-24 15:03:13.040 E/MinaPort(15901): machismo: mod_init[16/94] at 0x100c83efc
+11-24 15:03:13.040 E/MinaPort(15901): machismo: mod_init[17/94] at 0x100c83fac
+11-24 15:03:13.040 E/MinaPort(15901): machismo: mod_init[18/94] at 0x100c83fe8
+11-24 15:03:13.042 E/MinaPort(15901): machismo: mod_init[19/94] at 0x100c86350
+11-24 15:03:13.042 E/MinaPort(15901): machismo: mod_init[20/94] at 0x100c86384
+11-24 15:03:13.042 E/MinaPort(15901): machismo: mod_init[21/94] at 0x100c863b8
+11-24 15:03:13.043 E/MinaPort(15901): machismo: mod_init[22/94] at 0x100c864a8
+11-24 15:03:13.043 E/MinaPort(15901): machismo: mod_init[23/94] at 0x100c8652c
+11-24 15:03:13.043 E/MinaPort(15901): machismo: mod_init[24/94] at 0x100c865d8
+11-24 15:03:13.043 E/MinaPort(15901): machismo: mod_init[25/94] at 0x100c86920
+11-24 15:03:13.046 E/MinaPort(15901): machismo: mod_init[26/94] at 0x100c90ce8
+11-24 15:03:13.046 E/MinaPort(15901): machismo: mod_init[27/94] at 0x100c90d1c
+11-24 15:03:13.050 E/MinaPort(15901): machismo: mod_init[28/94] at 0x100c90d5c
+11-24 15:03:13.050 E/MinaPort(15901): machismo: mod_init[29/94] at 0x100c90d90
+11-24 15:03:13.050 E/MinaPort(15901): machismo: mod_init[30/94] at 0x100c90e14
+11-24 15:03:13.052 E/MinaPort(15901): machismo: mod_init[31/94] at 0x100c90ff4
+11-24 15:03:13.052 E/MinaPort(15901): machismo: mod_init[32/94] at 0x100c91028
+11-24 15:03:13.052 E/MinaPort(15901): machismo: mod_init[33/94] at 0x100c9105c
+11-24 15:03:13.052 E/MinaPort(15901): machismo: mod_init[34/94] at 0x100c911d8
+11-24 15:03:13.052 E/MinaPort(15901): machismo: mod_init[35/94] at 0x100c91278
+11-24 15:03:13.052 E/MinaPort(15901): machismo: mod_init[36/94] at 0x100c91574
+11-24 15:03:13.052 E/MinaPort(15901): machismo: mod_init[37/94] at 0x100c915f0
+11-24 15:03:13.052 E/MinaPort(15901): machismo: mod_init[38/94] at 0x100c916b8
+11-24 15:03:13.052 E/MinaPort(15901): machismo: mod_init[39/94] at 0x100c916ec
+11-24 15:03:13.052 E/MinaPort(15901): machismo: mod_init[40/94] at 0x100c9177c
+11-24 15:03:13.053 E/MinaPort(15901): machismo: mod_init[41/94] at 0x100c917b0
+11-24 15:03:13.053 E/MinaPort(15901): machismo: mod_init[42/94] at 0x100c917f4
+11-24 15:03:13.053 E/MinaPort(15901): machismo: mod_init[43/94] at 0x100c92054
+11-24 15:03:13.053 E/MinaPort(15901): machismo: mod_init[44/94] at 0x100c92098
+11-24 15:03:13.055 E/MinaPort(15901): machismo: mod_init[45/94] at 0x100c92308
+11-24 15:03:13.055 E/MinaPort(15901): machismo: mod_init[46/94] at 0x100c92360
+11-24 15:03:13.055 E/MinaPort(15901): machismo: mod_init[47/94] at 0x100c9243c
+11-24 15:03:13.055 E/MinaPort(15901): machismo: mod_init[48/94] at 0x100c92500
+11-24 15:03:13.057 E/MinaPort(15901): machismo: mod_init[49/94] at 0x100c9299c
+11-24 15:03:13.057 E/MinaPort(15901): machismo: mod_init[50/94] at 0x100c929c0
+11-24 15:03:13.057 E/MinaPort(15901): machismo: mod_init[51/94] at 0x100c929fc
+11-24 15:03:13.057 E/MinaPort(15901): machismo: mod_init[52/94] at 0x100c92b40
+11-24 15:03:13.057 E/MinaPort(15901): machismo: mod_init[53/94] at 0x100c92cd0
+11-24 15:03:13.057 E/MinaPort(15901): machismo: mod_init[54/94] at 0x100c92db0
+11-24 15:03:13.057 E/MinaPort(15901): machismo: mod_init[55/94] at 0x100c92dfc
+11-24 15:03:13.057 E/MinaPort(15901): machismo: mod_init[56/94] at 0x100c92e68
+11-24 15:03:13.058 E/MinaPort(15901): machismo: mod_init[57/94] at 0x100c92e9c
+11-24 15:03:13.058 E/MinaPort(15901): machismo: mod_init[58/94] at 0x100c930fc
+11-24 15:03:13.058 E/MinaPort(15901): machismo: mod_init[59/94] at 0x100c932b8
+11-24 15:03:13.058 E/MinaPort(15901): machismo: mod_init[60/94] at 0x100c93330
+11-24 15:03:13.058 E/MinaPort(15901): machismo: mod_init[61/94] at 0x100c93580
+11-24 15:03:13.058 E/MinaPort(15901): machismo: mod_init[62/94] at 0x100c9374c
+11-24 15:03:13.060 E/MinaPort(15901): machismo: mod_init[63/94] at 0x100c938a0
+11-24 15:03:13.060 E/MinaPort(15901): machismo: mod_init[64/94] at 0x100c938f0
+11-24 15:03:13.060 E/MinaPort(15901): machismo: mod_init[65/94] at 0x100c93968
+11-24 15:03:13.060 E/MinaPort(15901): machismo: mod_init[66/94] at 0x100c98758
+11-24 15:03:13.060 E/MinaPort(15901): machismo: mod_init[67/94] at 0x100c9878c
+11-24 15:03:13.060 E/MinaPort(15901): machismo: mod_init[68/94] at 0x100c987e8
+11-24 15:03:13.060 E/MinaPort(15901): machismo: mod_init[69/94] at 0x100c99228
+11-24 15:03:13.060 E/MinaPort(15901): machismo: mod_init[70/94] at 0x100c9926c
+11-24 15:03:13.060 E/MinaPort(15901): machismo: mod_init[71/94] at 0x100c9932c
+11-24 15:03:13.060 E/MinaPort(15901): machismo: mod_init[72/94] at 0x100c9947c
+11-24 15:03:13.060 E/MinaPort(15901): machismo: mod_init[73/94] at 0x100c9948c
+11-24 15:03:13.060 E/MinaPort(15901): machismo: mod_init[74/94] at 0x100c994b8
+11-24 15:03:13.060 E/MinaPort(15901): machismo: mod_init[75/94] at 0x100c9955c
+11-24 15:03:13.061 E/MinaPort(15901): machismo: mod_init[76/94] at 0x100c996d4
+11-24 15:03:13.061 E/MinaPort(15901): machismo: mod_init[77/94] at 0x100c99768
+11-24 15:03:13.061 E/MinaPort(15901): machismo: mod_init[78/94] at 0x100c99844
+11-24 15:03:13.061 E/MinaPort(15901): machismo: mod_init[79/94] at 0x100c9a1f4
+11-24 15:03:13.061 E/MinaPort(15901): machismo: mod_init[80/94] at 0x100c9a51c
+11-24 15:03:13.061 E/MinaPort(15901): machismo: mod_init[81/94] at 0x100c9a610
+11-24 15:03:13.061 E/MinaPort(15901): machismo: mod_init[82/94] at 0x100c9a678
+11-24 15:03:13.061 E/MinaPort(15901): machismo: mod_init[83/94] at 0x100c9a7b8
+11-24 15:03:13.061 E/MinaPort(15901): machismo: mod_init[84/94] at 0x100c9a7ec
+11-24 15:03:13.062 E/MinaPort(15901): machismo: mod_init[85/94] at 0x100c9c5d4
+11-24 15:03:13.062 E/MinaPort(15901): machismo: mod_init[86/94] at 0x100c9ca3c
+11-24 15:03:13.062 E/MinaPort(15901): machismo: mod_init[87/94] at 0x100c9cb34
+11-24 15:03:13.062 E/MinaPort(15901): machismo: mod_init[88/94] at 0x100c9cc08
+11-24 15:03:13.062 E/MinaPort(15901): machismo: mod_init[89/94] at 0x100c9e0bc
+11-24 15:03:13.062 E/MinaPort(15901): machismo: mod_init[90/94] at 0x100c9e110
+11-24 15:03:13.062 E/MinaPort(15901): machismo: mod_init[91/94] at 0x100c9e13c
+11-24 15:03:13.065 E/MinaPort(15901): machismo: mod_init[92/94] at 0x100c9e22c
+11-24 15:03:13.066 E/MinaPort(15901): machismo: mod_init[93/94] at 0x100c9ea3c
+11-24 15:03:13.066 E/MinaPort(15901): machismo: __mod_init_func constructors complete
+11-24 15:03:13.066 E/MinaPort(15901): machismo: chdir to '/data/user/0/com.mina.port/files/gdroot/gamedata/Mina the Hollower.app/Contents/MacOS'
+11-24 15:03:13.066 E/MinaPort(15901): machismo: calling _main at 0x1009ba800 (argc=1)
+11-24 15:03:13.314 E/MinaPort(15901): gothic: backend = GLES
+11-24 15:03:13.400 E/MinaPort(15901): gothic: ycFile::Read: fopen('/data/user/0/com.mina.port/files/gdroot/gamedata/Mina the Hollower.app/Contents/Resources/resources/!cache/preferences/gameConfig.yc') failed: No such file or directory
+11-24 15:03:13.409 E/MinaPort(15901): gothic: ycFile::Read: fopen('/data/user/0/com.mina.port/files/gamePrefs.yc') failed: No such file or directory
+11-24 15:03:13.428 E/MinaPort(15901): libpath: dlopen('/data/app/~~By5Bx1sAgARniBvFveIHJQ==/com.mina.port-viz6DwZkELhlU9ypapcGUA==/lib/arm64/libSDL2.so') -> ok
+11-24 15:03:13.428 E/MinaPort(15901): sdl_window_shim: stripped SDL_WINDOW_METAL (no Metal on Linux)
+11-24 15:03:13.428 E/MinaPort(15901): sdl_window_shim: KMSDRM detected, forcing fullscreen
+11-24 15:03:13.439 E/MinaPort(15901): sdl_window_shim: KMSDRM + Metal-origin window → added SDL_WINDOW_OPENGL (SDL owns GBM/EGL)
+11-24 15:03:13.489 E/MinaPort(15901): INFO: pixel format wanted SDL_PIXELFORMAT_RGBX8888 (2), got SDL_PIXELFORMAT_RGBX8888 (2)
+11-24 15:03:13.521 E/MinaPort(15901): sdl_window_shim: captured SDL window 0x767c11a61ef0 (1920x1080, flags=0x3003)
+11-24 15:03:13.557 E/MinaPort(15901): gothic: pcm_cache: 516 cached samples, 214M data
+11-24 15:03:13.576 E/MinaPort(15901): gothic: SDL owns GBM/EGL (1920x1080, syswm=9) — deferring GL context to the render thread
+11-24 15:03:13.611 E/MinaPort(15901): gothic: ycFile::Read: fopen('/data/user/0/com.mina.port/files/input.yc') failed: No such file or directory
+11-24 15:03:13.618 E/MinaPort(15901): gothic: KMSDRM context current (sdl_ctx=0x767c31ab8cb0 egl_display=0x767c0b03b020) — SDL granted depth=24 stencil=8
+11-24 15:03:13.620 E/MinaPort(15901): gothic: GL caps  version="OpenGL ES 3.1 (4.5.0 NVIDIA 617.42)"  glsl="OpenGL ES GLSL ES 3.10"  renderer="Android Emulator OpenGL ES Translator (NVIDIA GeForce RTX 4090/PCIe/SSE2)"  fb0-depth=24 fb0-stencil=8  ext[ -EXT_multi_draw_arrays -EXT_shader_framebuffer_fetch +OES_packed_depth_stencil +OES_depth_texture -EXT_texture_storage ]
+11-24 15:03:13.620 E/MinaPort(15901): gothic: pinning s_bufferIntScale=1 (native 1x) at 0x105055fd4
+11-24 15:03:13.625 E/MinaPort(15901): gothic-objc: first toTexture blit ok: slice=0 level=0 1x1 bpr=4 off=0
+11-24 15:03:13.635 E/MinaPort(15901): gothic: destroy stream: unexpected opcode 0x1 — stopping (some destroys may be missed)
+11-24 15:03:13.636 E/MinaPort(15901): gothic: Pixel Scale Mode bound to Render::s_postProcess @ 0x105055be8
+11-24 15:03:13.636 E/MinaPort(15901): gothic: present viewport — drawable 1920x1080, mode=Fill (stretch; 4:3 box on square) → full-window [0,0 1920x1080]
+11-24 15:03:13.737 E/MinaPort(15901): gothic: atlas created 1024² R8 (cell=18 gutter=1 → 3136 cells)
+11-24 15:03:13.774 E/MinaPort(15901): gothic: backbuffer viewport negative extent (-1,-1879048192) — engine sentinel, skipping
+11-24 15:03:13.793 E/MinaPort(15901): gothic: backbuffer present shader = copy_PIXEL_UPSCALER.frag (sharp pixel-art upscaler)
+11-24 15:03:13.793 E/MinaPort(15901): gothic: UBO upload path = per-draw orphan ring (libmali) (GL_VERSION=OpenGL ES 3.1 (4.5.0 NVIDIA 617.42))
+11-24 15:04:35.825 E/MinaPort(15901): gothic: font store-lock resolve = off (non-G52 / g29+ / non-libmali) (GL_RENDERER=Android Emulator OpenGL ES Translator (NVIDIA GeForce RTX 4090/PCIe/SSE2), libmali g-1)
+11-24 15:05:50.425 W/libc    ( 2695): Access denied finding property "persist.adb.tls_server.enable"
+11-24 15:05:50.425 W/libc    ( 2695): Access denied finding property "service.adb.tls.port"
+11-24 15:05:51.097 W/libc    ( 2695): Access denied finding property "persist.adb.tls_server.enable"
+11-24 15:05:51.097 W/libc    ( 2695): Access denied finding property "service.adb.tls.port"
+--------- beginning of main
+11-24 15:06:10.116 E/MinaPort(16405): m11-24 15:06:10.264 E/MinaPort11-24 15:06:10.264 E/MinaPort(16405): dlopen libSDL2.so -> OK
+11-24 15:06:10.267 E/MinaPort(16405): dlopen libglibc_compat.so -> OK
+11-24 15:06:10.270 E/MinaPort(16405)11-24 15:06:10.297 E/MinaPort(16405): s_glBindAttribLocation: bind attrib 0 name position
+11-24 15:06:10.297 E/MinaPort(16405): s_glBindAttribLocation: bind attrib 1 name color
+11-24 15:06:10.297 E/MinaPort(16405): s_glBindAttribLocation: bind attrib 2 name localCoord
+11-24 15:06:10.306 E/MinaPort11-24 15:06:10.306 E/MinaPort(16405): dlopen libstdcxxg.so -> OK
+11-24 15:06:10.314 E/MinaPort(16405):11-24 15:06:10.317 E/MinaPort11-24 15:06:10.317 E/MinaPort(16405): s_glBindAttribLocation: 11-24 15:06:10.317 E/MinaPort11-24 15:06:10.317 E/MinaPort(16405): s_glBindAttribLocatio11-24 15:06:10.324 E/MinaPort11-24 15:06:10.324 E/MinaPort(16405): dlopen libatomicg.so -> OK
+11-24 15:06:10.325 E/MinaPort(16405): s_glBindAttribLocation: bind attrib 0 name position
+11-24 15:06:10.325 E/MinaPort(16405): s_glBindAttribLocatio11-24 15:06:10.357 E/MinaPort11-24 15:06:10.357 E/MinaPort(164011-24 15:06:10.364 E/MinaPort(16405): dlopen libgfxshim_sdl.so -> OK
+11-24 15:06:10.368 E/MinaPort(16405): libsystem_shim: pthread wrappers initialized (real=0x767b88c8ec68)
+11-24 15:06:10.369 E/MinaPort(16405): dlopen libsystem_shim.so -> OK
+11-24 15:06:10.375 E/MinaPort11-24 15:06:10.375 E/MinaPort(16405): 11-24 15:06:10.379 E/MinaPort(16405): gothic: libgothic_patches.so loaded (GLES RHI backend; P0 scaffold)
+11-24 15:06:10.380 E/MinaPort11-24 15:06:10.380 E/MinaPort(16405): dlopen11-24 15:06:10.386 E/MinaPort11-24 15:06:10.386 E/MinaPort(16405): dlopen 11-24 15:06:10.386 E/MinaPort11-24 15:06:10.386 E/MinaPort(16405): starting guest /data/user/0/com.mina.port/files/gdroot/gamedata/Mina the Hollower.app/Con11-24 15:06:10.441 E/MinaPort11-24 15:06:10.441 E/MinaPort(16405): machismo: LC_LOAD_DYLINKER found (/usr/lib/dyld) —11-24 15:06:10.442 E/MinaPort11-24 15:06:10.442 E/MinaPort(16405): machismo: loaded config from /data/user/0/com.mina.port/files/conf/machismo.conf
+11-24 15:06:10.443 E/MinaPort(16405): libpath: dir=/data/app/~~P_baw8X-JJDCBwxSnjCyVQ==/com.mina.port-150hFTA2irLoar198uuvlg==/lib/arm64 nalias=14
+11-24 15:06:10.443 E/MinaPort(16405): machismo: hwcap=0x19b native_lse_rcpc=0
+11-24 15:06:10.443 E/MinaPort(16405): machismo: LSE island pool at 0x1052911-24 15:06:10.514 E/MinaPort11-24 15:06:10.514 E/MinaPort(16405): machismo: downgraded 4 ARMv8.3 RCPC instructions to ARMv8.0
+11-24 15:06:10.514 E/MinaPort(16405): machismo: patched 197 ARMv8.1 LSE atomics with LDXR/STXR islands
+11-24 15:06:10.514 E/MinaPort(16405): resolver: mach header at 0x100000000, slide=0x0
+11-24 15:06:10.514 E/MinaPort(16405): resolver: found 19 dylibs, LC_DYLD_INFO (bind=3968 rebase=17184 weak=152 lazy=9400 bytes)
+11-24 15:06:10.516 E/MinaPort(16405): resolver: loaded 24 dylib mappin11-24 15:06:10.520 E/MinaPort(16405): libpath: dlopen('/data/app/~~P_baw8X-JJDCBwxSnjCyVQ==/com.mina.port-150hFTA2irLoar198uuvlg==/lib/arm64/libcxxg.so') -> ok
+11-24 15:06:10.520 E/MinaPort(16405): resolver: dylib[1] 'libc++.1.dylib' → 'libs/libc++.so.1' — loaded
+11-24 15:06:10.522 E/MinaPort(16405): libpath: dlopen('/data/app/~~P_baw8X-JJDCBwxSnjCyVQ==/com.mina.port-150hFTA2irLoar198uuvlg==/lib/arm64/libsystem_shim.so') -> ok
+11-24 15:06:10.522 E/MinaPort(16405): resolver: dylib[2] 'libSystem.B.dylib' → 'libs/libsystem_shim.so' — loaded
+11-24 15:06:10.522 E/MinaPort(16405): resolver: dylib[3] 'libiconv.2.dylib' — stubbed
+11-24 15:06:10.522 E/MinaPort(16405): resolver: dylib[4] 'libsteam_api.dylib' — stubbed
+11-24 15:06:10.522 E/MinaPort(16405): resolver: dylib[5] 'Foundation' — skipped
+11-24 15:06:10.522 E/MinaPort(16405): resolver: dylib[6] 'ForceFeedback' — skipped
+11-24 15:06:10.522 E/MinaPort(16405): resolver: dylib[7] 'AudioToolbox' — skipped
+11-24 15:06:10.522 E/MinaPort(16405): resolver: dylib[8] 'Carbon' — skipped
+11-24 15:06:10.522 E/MinaPort(16405): resolver: dylib[9] 'CoreAudio' — skipped
+11-24 15:06:10.523 E/MinaPort11-24 15:06:10.523 E/MinaPort(16405): libpath: dlopen('/data/app/~~P_baw8X-JJDCBwxSnjCyVQ==/com.mina.port-150hFTA2irLoar198uuvlg==/lib/arm64/libgothic_patches.so') -> ok
+11-24 15:06:10.524 E/MinaPort(16405): resolver: dylib[10] 'Metal' → 'libs/libgo11-24 15:06:10.524 E/MinaPort(16405): resolver: dylib[11] 'IOKit' — skipped
+11-24 15:06:10.526 E/MinaPort(16405): resolver: dylib[12] 'AppKit' — skipped
+11-24 15:06:10.526 E/MinaPort(16405): resolver: dylib[13] 'IOSurface' — skipped
+11-24 15:06:10.526 E/MinaPort(16405): resolver: dylib[14] 'CoreGraphics' — skipped
+11-24 15:06:10.526 E/MinaPort(16405): resolver: dylib[15] 'CoreFoundation' — skipped
+11-24 15:06:10.526 E/MinaPort(16405): resolver: dylib[16] 'QuartzCore' — skipped
+11-24 15:06:10.526 E/MinaPort(16405): resolver: dylib[17] 'CoreServices' — skipped
+11-24 15:06:10.526 E/MinaPort(16405): resolver: dylib[18] 'CoreVideo' — skipped
+11-24 15:06:10.526 E/MinaPort(16405): libpath: dlopen('/data/app/~~P_baw8X-JJDCBwxSnjCyVQ==/com.mina.port-150hFTA2irLoar198uuvlg==/lib/arm64/libgothic_patches.so') -> ok
+11-24 15:06:10.526 E/MinaPort(16405): resolver: dylib[19] 'libobjc.A.dylib' → 'libs/libgothic_patches.so' — loaded
+11-24 15:06:10.526 E/MinaPort(16405): libpath: 'libgcc_s.so.1' is aliased to '-' (not available here)
+11-24 15:06:10.533 E/MinaPort(16405): resolver: symbol 'dyld_stub_binder' not found in 'libs/libsystem_shim.so'
+11-24 15:06:10.535 E/MinaPort(16405): resolver: symbol 'OBJC_CLASS_' not found in 'libs/libgothic_patches.so'
+11-24 15:06:10.536 E/MinaPort11-24 15:06:10.536 E/MinaPort(16405): resolver: symbol 'OBJC_CLASS_' not found in 'libs/libgothic_patches.so'
+11-24 15:06:10.536 E/MinaPort(16405): resolver: symbol 'OBJC_CLASS_' not found in 'libs/libgothic_patches.so'
+11-24 15:06:10.536 E/MinaPort(16405): resolver: symbol 'OBJC_CLASS_' not found in 'libs/libgothic_patches.so'
+11-24 15:06:10.536 E/MinaPort(16405): resolver: symbol 'OBJC_CLASS_' not found in 11-24 15:06:10.546 E/MinaPort(16405): resolver: done — 247 binds resolved, 15 stubbed, 381 failed, 58774 rebases, 0 ctor/dtor ABI adapters, 4 variadic thunks
+11-24 15:06:10.548 E/MinaPort11-24 15:06:10.548 E/MinaPort(16405): machismo: TLV imag11-24 15:06:10.550 E/MinaPort(16405): libpath: dlopen('/data/app/~~P_baw8X-JJDCBwxSnjCyVQ==/com.mina.port-150hFTA2irLoar198uuvlg==/lib/arm64/libsystem_shim.so') -> ok
+11-24 15:06:10.550 E/MinaPort11-24 15:06:10.550 E/MinaPort(16405): mac11-24 15:06:10.554 E/MinaPort11-24 15:06:10.554 E/MinaPort(16405): eh_frame: __unwind_info v1: 91 common encodings, 2 pers11-24 15:06:10.557 E/MinaPort11-24 15:06:10.557 E/MinaPort(16405): eh_frame: personality[1]: GOT at 0x100da4128 → 0x767afca9dfd0
+11-24 15:06:10.557 E/MinaPort(16405): eh_frame: personality[2]: GOT at 0x111-24 15:06:10.561 E/MinaPort11-24 15:06:10.561 E/MinaPort(16405): eh_frame: 18860 entries: 13003 FRAME, 5832 FRAMELESS, 23 DWARF,11-24 15:06:10.573 E/MinaPort(16405): eh_frame: generated 18837 FDEs (837276 bytes) in synthetic .eh_frame
+11-24 15:06:10.574 E/MinaPort(16405): eh_frame: parsed 23 native FDEs from __eh_frame (1492 bytes)
+11-24 15:06:10.587 E/MinaPort(16405): eh_frame: built .eh_frame_hdr (301780 bytes, 18860 entries: 18837 synthetic + 23 native)
+11-24 15:06:10.598 E/MinaPort11-24 15:06:10.598 E/MinaPort(16405): eh_frame: registered synthetic FDEs (837276 bytes, 18837 FDEs) with unwinder via RTLD_DEF11-24 15:06:10.598 E/MinaPort11-24 15:06:10.598 E/MinaPort(16405): eh_frame: registered native __eh_frame (1492 bytes, 23 FDEs) with unwinder via RTLD_DEF11-24 15:06:10.604 E/MinaPort(16405): eh_frame: registered synthetic FDEs (837276 bytes, 1 section) with unwinder via mapped library [libgcc style]
+11-24 15:06:10.604 E/MinaPort(16405): eh_frame: registered native __eh_frame (1492 bytes, 1 section) with unwinder via mapped library [libgcc style]
+11-24 15:06:10.607 E/MinaPort(16405): libpath: dlopen('/data/app/~~P_baw8X-JJDCBwxSnjCyVQ==/com.mina.port-150hFTA2irLoar198uuvlg==/lib/arm64/libgcc_sg.so') -> ok
+11-24 15:06:10.607 E/MinaPort11-24 15:06:10.607 E/MinaPort(16405): libpath: dlopen('/data/app/~~P_baw8X-JJDCBwxSnjCyVQ==/com.mina.port-150hFTA2irLoar198uuvlg==/lib/arm64/li11-24 15:06:10.612 E/MinaPort11-24 15:06:10.612 E/MinaPort(16405): eh_frame: registered synthetic FDEs (837276 bytes, 18837 FDEs) with unwinder via libmachismo_unwind.so [LLVM libunwind style]
+11-24 15:06:10.612 E/MinaPort(16405): eh_frame: registered native __eh_frame (1492 bytes, 23 FDEs) with unwinder via libmachismo_unwind.so [LLVM libunwind style]
+11-24 15:06:10.613 E/MinaPort(16405): libpath: dlopen('/data/app/~~P_baw8X-JJDCBwxSnjCyVQ==/com.mina.port-150hFTA2irLoar198uuvlg==/lib/arm64/libc++abi.so') -> dlopen failed: library "/data/app/~~P_baw8X-JJDCBwxSnjCyVQ==/com.mina.port-150hFTA2irLoar198uuvlg==/lib/arm64/libc++abi.so" not found
+11-24 15:06:10.613 E/MinaPort(16405): libp11-24 15:06:10.616 E/MinaPort(16405): libpath: dlopen('libc++abi.so') -> dlopen failed: library "libc++abi.so" not found
+11-24 15:06:10.616 E/MinaPort(16405): libpath: dlopen('/data/app/~~P_baw8X-JJDCBwxSnjCyVQ==/com.mina.port-150hFTA2irLoar198uuvlg==/lib/arm64/libc++.so') -> dlopen failed: library "/data/app/~~P_baw8X-JJDCBwxSnjCyVQ==/com.mina.port-150hFTA2irLoar198uuvlg==/lib/arm64/libc++.so" not found
+11-24 15:06:10.616 E/MinaPort(16405): libpath:   open() fd=-1 errno=2
+11-24 15:06:10.619 E/MinaPort(16405): libpath: dlopen('libc++.so') -> dlopen failed: library "libc++.so" not found
+11-24 15:06:10.619 E/MinaPort(16405): libpath: dlopen('/data/app/~~P_baw8X-JJDCBwxSnjCyVQ==/com.mina.port-150hFTA2irLoar198uuvlg==/lib/arm64/libunwind.so') -> dlopen failed: library "/data/app/~~P_baw8X-JJDCBwxSnjCyVQ==/com.mina.port-150hFTA2irLoar198uuvlg==/lib/arm64/libunwind.so" not found
+11-24 15:06:10.619 E/MinaPort(16405): libpath:   open() fd=-1 errno=2
+11-24 15:06:10.619 E/MinaPort(16405): libpath: dlopen('libunwind.so') -> dlopen failed: library "libunwind.so" not found
+11-24 15:06:10.619 E/MinaPort(16405): trampoline: island pool at 0x105318000 (1024 KB)
+11-24 15:06:10.623 E/MinaPort(16405): libpath: dlopen('/data/app/~~P_baw8X-JJDCBwxSnjCyVQ==/com.mina.port-150hFTA2irLoar198uuvlg==/lib/arm64/libSDL2.so') -> ok
+11-24 15:06:10.624 E/MinaPort(16405): trampoline: 316 patched, 0 mangling-fixed, 0 trapped from libSDL2-2.0.so.0
+11-24 15:06:10.628 E/MinaPort11-24 15:06:10.628 E/MinaPort(16405): trampoline: 0 patched, 0 mangling-fixed, 0 trapped from STUB
+11-24 15:06:10.631 E/MinaPort(16405): libpath: dlopen('/data/app/~~P_baw8X-JJDCBwxSnjCyVQ==/com.mina.port-150hFTA2irLoar198uuvlg==/lib/arm64/l11-24 15:06:10.635 E/MinaPort11-24 15:06:10.635 E/MinaPort(16405): trampoline: override: __ZN7ycAudio11FileManager13InitBan11-24 15:06:10.647 E/MinaPort11-24 15:06:10.647 E/MinaPort(16405): trampoline: override: __ZN6ycFile4ReadERK11ycStringRefP11ycAl11-24 15:06:10.647 E/MinaPort(16405): trampoline: override: __ZN5ycDir6ExistsEPKc -> 0x767afca9ab40
+11-24 15:06:10.647 E/MinaPort(16405): trampoline: override: __ZN15ycRenderCmdList7ExecuteEv -> 0x767afca8d3a4
+11-24 15:06:10.647 E/MinaPort(16405): trampoline: override: __ZN14ycRenderWindow13InitSwapChainEv -> 0x767afca8d390
+11-24 15:06:10.647 E/MinaPort(16405): trampoline: override: __ZN8ycThread5StartEPKcPFvPvES2_yyy -> 0x767afca9acb0
+11-24 15:06:10.753 E/MinaPort11-24 15:06:10.753 E/MinaPort(16405): trampoline: override: _SDL_Ge11-24 15:06:10.757 E/MinaPort11-24 15:06:10.757 E/MinaPort(16405): trampoline: override: 7 functions rep11-24 15:06:10.761 E/MinaPort11-24 15:06:10.761 E/MinaPort(16405): trampoline: stale data symbol: _SDL_log_function at 0x100e216f0
+11-24 15:06:10.761 E/MinaPort(16405): trampoline: stale data symbol: _SDL_CPUFeatures at 0x100e216f8
+11-24 15:06:10.761 E/MinaPort(16405): trampoline: stale data symbol: _SDL_userevents at 0x100e216fc
+11-24 15:06:10.761 E/MinaPort(16405): trampoline: stale data symbol: _SDL_scancode_names at 0x100e21700
+11-24 15:06:10.761 E/MinaPort(16405): trampoline: stale data symbol: _SDL_ChooseBlitFunc.features at 0x100e22ca8
+11-24 15:06:10.761 E/MinaPort(16405): trampoline: stale data symbol: _SDL_GeneratedBlitFuncTable at 0x100e22cb0
+11-24 15:06:10.761 E/MinaPort(16405): trampoline: stale data symbol: _SDL_expand_byte at 0x100e23a98
+11-24 15:06:10.761 E/MinaPort(16405): trampoline: stale data symbol: _SDL_HIDAPI_DriverCombined at 0x100e23dc8
+11-24 15:06:10.761 E/MinaPort(16405): trampoline: stale data symbol: _SDL_HIDAPI_DriverGameCube at 0x100e23e60
+11-24 15:06:10.762 E/MinaPort(16405): trampoline: stale data symbol: _SDL_HIDAPI_DriverLuna at 0x100e23ef8
+11-24 15:06:10.763 E/MinaPort(16405): trampoline: stale data symbol: _SDL_HIDAPI_DriverPS3 at 0x100e23f90
+11-24 15:06:10.764 E/MinaPort(16405): trampoline: stale data symbol: _SDL_HIDAPI_DriverPS3ThirdParty at 0x100e24028
+11-24 15:06:10.764 E/MinaPort(16405): trampoline: stale data symbol: _SDL_HIDAPI_DriverPS4 at 0x100e240c0
+11-24 15:06:10.764 E/MinaPort(16405): trampoline: stale data symbol: _SDL_HIDAPI_DriverPS5 at 0x100e24158
+11-24 15:06:10.764 E/MinaPort(16405): trampoline: stale data symbol: _SDL_HIDAPI_DriverShield at 0x100e241f0
+11-24 15:06:10.764 E/MinaPort(16405): trampoline: stale data symbol: _SDL_HIDAPI_DriverStadia at 0x100e24288
+11-24 15:06:10.764 E/MinaPort(16405): trampoline: stale data symbol: _SDL_HIDAPI_DriverSteam at 0x100e24320
+11-24 15:06:10.764 E/MinaPort(16405): trampoline: stale data symbol: _SDL_HIDAPI_DriverSteamDeck at 0x100e243b8
+11-24 15:06:10.764 E/MinaPort(16405): trampoline: stale data symbol: _SDL_HIDAPI_DriverNin11-24 15:06:10.766 E/MinaPort(16405): trampoline: stale data symbol: _SDL_HIDAPI_DriverJoyCons at 0x100e244e8
+11-24 15:06:10.768 E/MinaPort(16405): trampoline: stale data symbol: _SDL_HIDAPI_DriverSwitch at 0x100e24580
+11-24 15:06:10.773 E/MinaPort(16405): trampoline: stale data symbol: _SDL_HIDAPI_DriverWii at 0x100e24618
+11-24 15:06:10.773 E/MinaPort(16405): trampoline: stale data symbol: _SDL_HIDAPI_DriverXbox360 at 0x100e246b0
+11-24 15:06:10.773 E/MinaPort(16405): trampoline: stale data symbol: _SDL_HIDAPI_DriverXbox360W at 0x100e24748
+11-24 15:06:10.773 E/MinaPort(16405): trampoline: stale data symbol: _SDL_HIDAPI_DriverXboxOne at 0x100e247e0
+11-24 15:06:10.773 E/MinaPort(16405): trampoline: stale data symbol: _SDL_HIDAPI_JoystickDriver at 0x100e24878
+11-24 15:06:10.773 E/MinaPort(16405): trampoline: stale data symbol: _SDL_HIDAPI_combine_joycons at 0x100e24920
+11-24 15:06:10.773 E/MinaPort(16405): trampoline: stale data symbol: _SDL_DARWIN_JoystickDriver at 0x100e24948
+11-24 15:06:10.773 E/MinaPort11-24 15:06:10.773 E/MinaPort(16405): trampoline: stale data symbol: _SDL_IOS_Jo11-24 15:06:10.774 E/MinaPort(16405): trampoline: stale data symbol: _SDL_VIRTUAL_JoystickDriver at 0x100e24aa0
+11-24 15:06:10.774 E/MinaPort(16405): trampoline: stale data symbol: _SDL_DUMMY_SensorDriver at 0x100e24b48
+11-24 15:06:10.775 E/MinaPort(16405): trampoline: stale data symbol: _SDL_hints at 0x100e5d320
+11-24 15:06:10.776 E/MinaPort(16405): trampoline: stale data symbol: _SDL_ChooseAudioConverters.converters_chosen at 0x100e5d498
+11-24 15:06:10.776 E/MinaPort(16405): trampoline: stale data symbol: _SDL_SendDrop.app_is_dropping at 0x100e5d4b0
+11-24 15:06:10.776 E/MinaPort(16405): trampoline: stale data symbol: _SDL_keyboard at 0x100e5dd50
+11-24 15:06:10.776 E/MinaPort(16405): trampoline: stale data symbol: _SDL_haptics at 0x100e5eac8
+11-24 15:06:10.776 E/MinaPort11-24 15:06:10.776 E/MinaPort(16405): trampoline: stale data symbol: _SDL_next_joystick_instance_id at 0x100e5eb48
+11-24 15:06:10.778 E/MinaPort(16405): trampoline: stale data symbol: _SDL_joystick_allows_background_events at 0x100e5eb4c
+11-24 15:06:10.778 E/MinaPort(16405): trampoline: stale data symbol: _SDL_tls_allocated at 0x100e5ebc0
+11-24 15:06:10.778 E/MinaPort(16405): trampoline: stale data symbol: _SDL_timer_data at 0x100e5ec90
+11-24 15:06:10.778 E/MinaPort(16405): trampoline: stale data symbol: _SDL_DUMMY_UpdateWindowFramebuffer.frame_number at 0x100e5ed80
+11-24 15:06:10.779 E/MinaPort(16405): trampoline: stale data symbol: _SDL_OFFSCREEN_UpdateWindowFramebuffer.frame_number at 0x100e5ed84
+11-24 15:06:10.779 E/MinaPort(16405): trampoline: stale data symbol: _SDL_opengl_async_dispatch at 0x100e5eda0
+11-24 15:06:10.779 E/MinaPort(16405): trampoline: stale data symbol: _SDL_Convert_S8_to_F32 at 0x105063568
+11-24 15:06:10.780 E/MinaPort(16405): trampoline: stale data symbol: _SDL_Convert_U8_to_F32 at 0x105063570
+11-24 15:06:10.780 E/MinaPort(16405): trampoline: stale data symbol: _SDL_Convert_S16_to_F32 at 0x105063578
+11-24 15:06:10.780 E/MinaPort(16405): trampoline: stale data symbol: _SDL_Convert_U16_to_F32 at 0x105063580
+11-24 15:06:10.780 E/MinaPort(16405): trampoline: stale data symbol: _SDL_Convert_S32_to_F32 at 0x105063588
+11-24 15:06:10.780 E/MinaPort(16405): trampoline: stale data symbol: _SDL_Convert_F32_to_S8 at 0x105063590
+11-24 15:06:10.780 E/MinaPort(16405): trampoline: stale data symbol: _SDL_Convert_F32_to_U8 at 0x105063598
+11-24 15:06:10.780 E/MinaPort(16405): trampoline: stale data symbol: _SDL_Convert_F32_to_S16 at 0x1050635a0
+11-24 15:06:10.780 E/MinaPort(16405): trampoline: stale data symbol: _SDL_Convert_F32_to_U16 at 0x1050635a8
+11-24 15:06:10.780 E/MinaPort(16405): trampoline: stale data symbol: _SDL_Convert_F32_to_S32 at 0x1050635b0
+11-24 15:06:10.780 E/MinaPort(16405): trampoline: stale data symbol: _SDL_joystick_magic at 0x1050635b8
+11-24 15:06:10.780 E/MinaPort(16405): trampoline: stale data symbol: _SDL_AppleTVRemoteOpenedAsJoystick at 0x1050635bc
+11-24 15:06:10.780 E/MinaPort(16405): trampoline: __DATA guard: 55 library data symbols, 0 pages guarded, 7 mixed pages (cannot guard)
+11-24 15:06:10.780 E/MinaPort(16405): gdb_jit: registered 32488 symbols (1937120 bytes ELF, code 11-24 15:06:10.787 E/MinaPort(16405): patcher: 0x1001e832c: 370800e8 -> d503201f
+11-24 15:06:10.787 E/MinaPort(16405): patcher: applied 1 patches from conf/patches/gothic.conf
+11-24 15:06:10.814 E/MinaPort(16405): machismo: crash handler installed (SIGSEGV/SIGBUS/SIGILL/SIGFPE/SIGTRAP/SIGABRT; 1 Mach-O image(s), 37 ELF code range(s))
+11-24 15:06:10.814 E/MinaPort(16405): machismo: running 94 static constructors from __mod_init_func
+11-24 15:06:10.814 E/MinaPort(16405): machismo: mod_init[0/94] at 0x100c8354c
+11-24 15:06:10.814 E/MinaPort(16405): machismo: mod_init[1/94] at 0x100c83610
+11-24 15:06:10.815 E/MinaPort(16405): machismo: mod_init[2/94] at 0x100c83644
+11-24 15:06:10.817 E/MinaPort(16405): machismo: mod_init[3/94] at 0x100c836e0
+11-24 15:06:10.817 E/MinaPort(16405): machismo: mod_init[4/94] at 0x100c8380c
+11-24 15:06:10.817 E/MinaPort(16405): machismo: mod_init[5/94] at 0x100c83840
+11-24 15:06:10.817 E/MinaPort(16405): machismo: mod_init[6/94] at 0x100c83874
+11-24 15:06:10.817 E/MinaPort(16405): machismo: mod_init[7/94] at 0x100c838bc
+11-24 15:06:10.817 E/MinaPort(16405): machismo: mod_init[8/94] at 0x100c8395c
+11-24 15:06:10.817 E/MinaPort(16405): machismo: mod_init[9/94] at 0x100c83990
+11-24 15:06:10.817 E/MinaPort(16405): machismo: mod_init[10/94] at 0x100c83a90
+11-24 15:06:10.820 E/MinaPort(16405): machismo: mod_init[11/94] at 0x100c83b40
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[12/94] at 0x100c83d3c
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[13/94] at 0x100c83d70
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[14/94] at 0x100c83dac
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[15/94] at 0x100c83e88
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[16/94] at 0x100c83efc
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[17/94] at 0x100c83fac
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[18/94] at 0x100c83fe8
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[19/94] at 0x100c86350
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[20/94] at 0x100c86384
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[21/94] at 0x100c863b8
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[22/94] at 0x100c864a8
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[23/94] at 0x100c8652c
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[24/94] at 0x100c865d8
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[25/94] at 0x100c86920
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[26/94] at 0x100c90ce8
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[27/94] at 0x100c90d1c
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[28/94] at 0x100c90d5c
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[29/94] at 0x100c90d90
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[30/94] at 0x100c90e14
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[31/94] at 0x100c90ff4
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[32/94] at 0x100c91028
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[33/94] at 0x100c9105c
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[34/94] at 0x100c911d8
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[35/94] at 0x100c91278
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[36/94] at 0x100c91574
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[37/94] at 0x100c915f0
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[38/94] at 0x100c916b8
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[39/94] at 0x100c916ec
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[40/94] at 0x100c9177c
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[41/94] at 0x100c917b0
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[42/94] at 0x100c917f4
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[43/94] at 0x100c92054
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[44/94] at 0x100c92098
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[45/94] at 0x100c92308
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[46/94] at 0x100c92360
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[47/94] at 0x100c9243c
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[48/94] at 0x100c92500
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[49/94] at 0x100c9299c
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[50/94] at 0x100c929c0
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[51/94] at 0x100c929fc
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[52/94] at 0x100c92b40
+11-24 15:06:10.821 E/MinaPort(16405): machismo: mod_init[53/94] at 0x100c92cd0
+11-24 15:06:10.822 E/MinaPort(16405): machismo: mod_init[54/94] at 0x100c92db0
+11-24 15:06:10.822 E/MinaPort(16405): machismo: mod_init[55/94] at 0x100c92dfc
+11-24 15:06:10.822 E/MinaPort(16405): machismo: mod_init[56/94] at 0x100c92e68
+11-24 15:06:10.822 E/MinaPort(16405): machismo: mod_init[57/94] at 0x100c92e9c
+11-24 15:06:10.822 E/MinaPort(16405): machismo: mod_init[58/94] at 0x100c930fc
+11-24 15:06:10.822 E/MinaPort(16405): machismo: mod_init[59/94] at 0x100c932b8
+11-24 15:06:10.823 E/MinaPort(16405): machismo: mod_init[60/94] at 0x100c93330
+11-24 15:06:10.823 E/MinaPort(16405): machismo: mod_init[61/94] at 0x100c93580
+11-24 15:06:10.823 E/MinaPort(16405): machismo: mod_init[62/94] at 0x100c9374c
+11-24 15:06:10.823 E/MinaPort(16405): machismo: mod_init[63/94] at 0x100c938a0
+11-24 15:06:10.823 E/MinaPort11-24 15:06:10.823 E/MinaPort(16405): machismo: mod11-24 15:06:10.823 E/MinaPort(16405): machismo: mod_init[65/94] at 0x100c93968
+11-24 15:06:10.825 E/MinaPort(16405): machismo: mod_init[66/94] at 0x100c98758
+11-24 15:06:10.825 E/MinaPort(16405): machismo: mod_init[67/94] at 0x100c9878c
+11-24 15:06:10.825 E/MinaPort(16405): machismo: mod_init[68/94] at 0x100c987e8
+11-24 15:06:10.825 E/MinaPort(16405): machismo: mod_init[69/94] at 0x100c99228
+11-24 15:06:10.825 E/MinaPort(16405): machismo: mod_init[70/94] at 0x100c9926c
+11-24 15:06:10.825 E/MinaPort(16405): machismo: mod_init[71/94] at 0x100c9932c
+11-24 15:06:10.825 E/MinaPort(16405): machismo: mod_init[72/94] at 0x100c9947c
+11-24 15:06:10.825 E/MinaPort11-24 15:06:10.825 E/MinaPort(16405): machismo: mod_init[73/94] at 0x100c9948c
+11-24 15:06:10.825 E/MinaPort(16405): machismo: mod_init[74/94] at 0x100c994b8
+11-24 15:06:10.825 E/MinaPort(16405): machismo: mod_init[75/94] at 0x100c9955c
+11-24 15:06:10.825 E/MinaPort(16405): machismo: mod_init[76/94] at 0x100c996d4
+11-24 15:06:10.829 E/MinaPort(16405): machismo: mod11-24 15:06:10.832 E/MinaPort(16405): machismo: mod_init[78/94] at 0x100c99844
+11-24 15:06:10.832 E/MinaPort(16405): machismo: mod_init[79/94] at 0x100c9a1f4
+11-24 15:06:10.832 E/MinaPort(16405): machismo: mod_init[80/94] at 0x100c9a51c
+11-24 15:06:10.832 E/MinaPort(16405): machismo: mod_init[81/94] at 0x100c9a610
+11-24 15:06:10.832 E/MinaPort(16405): machismo: mod_init[82/94] at 0x100c9a678
+11-24 15:06:10.832 E/MinaPort(16405): machismo: mod_init[83/94] at 0x100c9a7b8
+11-24 15:06:10.838 E/MinaPort11-24 15:06:10.838 E/MinaPort(16405): machismo: mod_init[84/94] at 0x100c9a7ec
+11-24 15:06:10.838 E/MinaPort(16405): machismo: mod_init[85/94] at 0x100c9c5d4
+11-24 15:06:10.838 E/MinaPort(16405): machismo: mod_init[86/94] at 0x100c9ca3c
+11-24 15:06:10.838 E/MinaPort(16405): machismo: mod_init[87/94] at 0x100c9cb34
+11-24 15:06:10.838 E/MinaPort(16405): machismo: mod_init[88/94] at 0x100c9cc08
+11-24 15:06:10.838 E/MinaPort(16405): machismo: mod_init[89/94] at 0x100c9e0bc
+11-24 15:06:10.838 E/MinaPort(16405): machismo: mod_init[90/94] at 0x100c9e110
+11-24 15:06:10.838 E/MinaPort(16405): machismo: mod_init[91/94] at 0x100c9e13c
+11-24 15:06:10.838 E/MinaPort(16405): machismo: mod_init[92/94] at 0x100c9e22c
+11-24 15:06:10.838 E/MinaPort(16405): machismo: mod_init[93/94] at 0x100c9ea3c
+11-24 15:06:10.838 E/MinaPort(16405): machismo: __mod_init_func constructors complete
+11-24 15:06:10.838 E/MinaPort(16405): machismo: chdir to '/data/user/0/com.mina.port/files/gdroot/gamedata/Mina the Hollower.app/Contents/MacOS'
+11-24 15:06:10.838 E/MinaPort(16405): machismo: calling _m11-24 15:06:11.137 E/MinaPort(16405): gothic: backend = GLES
+11-24 15:06:11.282 E/MinaPort11-24 15:06:11.282 E/MinaPort(16405): gothic: ycFile::Read: fopen('/data/user/0/com.mina.port/files/gdroot/gamedata/Mina the Hollower.app/Contents/Resources/resources/!cache/preferences/gameConfig.yc') failed11-24 15:06:11.284 E/MinaPort11-24 15:06:11.284 E/MinaPort(16405): gothic: ycFile::Read: fopen('/data/user/0/com.mina.port/files/gamePrefs.yc') failed11-24 15:06:11.315 E/MinaPort11-24 15:06:11.315 E/MinaPort(16405): libpath: dlopen('/data/app/~~P_baw8X-JJDCBwxSnjCyVQ==/com.mina.port-150hFTA2irLoar198uuvlg==/lib/arm64/libSDL2.so') -> ok
+11-24 15:06:11.315 E/MinaPort(16405): sdl_window_shim: stripped SDL_WINDOW_METAL (no Metal on Linux)
+11-24 15:06:11.315 E/MinaPort(16405): sdl_window_shim: KMSDRM d11-24 15:06:11.325 E/MinaPort11-24 15:06:11.325 E/MinaPort(16405): sdl_window_shim: KMSDRM + Metal-origin window → added SDL_WINDO11-24 15:06:11.418 E/MinaPort11-24 15:06:11.418 E/MinaPort(16405): INFO: pixel format wanted SDL_PIXELFORMAT_RGBX8888 (2), got S11-24 15:06:11.465 E/MinaPort11-24 15:06:11.465 E/MinaPort(16405): sdl_window_shim: captured SDL window 0x767c11a63c311-24 15:06:11.535 E/MinaPort11-24 15:06:11.535 E/MinaPort(16405): gothic: pcm_cache: 5111-24 15:06:11.620 E/MinaPort11-24 15:06:11.620 E/MinaPort(16405): gothic: SDL owns GBM/EGL (1920x1080, syswm=9) — deferring GL c11-24 15:06:11.656 E/MinaPort11-24 15:06:11.656 E/MinaPort(16405): gothic: KMSDRM context current (sdl_ctx=0x767c31aba600 egl_display=0x767c0b2bc020) — SDL11-24 15:06:11.664 E/MinaPort11-24 15:06:11.664 E/MinaPort(16405): gothic: GL caps  version="OpenGL ES 3.1 (4.5.0 NVIDIA 617.42)"  glsl="OpenGL ES GLSL ES 3.10"  renderer="Android Emulator OpenGL ES Translator (NVIDIA GeForce RTX 4090/PCIe/SSE2)"  fb0-depth=24 fb0-stencil=8  ext[ -EXT_multi_draw_arrays -EXT_shader_framebuffer_fetch +OES_packed_depth_stencil +OES_depth_tex11-24 15:06:11.668 E/MinaPort11-24 15:06:11.668 E/MinaPort(16405): gothic: pinning s_bufferIntScale=111-24 15:06:11.686 E/MinaPort11-24 15:06:11.686 E/MinaPort(16405): gothic: ycFile::Read: fopen('/data/user/0/com.mina.port/files/input.yc') failed11-24 15:06:11.691 E/MinaPort11-24 15:06:11.691 E/MinaPort(16405): gothic-objc: first toTexture blit ok: slic11-24 15:06:11.710 E/MinaPort(16405): gothic: destroy stream: unexpected opcode 0x1 — stopping (some destroys may be missed)
+11-24 15:06:11.715 E/MinaPort11-24 15:06:11.715 E/MinaPort(16405): gothic: Pixel Scale Mode bound to Render::s_postProcess @ 0x105055be8
+11-24 15:06:11.715 E/MinaPort(16405): gothic: present viewport — drawable 1920x1080, mode=Fill (stretch; 4:3 box on square) → 11-24 15:06:12.080 E/MinaPort11-24 15:06:12.080 E/MinaPort(16405): gothic: atlas created 1024² R8 (cell=11-24 15:06:12.111 E/MinaPort11-24 15:06:12.111 E/MinaPort(16405): gothic: backbuffer viewport negative extent (-1,-1879048192) �11-24 15:06:12.134 E/MinaPort(16405): gothic: backbuffer present shader = copy_PIXEL_UPSCALER.frag (sharp pixel-art upscaler)
+11-24 15:06:12.136 E/MinaPort11-24 15:06:12.136 E/MinaPort(16405): gothic: UBO upload path = per-draw orphan ring (libmali) (GL_VERSION=OpenGL ES11-24 15:07:38.459 E/MinaPort11-24 15:07:38.459 E/MinaPort(16405): gothic: font store-lock resolve = off (non-G52 / g29+ / non-libmali) (GL_RENDERER=Android Emulator OpenGL ES Translator (NVIDIA GeForce RTX 4011-24 15:08:55.016 E/MinaPort(16405): tracker: Mina object at 767de1a840c0 (1 valid candidates)
+11-24 15:08:56.052 E/MinaPort(16405): levels: levels/overworld/hub.tlb.yc;levels/overworld/hub_overworld_south.tlb.yc
+11-24 15:08:56.054 E/MinaPort(16405): pos 242.3 -371.6  room c=246.4,-376.0,0.0 half=17.6,6.4,1000.0
+11-24 15:08:56.342 E/MinaPort11-24 15:08:56.342 E/MinaPort(16405): s_glBindAttribLocation: 11-24 15:08:56.342 E/MinaPort(16405): s_glBindAttribLocation: bind attrib 1 name localCoord
+11-24 15:08:56.350 E/MinaPort11-24 15:08:56.350 E/MinaPort(16405): s_glBindAttribLocation: bi11-24 15:08:58.179 E/MinaPort(16405): pos 514.3 -163.6  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:09:02.977 E/MinaPort(16405): pos 515.2 -162.1  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:09:03.481 E/MinaPort(16405): pos 517.3 -162.1  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:09:03.986 E/MinaPort11-24 15:09:03.986 E/MinaPort(16405): pos 519.7 -162.1  room c=518.4,-137.11-24 15:09:04.396 E/MinaPort(16405): pos 521.7 -162.1  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:09:04.901 E/MinaPort11-24 15:09:04.901 E/MinaPort(16405): pos 523.0 -161.2  room c=518.4,-137.11-24 15:09:05.305 E/MinaPort11-24 15:09:05.305 E/MinaPort(16405): pos 525.1 -161.2  room c=518.4,-137.11-24 15:09:06.116 E/MinaPort(16405): pos 527.2 -161.2  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:09:07.126 E/MinaPort(16405): pos 529.5 -161.2  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:09:08.138 E/MinaPort11-24 15:09:08.138 E/MinaPort(16405): pos 531.7 -161.2  room c=518.4,-137.11-24 15:09:08.643 E/MinaPort(16405): pos 534.1 -161.2  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:09:09.352 E/MinaPort(16405): pos 536.2 -161.2  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:09:12.590 E/MinaPort(16405): pos 538.6 -161.2  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:09:15.830 E/MinaPort11-24 15:09:15.830 E/MinaPort(16405): pos 540.9 -161.2  room c=518.4,-137.11-24 15:09:21.398 E/MinaPort11-24 15:09:21.398 E/MinaPort(16405): pos 541.7 -159.9  room c=518.4,-137.11-24 15:09:32.184 E/MinaPort11-24 15:09:32.184 E/MinaPort(16405): pos 539.8 -160.5  room c=518.4,-137.11-24 15:09:37.044 E/MinaPort(16405): pos 541.7 -161.1  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:09:57.675 E/MinaPort(16405): pos 539.7 -160.5  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:00.406 E/MinaPort11-24 15:10:00.406 E/MinaPort(16405): pos 537.5 -160.5  room c=518.4,-137.11-24 15:10:00.710 E/MinaPort11-24 15:10:00.710 E/MinaPort(16405): pos 535.1 -160.5  room c=518.4,-137.11-24 15:10:01.115 E/MinaPort(16405): pos 532.9 -160.5  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:01.523 E/MinaPort(16405): pos 530.8 -160.5  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:02.886 E/MinaPort(16405): pos 528.7 -160.5  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:02.990 E/MinaPort(16405): pos 523.7 -160.5  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:03.397 E/MinaPort(16405): pos 521.7 -160.5  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:03.903 E/MinaPort(16405): pos 519.1 -160.5  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:04.916 E/MinaPort11-24 15:10:04.916 E/MinaPort(16405): pos 517.5 -160.1  room c=518.4,-137.11-24 15:10:05.321 E/MinaPort(16405): pos 517.5 -158.0  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:05.726 E/MinaPort(16405): pos 517.5 -155.7  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:06.636 E/MinaPort(16405): pos 517.5 -153.3  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:07.241 E/MinaPort(16405): pos 517.5 -150.9  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:07.647 E/MinaPort(16405): pos 517.0 -149.3  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:08.051 E/MinaPort(16405): pos 517.0 -147.2  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:08.455 E/MinaPort(16405): pos 517.0 -145.2  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:09.667 E/MinaPort11-24 15:10:09.667 E/MinaPort(16405): pos 517.0 -143.0  room c=518.4,-137.11-24 15:10:10.782 E/MinaPort(16405): pos 517.0 -140.8  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:11.191 E/MinaPort11-24 15:10:11.191 E/MinaPort(16405): pos 517.0 -138.7  room c=518.4,-137.11-24 15:10:11.797 E/MinaPort11-24 15:10:11.797 E/MinaPort(16405): pos 517.0 -136.3  room c=518.4,-137.11-24 15:10:12.203 E/MinaPort11-24 15:10:12.203 E/MinaPort(16405): pos 517.0 -134.2  room c=518.4,-137.11-24 15:10:12.608 E/MinaPort(16405): pos 517.0 -132.1  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:13.014 E/MinaPort11-24 15:10:13.014 E/MinaPort(16405): pos 517.0 -130.1  room c=518.4,-137.11-24 15:10:13.421 E/MinaPort11-24 15:10:13.421 E/MinaPort(16405): pos 517.0 -128.0  room c=518.4,-137.11-24 15:10:13.826 E/MinaPort(16405): pos 517.0 -125.9  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:14.235 E/MinaPort11-24 15:10:14.235 E/MinaPort(16405): pos 517.0 -123.9  room c=518.4,-137.11-24 15:10:15.149 E/MinaPort11-24 15:10:15.149 E/MinaPort(16405): pos 517.0 -121.8  room c=518.4,-137.11-24 15:10:16.163 E/MinaPort(16405): pos 517.0 -119.7  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:16.570 E/MinaPort(16405): pos 517.5 -117.9  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:16.973 E/MinaPort11-24 15:10:16.973 E/MinaPort(16405): pos 517.5 -115.9  room c=518.4,-137.11-24 15:10:17.479 E/MinaPort11-24 15:10:17.479 E/MinaPort(16405): pos 517.5 -113.3  room c=518.4,-137.11-24 15:10:18.390 E/MinaPort11-24 15:10:18.390 E/MinaPort(16405): pos 517.5 -111.2  room c=518.4,-85.11-24 15:10:18.898 E/MinaPort(16405): pos 517.5 -108.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:10:19.706 E/MinaPort(16405): pos 517.5 -106.8  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:10:20.110 E/MinaPort(16405): pos 517.5 -104.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:10:20.719 E/MinaPort(16405): pos 517.5 -102.5  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:10:21.226 E/MinaPort(16405): pos 517.5 -100.2  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:10:21.933 E/MinaPort(16405): pos 517.5 -97.8  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:10:22.540 E/MinaPort11-24 15:10:22.540 E/MinaPort(16405): pos 517.5 -95.3  room c=518.4,-85.11-24 15:10:22.943 E/MinaPort11-24 15:10:22.943 E/MinaPort(16405): pos 517.5 -93.2  room c=518.4,-85.11-24 15:10:23.448 E/MinaPort(16405): pos 517.5 -91.0  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:10:24.663 E/MinaPort11-24 15:10:24.663 E/MinaPort(16405): pos 518.3 -89.7  room c=518.4,-85.11-24 15:10:26.140 E/MinaPort(16405): tracker: Mina object at 767de1a76280 (1 valid candidates)
+11-24 15:10:26.140 E/MinaPort11-24 15:10:26.140 E/MinaPort(16405): pos 187.2 -186.5  room c=187.2,-175.11-24 15:10:27.211 E/MinaPort11-24 15:10:27.211 E/MinaPort(16405): levels: levels/overworld/hub_mansion.tlb.yc11-24 15:10:27.312 E/MinaPort(16405): pos 187.2 -180.5  room c=187.2,-175.2,0.0 half=19.2,16.8,1000.0
+11-24 15:10:28.221 E/MinaPort(16405): pos 187.2 -178.1  room c=187.2,-175.2,0.0 half=19.2,16.8,1000.0
+11-24 15:10:33.073 E/MinaPort11-24 15:10:33.073 E/MinaPort(16405): pos 187.2 -180.2  room c=187.2,-175.11-24 15:10:33.476 E/MinaPort(16405): pos 187.2 -182.3  room c=187.2,-175.2,0.0 half=19.2,16.8,1000.0
+11-24 15:10:34.383 E/MinaPort(16405): pos 187.2 -184.5  room c=187.2,-175.2,0.0 half=19.2,16.8,1000.0
+11-24 15:10:34.787 E/MinaPort(16405): pos 187.2 -186.6  room c=187.2,-175.2,0.0 half=19.2,16.8,1000.0
+11-24 15:10:35.696 E/MinaPort(16405): pos 187.2 -188.8  room c=187.2,-175.2,0.0 half=19.2,16.8,1000.0
+11-24 15:10:37.097 E/MinaPort(16405): tracker: Mina object at 767de1a98e20 (1 valid candidates)
+11-24 15:10:37.097 E/MinaPort(16405): pos 516.2 -90.4  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:10:38.248 E/MinaPort(16405): levels: levels/overworld/hub.tlb.yc
+11-24 15:10:40.982 E/MinaPort(16405): pos 516.3 -92.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:10:41.386 E/MinaPort11-24 15:10:41.386 E/MinaPort(16405): pos 516.3 -94.8  room c=518.4,-85.11-24 15:10:41.993 E/MinaPort11-24 15:10:41.993 E/MinaPort(16405): pos 516.3 -97.2  room c=518.4,-85.11-24 15:10:42.600 E/MinaPort(16405): pos 516.3 -99.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:10:43.008 E/MinaPort11-24 15:10:43.008 E/MinaPort(16405): pos 516.3 -101.8  room c=518.4,-85.11-24 15:10:43.921 E/MinaPort(16405): pos 516.3 -104.1  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:10:44.325 E/MinaPort(16405): pos 516.3 -106.2  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:10:44.733 E/MinaPort11-24 15:10:44.733 E/MinaPort(16405): pos 516.3 -108.2  room c=518.4,-85.11-24 15:10:45.440 E/MinaPort11-24 15:10:45.440 E/MinaPort(16405): pos 516.3 -110.4  room c=518.4,-85.11-24 15:10:46.149 E/MinaPort(16405): pos 516.3 -112.5  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:47.522 E/MinaPort11-24 15:10:47.522 E/MinaPort(16405): levels: levels/overworld/hub.tlb.yc;levels/overworld11-24 15:10:47.624 E/MinaPort11-24 15:10:47.624 E/MinaPort(16405): pos 516.3 -117.2  room c=518.4,-137.11-24 15:10:54.119 E/MinaPort(16405): pos 516.3 -114.9  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:54.626 E/MinaPort(16405): pos 516.3 -112.9  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:10:55.537 E/MinaPort(16405): pos 516.3 -110.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:10:56.044 E/MinaPort11-24 15:10:56.044 E/MinaPort(16405): pos 516.3 -108.6  room c=518.4,-85.11-24 15:10:56.752 E/MinaPort(16405): pos 516.3 -106.4  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:10:57.561 E/MinaPort11-24 15:10:57.561 E/MinaPort(16405): pos 516.3 -104.4  room c=518.4,-85.11-24 15:10:57.966 E/MinaPort(16405): pos 516.3 -102.3  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:10:58.877 E/MinaPort11-24 15:10:58.877 E/MinaPort(16405): pos 516.3 -100.1  room c=518.4,-85.11-24 15:10:59.383 E/MinaPort(16405): pos 516.3 -97.8  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:10:59.788 E/MinaPort(16405): pos 516.3 -95.6  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:11:00.191 E/MinaPort(16405): pos 516.3 -93.5  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:11:00.897 E/MinaPort(16405): pos 516.3 -91.4  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:11:09.283 E/MinaPort(16405): pos 515.9 -93.4  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:11:09.687 E/MinaPort11-24 15:11:09.687 E/MinaPort(16405): pos 515.9 -95.4  room c=518.4,-85.11-24 15:11:10.292 E/MinaPort(16405): pos 515.9 -97.6  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:11:10.695 E/MinaPort(16405): pos 515.9 -99.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:11:11.201 E/MinaPort11-24 15:11:11.201 E/MinaPort(16405): pos 515.9 -102.4  room c=518.4,-85.11-24 15:11:12.111 E/MinaPort11-24 15:11:12.111 E/MinaPort(16405): pos 515.9 -104.8  room c=518.4,-85.11-24 15:11:12.516 E/MinaPort11-24 15:11:12.516 E/MinaPort(16405): pos 515.9 -107.0  room c=518.4,-85.11-24 15:11:13.425 E/MinaPort(16405): pos 515.9 -109.1  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:11:14.034 E/MinaPort(16405): pos 515.9 -111.1  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:11:15.453 E/MinaPort(16405): pos 515.9 -113.1  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:11:16.263 E/MinaPort(16405): pos 515.9 -115.5  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:11:21.278 E/MinaPort11-24 15:11:21.278 E/MinaPort(16405): pos 515.9 -113.2  room c=518.4,-137.11-24 15:11:22.190 E/MinaPort(16405): pos 515.9 -111.2  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:11:22.695 E/MinaPort11-24 15:11:22.695 E/MinaPort(16405): pos 515.9 -108.9  room c=518.4,-85.11-24 15:11:23.304 E/MinaPort(16405): pos 515.9 -106.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:11:23.709 E/MinaPort11-24 15:11:23.709 E/MinaPort(16405): pos 515.9 -104.7  room c=518.4,-85.11-24 15:11:24.114 E/MinaPort11-24 15:11:24.114 E/MinaPort(16405): pos 515.9 -102.6  room c=518.4,-85.11-24 15:11:25.129 E/MinaPort11-24 15:11:25.129 E/MinaPort(16405): pos 515.9 -100.6  room c=518.4,-85.11-24 15:11:25.635 E/MinaPort(16405): pos 515.9 -98.2  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:11:26.847 E/MinaPort(16405): pos 515.9 -96.0  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:11:27.252 E/MinaPort(16405): pos 515.9 -94.0  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:11:27.757 E/MinaPort11-24 15:11:27.757 E/MinaPort(16405): pos 515.9 -91.7  room c=518.4,-85.11-24 15:11:35.343 E/MinaPort11-24 15:11:35.343 E/MinaPort(16405): pos 515.9 -93.7  room c=518.4,-85.11-24 15:11:35.748 E/MinaPort(16405): pos 515.9 -95.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:11:36.659 E/MinaPort11-24 15:11:36.659 E/MinaPort(16405): pos 515.9 -97.9  room c=518.4,-85.11-24 15:11:37.065 E/MinaPort11-24 15:11:37.065 E/MinaPort(16405): pos 515.9 -100.2  room c=518.4,-85.11-24 15:11:37.468 E/MinaPort11-24 15:11:37.468 E/MinaPort(16405): pos 515.9 -102.3  room c=518.4,-85.11-24 15:11:37.973 E/MinaPort11-24 15:11:37.973 E/MinaPort(16405): pos 515.9 -104.4  room c=518.4,-85.11-24 15:11:38.382 E/MinaPort11-24 15:11:38.382 E/MinaPort(16405): pos 515.9 -106.6  room c=518.4,-85.11-24 15:11:38.787 E/MinaPort(16405): pos 515.9 -108.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:11:39.800 E/MinaPort11-24 15:11:39.800 E/MinaPort(16405): pos 515.9 -111.2  room c=518.4,-85.11-24 15:11:40.709 E/MinaPort11-24 15:11:40.709 E/MinaPort(16405): pos 515.9 -113.6  room c=518.4,-137.11-24 15:11:41.114 E/MinaPort(16405): pos 515.9 -115.9  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:11:45.469 E/MinaPort(16405): pos 516.8 -117.2  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:11:45.873 E/MinaPort11-24 15:11:45.873 E/MinaPort(16405): pos 519.0 -117.2  room c=518.4,-137.11-24 15:11:46.280 E/MinaPort11-24 15:11:46.280 E/MinaPort(16405): pos 521.3 -117.2  room c=518.4,-137.11-24 15:11:50.530 E/MinaPort(16405): levels: levels/overworld/hub_overworld_south.tlb.yc;levels/overworld/hub.tlb.yc
+11-24 15:11:56.599 E/MinaPort11-24 15:11:56.599 E/MinaPort(16405): pos 522.5 -116.3  room c=518.4,-137.11-24 15:11:57.102 E/MinaPort11-24 15:11:57.102 E/MinaPort(16405): pos 522.5 -113.9  room c=518.4,-137.11-24 15:11:57.913 E/MinaPort(16405): pos 522.5 -111.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:12:02.065 E/MinaPort11-24 15:12:02.065 E/MinaPort(16405): pos 522.5 -114.4  room c=518.4,-137.11-24 15:12:02.468 E/MinaPort11-24 15:12:02.468 E/MinaPort(16405): pos 522.5 -116.4  room c=518.4,-137.11-24 15:12:07.028 E/MinaPort11-24 15:12:07.028 E/MinaPort(16405): pos 522.5 -113.9  room c=518.4,-137.11-24 15:12:07.637 E/MinaPort11-24 15:12:07.637 E/MinaPort(16405): pos 522.5 -111.8  room c=518.4,-85.11-24 15:12:10.470 E/MinaPort(16405): pos 522.5 -114.4  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:12:11.378 E/MinaPort(16405): pos 522.5 -116.6  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:12:15.319 E/MinaPort11-24 15:12:15.319 E/MinaPort(16405): pos 520.5 -116.8  room c=518.4,-137.11-24 15:12:15.721 E/MinaPort11-24 15:12:15.721 E/MinaPort(16405): pos 518.5 -116.8  room c=518.4,-137.11-24 15:12:16.126 E/MinaPort11-24 15:12:16.126 E/MinaPort(16405): pos 516.3 -116.8  room c=518.4,-137.11-24 15:12:16.934 E/MinaPort(16405): pos 514.3 -116.8  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:12:20.268 E/MinaPort11-24 15:12:20.268 E/MinaPort(16405): pos 516.6 -116.8  room c=518.4,-137.11-24 15:12:20.675 E/MinaPort(16405): pos 518.7 -116.8  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:12:21.955 E/MinaPort11-24 15:12:21.955 E/MinaPort(16405): levels: levels/overworld/hub.tlb.yc;levels/overworld11-24 15:12:22.056 E/MinaPort(16405): pos 522.5 -116.8  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:12:23.372 E/MinaPort11-24 15:12:23.372 E/MinaPort(16405): pos 520.1 -116.8  room c=518.4,-137.11-24 15:12:23.977 E/MinaPort11-24 15:12:23.977 E/MinaPort(16405): pos 517.8 -116.8  room c=518.4,-137.11-24 15:12:24.482 E/MinaPort(16405): pos 515.4 -116.8  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:12:27.513 E/MinaPort(16405): pos 517.7 -116.8  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:12:27.918 E/MinaPort(16405): pos 519.8 -116.8  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:12:28.527 E/MinaPort11-24 15:12:28.527 E/MinaPort(16405): pos 522.1 -116.8  room c=518.4,-137.11-24 15:12:35.905 E/MinaPort(16405): pos 522.5 -114.9  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:12:36.819 E/MinaPort11-24 15:12:36.819 E/MinaPort(16405): pos 522.5 -112.4  room c=518.4,-137.11-24 15:12:40.873 E/MinaPort11-24 15:12:40.873 E/MinaPort(16405): pos 522.0 -110.9  room c=518.4,-85.11-24 15:12:41.380 E/MinaPort(16405): pos 519.6 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:12:41.782 E/MinaPort(16405): pos 517.5 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:12:42.288 E/MinaPort11-24 15:12:42.288 E/MinaPort(16405): pos 515.5 -110.9  room c=518.4,-85.11-24 15:12:46.337 E/MinaPort(16405): pos 514.3 -112.0  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:12:47.449 E/MinaPort11-24 15:12:47.449 E/MinaPort(16405): pos 514.3 -114.4  room c=518.4,-137.11-24 15:12:47.954 E/MinaPort(16405): pos 514.3 -116.9  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:12:54.234 E/MinaPort(16405): pos 514.3 -114.5  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:12:54.640 E/MinaPort11-24 15:12:54.640 E/MinaPort(16405): pos 514.3 -112.5  room c=518.4,-137.11-24 15:12:57.988 E/MinaPort11-24 15:12:57.988 E/MinaPort(16405): pos 514.8 -110.9  room c=518.4,-85.11-24 15:12:58.696 E/MinaPort(16405): pos 517.1 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:12:59.099 E/MinaPort11-24 15:12:59.099 E/MinaPort(16405): pos 519.2 -110.9  room c=518.4,-85.11-24 15:12:59.808 E/MinaPort(16405): pos 521.6 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:13:02.635 E/MinaPort(16405): pos 522.5 -112.1  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:13:03.547 E/MinaPort(16405): pos 522.5 -114.3  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:13:04.457 E/MinaPort(16405): pos 522.5 -116.4  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:13:11.746 E/MinaPort11-24 15:13:11.746 E/MinaPort(16405): pos 520.5 -116.6  room c=518.4,-137.11-24 15:13:12.151 E/MinaPort11-24 15:13:12.151 E/MinaPort(16405): pos 518.3 -116.6  room c=518.4,-137.11-24 15:13:12.655 E/MinaPort11-24 15:13:12.655 E/MinaPort(16405): pos 516.0 -116.6  room c=518.4,-137.11-24 15:13:15.585 E/MinaPort11-24 15:13:15.585 E/MinaPort(16405): pos 514.3 -116.9  room c=518.4,-137.11-24 15:13:18.822 E/MinaPort(16405): pos 514.3 -114.3  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:13:19.329 E/MinaPort(16405): pos 514.3 -112.2  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:13:24.949 E/MinaPort11-24 15:13:24.949 E/MinaPort(16405): levels: levels/overworld/hub_overworld_south.tlb.yc;levels/overworld/hub.tlb.yc
+11-24 15:13:24.949 E/MinaPort(16405): pos 514.3 -114.6  room c=518.4,-137.11-24 15:13:25.050 E/MinaPort(16405): pos 514.3 -117.2  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:13:37.085 E/MinaPort(16405): pos 514.3 -115.1  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:13:37.793 E/MinaPort(16405): pos 514.3 -112.9  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:13:38.703 E/MinaPort(16405): pos 514.3 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:13:43.555 E/MinaPort(16405): pos 514.3 -112.9  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:13:44.061 E/MinaPort11-24 15:13:44.061 E/MinaPort(16405): pos 514.3 -115.1  room c=518.4,-137.11-24 15:13:44.874 E/MinaPort11-24 15:13:44.874 E/MinaPort(16405): pos 514.3 -117.2  room c=518.4,-137.11-24 15:13:49.220 E/MinaPort11-24 15:13:49.220 E/MinaPort(16405): pos 514.3 -114.9  room c=518.4,-137.11-24 15:13:49.624 E/MinaPort11-24 15:13:49.624 E/MinaPort(16405): pos 514.3 -112.7  room c=518.4,-137.11-24 15:13:51.345 E/MinaPort11-24 15:13:51.345 E/MinaPort(16405): pos 514.6 -110.9  room c=518.4,-85.11-24 15:13:51.855 E/MinaPort11-24 15:13:51.855 E/MinaPort(16405): pos 517.2 -110.9  room c=518.4,-85.11-24 15:13:52.260 E/MinaPort(16405): pos 519.2 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:13:52.765 E/MinaPort(16405): pos 521.5 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:13:56.412 E/MinaPort11-24 15:13:56.412 E/MinaPort(16405): levels: 11-24 15:14:06.738 E/MinaPort11-24 15:14:06.738 E/MinaPort(16405): pos 519.1 -110.9  room c=518.4,-85.11-24 15:14:07.143 E/MinaPort11-24 15:14:07.143 E/MinaPort(16405): pos 517.1 -110.9  room c=518.4,-85.11-24 15:14:07.648 E/MinaPort(16405): pos 515.0 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:14:10.883 E/MinaPort(16405): pos 514.3 -112.3  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:14:12.098 E/MinaPort11-24 15:14:12.098 E/MinaPort(16405): pos 514.3 -114.6  room c=518.4,-137.11-24 15:14:12.803 E/MinaPort(16405): pos 514.3 -116.8  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:14:22.214 E/MinaPort11-24 15:14:22.214 E/MinaPort(16405): pos 516.0 -117.2  room c=518.4,-137.11-24 15:14:22.620 E/MinaPort11-24 15:14:22.620 E/MinaPort(16405): pos 518.2 -117.2  room c=518.4,-137.11-24 15:14:23.024 E/MinaPort(16405): pos 520.3 -117.2  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:14:23.938 E/MinaPort(16405): pos 522.5 -117.2  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:14:27.925 E/MinaPort(16405): levels: levels/overworld/hub_overworld_south.tlb.yc;levels/overworld/hub.tlb.yc
+11-24 15:14:34.410 E/MinaPort(16405): pos 520.7 -116.6  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:14:34.816 E/MinaPort(16405): pos 518.6 -116.6  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:14:35.427 E/MinaPort(16405): pos 516.3 -116.6  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:14:35.831 E/MinaPort11-24 15:14:35.831 E/MinaPort(16405): pos 514.3 -116.6  room c=518.4,-137.11-24 15:14:43.722 E/MinaPort11-24 15:14:43.722 E/MinaPort(16405): pos 514.3 -114.2  room c=518.4,-137.11-24 15:14:44.227 E/MinaPort(16405): pos 514.3 -112.1  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:14:46.251 E/MinaPort(16405): pos 515.4 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:14:46.656 E/MinaPort(16405): pos 517.5 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:14:47.262 E/MinaPort11-24 15:14:47.262 E/MinaPort(16405): pos 519.7 -110.9  room c=518.4,-85.11-24 15:14:47.770 E/MinaPort(16405): pos 522.2 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:14:51.923 E/MinaPort(16405): pos 520.2 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:14:52.327 E/MinaPort11-24 15:14:52.327 E/MinaPort(16405): pos 517.9 -110.9  room c=518.4,-85.11-24 15:14:53.340 E/MinaPort11-24 15:14:53.340 E/MinaPort(16405): pos 515.5 -110.9  room c=518.4,-85.11-24 15:14:56.277 E/MinaPort(16405): pos 514.3 -112.0  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:14:57.185 E/MinaPort11-24 15:14:57.185 E/MinaPort(16405): pos 514.3 -114.0  room c=518.4,-137.11-24 15:14:58.098 E/MinaPort(16405): pos 514.3 -116.3  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:14:59.457 E/MinaPort11-24 15:14:59.457 E/MinaPort(16405): levels: levels/overworld/hub.tlb.yc;levels/overworld11-24 15:15:00.773 E/MinaPort11-24 15:15:00.773 E/MinaPort(16405): pos 515.5 -117.2  room c=518.4,-137.11-24 15:15:01.177 E/MinaPort(16405): pos 517.7 -117.2  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:15:01.681 E/MinaPort(16405): pos 520.3 -117.2  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:15:02.588 E/MinaPort(16405): pos 522.5 -117.2  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:15:09.571 E/MinaPort(16405): pos 520.4 -117.2  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:15:10.075 E/MinaPort(16405): pos 517.9 -117.2  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:15:10.481 E/MinaPort11-24 15:15:10.481 E/MinaPort(16405): pos 515.7 -117.2  room c=518.4,-137.11-24 15:15:15.646 E/MinaPort11-24 15:15:15.646 E/MinaPort(16405): pos 517.9 -117.2  room c=518.4,-137.11-24 15:15:16.050 E/MinaPort(16405): pos 520.1 -117.2  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:15:26.770 E/MinaPort11-24 15:15:26.770 E/MinaPort(16405): pos 522.5 -117.2  room c=518.4,-137.11-24 15:15:36.070 E/MinaPort11-24 15:15:36.070 E/MinaPort(16405): pos 520.6 -116.6  room c=518.4,-137.11-24 15:15:36.472 E/MinaPort11-24 15:15:36.472 E/MinaPort(16405): pos 518.2 -116.6  room c=518.4,-137.11-24 15:15:36.979 E/MinaPort(16405): pos 515.9 -116.6  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:15:39.605 E/MinaPort(16405): pos 517.9 -116.6  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:15:40.514 E/MinaPort11-24 15:15:40.514 E/MinaPort(16405): pos 520.1 -116.6  room c=518.4,-137.11-24 15:15:41.019 E/MinaPort11-24 15:15:41.019 E/MinaPort(16405): pos 522.4 -116.6  room c=518.4,-137.11-24 15:15:45.067 E/MinaPort(16405): pos 519.9 -116.6  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:15:45.471 E/MinaPort(16405): pos 517.8 -116.6  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:15:45.876 E/MinaPort(16405): pos 515.8 -116.6  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:15:49.824 E/MinaPort11-24 15:15:49.824 E/MinaPort(16405): pos 514.3 -117.2  room c=518.4,-137.11-24 15:16:04.349 E/MinaPort(16405): pos 514.3 -114.8  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:16:04.753 E/MinaPort(16405): pos 514.3 -112.8  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:16:07.792 E/MinaPort(16405): pos 514.6 -111.0  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:08.197 E/MinaPort(16405): pos 515.9 -110.2  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:08.601 E/MinaPort(16405): pos 515.9 -108.0  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:09.008 E/MinaPort(16405): pos 515.9 -105.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:09.413 E/MinaPort(16405): pos 515.9 -103.6  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:09.817 E/MinaPort(16405): pos 515.9 -101.3  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:10.222 E/MinaPort11-24 15:16:10.222 E/MinaPort(16405): pos 515.9 -99.0  room c=518.4,-85.11-24 15:16:11.133 E/MinaPort(16405): pos 515.9 -97.0  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:11.540 E/MinaPort(16405): pos 515.9 -94.6  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:12.044 E/MinaPort(16405): pos 515.9 -92.2  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:12.751 E/MinaPort(16405): pos 515.9 -90.1  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:16.796 E/MinaPort(16405): pos 515.9 -92.2  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:17.303 E/MinaPort(16405): pos 515.9 -94.3  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:18.216 E/MinaPort(16405): pos 515.9 -96.4  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:18.622 E/MinaPort11-24 15:16:18.622 E/MinaPort(16405): pos 515.9 -98.4  room c=518.4,-85.11-24 15:16:19.331 E/MinaPort11-24 15:16:19.331 E/MinaPort(16405): pos 515.9 -100.8  room c=518.4,-85.11-24 15:16:19.735 E/MinaPort11-24 15:16:19.735 E/MinaPort(16405): pos 515.9 -102.9  room c=518.4,-85.11-24 15:16:20.346 E/MinaPort11-24 15:16:20.346 E/MinaPort(16405): pos 515.9 -105.0  room c=518.4,-85.11-24 15:16:20.851 E/MinaPort(16405): pos 515.9 -107.1  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:21.257 E/MinaPort(16405): pos 515.9 -109.2  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:21.663 E/MinaPort(16405): pos 515.9 -111.4  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:22.780 E/MinaPort(16405): pos 515.9 -113.6  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:16:23.285 E/MinaPort(16405): pos 515.9 -116.0  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:16:28.034 E/MinaPort(16405): pos 515.9 -113.9  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:16:28.643 E/MinaPort(16405): pos 515.9 -111.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:29.353 E/MinaPort11-24 15:16:29.353 E/MinaPort(16405): pos 515.9 -109.5  room c=518.4,-85.11-24 15:16:29.860 E/MinaPort11-24 15:16:29.860 E/MinaPort(16405): pos 515.9 -107.0  room c=518.4,-85.11-24 15:16:30.367 E/MinaPort11-24 15:16:30.367 E/MinaPort(16405): pos 515.9 -104.8  room c=518.4,-85.11-24 15:16:30.877 E/MinaPort11-24 15:16:30.877 E/MinaPort(16405): pos 515.9 -102.3  room c=518.4,-85.11-24 15:16:31.382 E/MinaPort11-24 15:16:31.382 E/MinaPort(16405): pos 515.9 -100.1  room c=518.4,-85.11-24 15:16:31.990 E/MinaPort11-24 15:16:31.990 E/MinaPort(16405): pos 515.9 -97.9  room c=518.4,-85.11-24 15:16:32.394 E/MinaPort(16405): pos 515.9 -95.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:32.797 E/MinaPort(16405): pos 515.9 -93.6  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:33.913 E/MinaPort11-24 15:16:33.913 E/MinaPort(16405): levels: 11-24 15:16:34.014 E/MinaPort(16405): pos 515.9 -90.4  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:40.999 E/MinaPort11-24 15:16:40.999 E/MinaPort(16405): pos 515.9 -92.7  room c=518.4,-85.11-24 15:16:41.406 E/MinaPort11-24 15:16:41.406 E/MinaPort(16405): pos 515.9 -94.9  room c=518.4,-85.11-24 15:16:41.810 E/MinaPort11-24 15:16:41.810 E/MinaPort(16405): pos 515.9 -97.0  room c=518.4,-85.11-24 15:16:42.418 E/MinaPort11-24 15:16:42.418 E/MinaPort(16405): pos 515.9 -99.4  room c=518.4,-85.11-24 15:16:42.823 E/MinaPort11-24 15:16:42.823 E/MinaPort(16405): pos 515.9 -101.5  room c=518.4,-85.11-24 15:16:43.228 E/MinaPort11-24 15:16:43.228 E/MinaPort(16405): pos 515.9 -103.7  room c=518.4,-85.11-24 15:16:43.733 E/MinaPort(16405): pos 515.9 -106.0  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:44.137 E/MinaPort(16405): pos 515.9 -108.1  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:44.949 E/MinaPort(16405): pos 515.9 -110.2  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:16:45.558 E/MinaPort(16405): pos 515.9 -112.2  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:16:46.367 E/MinaPort(16405): pos 515.9 -114.5  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:16:46.772 E/MinaPort(16405): pos 515.9 -116.6  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:16:51.117 E/MinaPort11-24 15:16:51.117 E/MinaPort(16405): pos 514.4 -117.2  room c=518.4,-137.11-24 15:16:52.637 E/MinaPort(16405): pos 514.3 -115.1  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:16:53.043 E/MinaPort11-24 15:16:53.043 E/MinaPort(16405): pos 514.3 -113.0  room c=518.4,-137.11-24 15:16:53.849 E/MinaPort(16405): pos 514.3 -111.0  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:17:00.532 E/MinaPort(16405): pos 514.3 -113.4  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:17:01.137 E/MinaPort11-24 15:17:01.137 E/MinaPort(16405): pos 514.3 -115.5  room c=518.4,-137.11-24 15:17:05.479 E/MinaPort(16405): levels: levels/overworld/hub.tlb.yc;levels/overworld/hub_overworld_south.tlb.yc
+11-24 15:17:05.983 E/MinaPort(16405): pos 514.3 -113.2  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:17:06.791 E/MinaPort(16405): pos 514.3 -111.1  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:17:11.346 E/MinaPort11-24 15:17:11.346 E/MinaPort(16405): pos 516.6 -110.9  room c=518.4,-85.11-24 15:17:11.751 E/MinaPort(16405): pos 518.8 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:17:12.462 E/MinaPort(16405): pos 520.8 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:17:23.289 E/MinaPort(16405): pos 518.8 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:17:23.694 E/MinaPort(16405): pos 516.7 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:17:24.299 E/MinaPort(16405): pos 514.6 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:17:29.257 E/MinaPort11-24 15:17:29.257 E/MinaPort(16405): pos 514.6 -112.9  room c=518.4,-137.11-24 15:17:29.963 E/MinaPort11-24 15:17:29.963 E/MinaPort(16405): pos 514.6 -115.0  room c=518.4,-137.11-24 15:17:30.569 E/MinaPort(16405): pos 514.6 -117.2  room c=518.4,-137.6,0.0 half=25.6,25.6,1000.0
+11-24 15:17:37.023 E/MinaPort(16405): pos 514.7 -111.5  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:17:37.632 E/MinaPort(16405): pos 516.7 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:17:38.037 E/MinaPort(16405): pos 519.0 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:17:38.744 E/MinaPort11-24 15:17:38.744 E/MinaPort(16405): pos 521.4 -110.9  room c=518.4,-85.11-24 15:17:40.570 E/MinaPort(16405): pos 519.1 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:17:41.077 E/MinaPort(16405): pos 516.7 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:17:41.684 E/MinaPort11-24 15:17:41.684 E/MinaPort(16405): pos 514.3 -110.9  room c=518.4,-85.11-24 15:17:47.356 E/MinaPort(16405): pos 516.8 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:17:47.761 E/MinaPort(16405): pos 518.9 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:17:48.266 E/MinaPort11-24 15:17:48.266 E/MinaPort(16405): pos 521.3 -110.9  room c=518.4,-85.11-24 15:17:58.585 E/MinaPort11-24 15:17:58.585 E/MinaPort(16405): pos 519.0 -110.9  room c=518.4,-85.11-24 15:17:59.090 E/MinaPort(16405): pos 516.7 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:17:59.596 E/MinaPort(16405): pos 514.3 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:18:04.958 E/MinaPort11-24 15:18:04.958 E/MinaPort(16405): pos 516.6 -110.9  room c=518.4,-85.11-24 15:18:05.465 E/MinaPort11-24 15:18:05.465 E/MinaPort(16405): pos 519.1 -110.9  room c=518.4,-85.11-24 15:18:05.971 E/MinaPort11-24 15:18:05.971 E/MinaPort(16405): pos 521.3 -110.9  room c=518.4,-85.11-24 15:18:08.424 E/MinaPort(16405): levels: levels/overworld/hub.tlb.yc
+11-24 15:18:12.168 E/MinaPort(16405): pos 519.1 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:18:12.777 E/MinaPort(16405): pos 516.7 -110.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:18:13.180 E/MinaPort11-24 15:18:13.180 E/MinaPort(16405): pos 514.6 -110.9  room c=518.4,-85.11-24 15:18:17.740 E/MinaPort11-24 15:18:17.740 E/MinaPort(16405): pos 515.9 -109.7  room c=518.4,-85.11-24 15:18:18.142 E/MinaPort(16405): pos 515.9 -107.6  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:18:18.648 E/MinaPort11-24 15:18:18.648 E/MinaPort(16405): pos 515.9 -105.0  room c=518.4,-85.11-24 15:18:19.053 E/MinaPort(16405): pos 515.9 -103.0  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:18:19.762 E/MinaPort11-24 15:18:19.762 E/MinaPort(16405): pos 515.9 -100.8  room c=518.4,-85.11-24 15:18:20.674 E/MinaPort11-24 15:18:20.674 E/MinaPort(16405): pos 515.9 -98.7  room c=518.4,-85.11-24 15:18:21.079 E/MinaPort11-24 15:18:21.079 E/MinaPort(16405): pos 515.9 -96.7  room c=518.4,-85.11-24 15:18:22.395 E/MinaPort(16405): pos 515.9 -94.5  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:18:22.798 E/MinaPort11-24 15:18:22.798 E/MinaPort(16405): pos 515.9 -92.4  room c=518.4,-85.11-24 15:18:23.407 E/MinaPort11-24 15:18:23.407 E/MinaPort(16405): pos 515.9 -90.3  room c=518.4,-85.11-24 15:18:26.554 E/MinaPort(16405): pos 517.8 -90.1  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:18:27.057 E/MinaPort11-24 15:18:27.057 E/MinaPort(16405): pos 520.2 -90.1  room c=518.4,-85.11-24 15:18:29.188 E/MinaPort11-24 15:18:29.188 E/MinaPort(16405): pos 520.9 -91.7  room c=518.4,-85.11-24 15:18:29.592 E/MinaPort11-24 15:18:29.592 E/MinaPort(16405): pos 520.9 -93.7  room c=518.4,-85.11-24 15:18:36.675 E/MinaPort(16405): pos 518.5 -93.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:18:37.181 E/MinaPort(16405): pos 516.2 -93.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:18:44.655 E/MinaPort--------- beginning of main
+11-24 15:18:44.655 E/MinaPort(16405): pos 511-24 15:18:45.768 E/MinaPort11-24 15:18:45.768 E/MinaPort(16405): pos 520.8 -93.7  room c=518.4,-85.11-24 15:19:27.601 E/MinaPort(16405): pos 522.5 -93.3  roo11-24 15:19:27.601 E/MinaPort(16405): pos 511-24 15:21:38.007 E/MinaPort11-24 15:21:38.007 E/MinaPort(16405): pos 522.1 -91.7  room c=518.4,-85.11-24 15:21:38.919 E/MinaPort(16405): pos 520.1 -91.7  roo11-24 15:21:38.919 E/MinaPort(16405): pos 511-24 15:21:39.425 E/MinaPort(16405): pos 517.7 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:21:40.134 E/MinaPort11-24 15:21:40.134 E/MinaPort11-24 15:21:40.134 E/MinaPort(16405): pos 511-24 15:22:37.151 E/MinaPort(16405): pos 517.7 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:22:37.757 E/MinaPort(16405): pos 520.1 -91.7  roo11-24 15:22:37.757 E/MinaPort(16405): pos 511-24 15:22:38.161 E/MinaPort(16405): pos 522.1 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:22:52.132 E/MinaPort11-24 15:22:52.132 E/MinaPort(16405): pos 514.8 -91.7  room c=518.4,-85.11-24 15:23:06.298 E/MinaPort11-24 15:23:06.298 E/MinaPort11-24 15:23:06.298 E/MinaPort(16405): pos 511-24 15:23:51.443 E/MinaPort(16405): pos 514.5 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:23:52.248 E/MinaPort(16405): pos 516.5 -91.7  roo11-24 15:23:52.248 E/MinaPort(16405): pos 511-24 15:23:52.859 E/MinaPort(16405): pos 518.6 -91.7  roo11-24 15:23:52.859 E/MinaPort(16405): pos 511-24 15:23:53.263 E/MinaPort(16405): pos 520.7 -91.7  roo11-24 15:23:53.263 E/MinaPort(16405): pos 511-24 15:24:50.534 E/MinaPort11-24 15:24:50.534 E/MinaPort(16405): pos 518.7 -91.7  room c=518.4,-85.11-24 15:24:51.343 E/MinaPort(16405): pos 516.7 -91.7  roo11-24 15:24:51.343 E/MinaPort(16405): pos 511-24 15:24:58.200 E/MinaPort(16405): pos 514.3 -91.7  roo11-24 15:24:58.200 E/MinaPort(16405): pos 511-24 15:25:04.987 E/MinaPort(16405): pos 516.4 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:25:05.607 E/MinaPort11-24 15:25:05.607 E/MinaPort11-24 15:25:05.607 E/MinaPort(16405): pos 511-24 15:25:06.012 E/MinaPort11-24 15:25:06.012 E/MinaPort11-24 15:25:06.012 E/MinaPort(16405): pos 511-24 15:25:06.421 E/MinaPort11-24 15:25:06.421 E/MinaPort(16405): pos 522.5 -91.7  room c=518.4,-85.11-24 15:25:33.627 E/MinaPort(16405): pos 522.5 -93.9  roo11-24 15:25:33.627 E/MinaPort(16405): pos 511-24 15:25:48.433 E/MinaPort11-24 15:25:48.433 E/MinaPort(16405): pos 520.5 -94.0  room c=518.4,-85.11-24 15:25:48.839 E/MinaPort11-24 15:25:48.839 E/MinaPort11-24 15:25:48.839 E/MinaPort(16405): pos 511-24 15:25:49.345 E/MinaPort11-24 15:25:49.345 E/MinaPort(16405): pos 516.1 -94.0  room c=518.4,-85.11-24 15:26:03.600 E/MinaPort(16405): pos 518.4 -94.0  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:26:04.106 E/MinaPort11-24 15:26:04.106 E/MinaPort(16405): pos 520.8 -94.0  room c=518.4,-85.11-24 15:26:17.174 E/MinaPort(16405): pos 522.5 -93.5  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:26:47.374 E/MinaPort11-24 15:26:47.374 E/MinaPort(16405): pos 520.6 -93.7  room c=518.4,-85.11-24 15:26:47.880 E/MinaPort(16405): pos 518.5 -93.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:26:48.889 E/MinaPort11-24 15:26:48.889 E/MinaPort(16405): pos 516.3 -93.7  room c=518.4,-85.11-24 15:26:58.202 E/MinaPort11-24 15:26:58.202 E/MinaPort(16405): pos 514.3 -93.8  room c=518.4,-85.11-24 15:27:12.564 E/MinaPort11-24 15:27:12.564 E/MinaPort(16405): pos 516.2 -94.0  room c=518.4,-85.11-24 15:27:13.070 E/MinaPort11-24 15:27:13.070 E/MinaPort11-24 15:27:13.070 E/MinaPort(16405): pos 511-24 15:27:13.474 E/MinaPort(16405): pos 520.8 -94.0  roo11-24 15:27:13.474 E/MinaPort(16405): pos 511-24 15:27:20.255 E/MinaPort11-24 15:27:20.255 E/MinaPort(16405): pos 522.5 -93.4  room c=518.4,-85.11-24 15:28:28.416 E/MinaPort(16405): pos 520.7 -94.0  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:28:28.820 E/MinaPort(16405): pos 518.5 -94.0  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:28:29.226 E/MinaPort(16405): pos 516.3 -94.0  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:28:29.935 E/MinaPort(16405): pos 514.3 -94.0  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:28:42.943 E/MinaPort11-24 15:28:42.943 E/MinaPort(16405): pos 516.6 -94.0  roo11-24 15:28:4211-24 15:28:43.347 E/MinaPort(16405): pos 518.7 -94.0  roo11-24 15:28:43.347 E/MinaPort(16405): pos 511-24 15:28:43.750 E/MinaPort11-24 15:28:43.750 E/MinaPort(16405): pos 520.9 -94.0  room c=518.4,-85.11-24 15:28:56.916 E/MinaPort(16405): pos 522.5 -93.3  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:29:11.645 E/MinaPort(16405): pos 522.1 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:29:12.253 E/MinaPort(16405): pos 520.1 -91.7  roo11-24 15:29:12.253 E/MinaPort(16405): pos 511-24 15:29:13.671 E/MinaPort(16405): pos 517.8 -91.7  room c=518.4,-85.6,0.0 half=25.611-24 15:29:1311-24 15:29:14.281 E/MinaPort11-24 15:29:14.281 E/MinaPort11-24 15:29:14.281 E/MinaPort(16405): pos 511-24 15:29:41.964 E/MinaPort11-24 15:29:41.964 E/MinaPort(16405): pos 514.3 -94.0  room c=518.4,-85.11-24 15:29:56.236 E/MinaPort(16405): pos 516.4 -94.0  room c=518.4,-85.6,0.0 half=25.611-24 15:29:5611-24 15:29:57.146 E/MinaPort11-24 15:29:57.146 E/MinaPort11-24 15:29:57.146 E/MinaPort(16405): pos 511-24 15:29:57.651 E/MinaPort(16405): pos 520.8 -94.0  room c=518.4,-85.6,0.0 half=25.611-24 15:29:5711-24 15:30:09.991 E/MinaPort11-24 15:30:09.991 E/MinaPort(16405): pos 522.5 -93.6  roo11-24 15:30:0911-24 15:31:16.731 E/MinaPort(16405): pos 520.9 -94.0  roo11-24 15:31:16.731 E/MinaPort--------- begi11-24 15:31:17.136 E/MinaPort(16405): pos 518.6 -94.0  roo11-24 15:31:17.136 E/MinaPort(16405): pos 511-24 15:31:17.540 E/MinaPort11-24 15:31:17.540 E/MinaPort11-24 15:31:17.540 E/MinaPort(16405): pos 511-24 15:32:03.999 E/MinaPort11-24 15:32:03.999 E/MinaPort(16405): pos 518.7 -94.0  room c=518.4,-85.11-24 15:32:04.402 E/MinaPort(16405): pos 521.0 -94.0  room c=518.4,-85.6,0.0 half=25.611-24 15:32:0411-24 15:32:52.110 E/MinaPort(16405): pos 522.5 -93.0  roo11-24 15:32:52.110 E/MinaPort(16405): pos 511-24 15:34:28.128 E/MinaPort(16405): pos 521.5 -91.7  roo11-24 15:34:28.128 E/MinaPort(16405): pos 511-24 15:34:28.533 E/MinaPort(16405): pos 519.3 -91.7  room c=518.4,-85.6,0.0 half=25.611-24 15:34:2811-24 15:34:28.938 E/MinaPort(16405): pos 517.0 -91.7  roo11-24 15:34:28.938 E/MinaPort(16405): pos 511-24 15:34:29.342 E/MinaPort(16405): pos 514.8 -91.7  roo11-24 15:34:29.342 E/MinaPort(16405): pos 511-24 15:35:01.511 E/MinaPort11-24 15:35:01.511 E/MinaPort(16405): pos 514.3 -93.5  room c=518.4,-85.11-24 15:35:47.304 E/MinaPort(16405): pos 515.9 -94.0  roo11-24 15:35:47.304 E/MinaPort(16405): pos 511-24 15:35:47.710 E/MinaPort(16405): pos 518.2 -94.0  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:35:48.114 E/MinaPort11-24 15:35:48.114 E/MinaPort11-24 15:35:48.114 E/MinaPort(16405): pos 511-24 15:35:48.519 E/MinaPort11-24 15:35:48.519 E/MinaPort(16405): pos 522.5 -94.0  room c=518.4,-85.11-24 15:36:42.125 E/MinaPort11-24 15:36:42.125 E/MinaPort(16405): pos 520.0 -94.0  room c=518.4,-85.11-24 15:36:42.532 E/MinaPort11-24 15:36:42.532 E/MinaPort(16405): pos 518.0 -94.0  room c=518.4,-85.11-24 15:36:42.937 E/MinaPort(16405): pos 515.9 -94.0  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:37:42.365 E/MinaPort11-24 15:37:42.365 E/MinaPort11-24 15:37:42.365 E/MinaPort(16405): pos 511-24 15:37:42.772 E/MinaPort(16405): pos 520.3 -94.0  roo11-24 15:37:42.772 E/MinaPort(16405): pos 511-24 15:37:43.177 E/MinaPort11-24 15:37:43.177 E/MinaPort(16405): pos 522.5 -94.0  room c=518.4,-85.11-24 15:38:09.068 E/MinaPort(16405): pos 522.5 -91.9  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:39:34.290 E/MinaPort(16405): pos 520.3 -91.7  roo11-24 15:39:34.290 E/MinaPort11-24 15:39:3411-24 15:39:34.692 E/MinaPort(16405): pos 518.1 -91.7  roo11-24 15:39:34.692 E/MinaPort(16405): pos 511-24 15:39:35.096 E/MinaPort11-24 15:39:35.096 E/MinaPort11-24 15:39:35.096 E/MinaPort(16405): pos 511-24 15:40:09.174 E/MinaPort(16405): pos 518.2 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:40:09.578 E/MinaPort11-24 15:40:09.578 E/MinaPort(16405): pos 520.4 -91.7  roo11-24 15:40:0911-24 15:40:09.983 E/MinaPort11-24 15:40:09.983 E/MinaPort11-24 15:40:09.983 E/MinaPort(16405): pos 511-24 15:44:18.881 E/MinaPort11-24 15:44:18.881 E/MinaPort(16405): pos 522.5 -93.9  roo11-24 15:44:1811-24 15:45:17.002 E/MinaPort11-24 15:45:17.002 E/MinaPort(16405): pos 520.4 -94.0  roo11-24 15:45:1711-24 15:45:17.405 E/MinaPort11-24 15:45:17.405 E/MinaPort(16405): pos 518.0 -94.0  room c=518.4,-85.11-24 15:45:17.807 E/MinaPort(16405): pos 515.7 -94.0  roo11-24 15:45:17.807 E/MinaPort(16405): pos 511-24 15:46:18.261 E/MinaPort(16405): pos 517.8 -93.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:46:18.665 E/MinaPort(16405): pos 519.9 -93.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:46:19.068 E/MinaPort11-24 15:46:19.068 E/MinaPort(16405): pos 522.2 -93.7  roo11-24 15:46:1911-24 15:46:49.444 E/MinaPort11-24 15:46:49.444 E/MinaPort(16405): pos 520.1 -93.7  room c=518.4,-85.11-24 15:46:49.848 E/MinaPort(16405): pos 517.8 -93.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:46:50.254 E/MinaPort11-24 15:46:50.254 E/MinaPort(16405): pos 515.6 -93.7  room c=518.4,-85.11-24 15:47:36.532 E/MinaPort(16405): pos 514.3 -93.0  roo11-24 15:47:36.532 E/MinaPort11-24 15:47:3611-24 15:49:09.726 E/MinaPort11-24 15:49:09.726 E/MinaPort(16405): pos 515.1 -91.7  room c=518.4,-85.11-24 15:49:10.133 E/MinaPort(16405): pos 517.3 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:49:10.536 E/MinaPort11-24 15:49:10.536 E/MinaPort(16405): pos 519.5 -91.7  room c=518.4,-85.11-24 15:49:10.939 E/MinaPort(16405): pos 521.6 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:49:53.540 E/MinaPort11-24 15:49:53.540 E/MinaPort(16405): pos 519.6 -91.7  room c=518.4,-85.11-24 15:49:53.945 E/MinaPort11-24 15:49:53.945 E/MinaPort(16405): pos 517.4 -91.7  room c=518.4,-85.11-24 15:49:54.350 E/MinaPort(16405): pos 515.2 -91.7  roo11-24 15:49:54.350 E/MinaPort(16405): pos 511-24 15:50:45.392 E/MinaPort(16405): pos 517.4 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:50:45.797 E/MinaPort11-24 15:50:45.797 E/MinaPort(16405): pos 519.7 -91.7  room c=518.4,-85.11-24 15:50:46.201 E/MinaPort11-24 15:50:46.201 E/MinaPort(16405): pos 522.0 -91.7  room c=518.4,-85.11-24 15:53:01.473 E/MinaPort(16405): pos 519.9 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:53:01.879 E/MinaPort11-24 15:53:01.879 E/MinaPort(16405): pos 517.7 -91.7  room c=518.4,-85.11-24 15:53:02.282 E/MinaPort(16405): pos 515.4 -91.7  roo11-24 15:53:02.282 E/MinaPort(16405): pos 511-24 15:54:01.755 E/MinaPort(16405): pos 518.0 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:54:02.166 E/MinaPort11-24 15:54:02.166 E/MinaPort(16405): pos 520.3 -91.7  room c=518.4,-85.11-24 15:54:02.571 E/MinaPort11-24 15:54:02.571 E/MinaPort11-24 15:54:02.571 E/MinaPort(16405): pos 511-24 15:54:57.527 E/MinaPort(16405): pos 520.5 -91.7  roo11-24 15:54:57.527 E/MinaPort(16405): pos 511-24 15:54:57.931 E/MinaPort11-24 15:54:57.931 E/MinaPort11-24 15:54:57.931 E/MinaPort11-24 15:54:5711-24 15:54:58.336 E/MinaPort(16405): pos 516.1 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:55:52.962 E/MinaPort(16405): pos 518.7 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:55:53.366 E/MinaPort(16405): pos 520.8 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:56:48.788 E/MinaPort11-24 15:56:48.788 E/MinaPort(16405): pos 518.5 -91.7  room c=518.4,-85.11-24 15:56:49.192 E/MinaPort(16405): pos 516.4 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:56:49.597 E/MinaPort11-24 15:56:49.597 E/MinaPort(16405): pos 514.4 -91.7  room c=518.4,-85.11-24 15:58:39.725 E/MinaPort11-24 15:58:39.725 E/MinaPort(16405): pos 516.6 -91.7  room c=518.4,-85.11-24 15:58:40.230 E/MinaPort(16405): pos 519.2 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 15:58:40.636 E/MinaPort(16405): pos 521.3 -91.7  room c=518.4,-85.6,0.0 half=25.611-24 15:58:4011-24 15:59:05.842 E/MinaPort11-24 15:59:05.842 E/MinaPort(16405): pos 519.1 -91.7  room c=518.4,-85.11-24 15:59:07.239 E/MinaPort11-24 15:59:07.239 E/MinaPort(16405): pos 514.3 -91.7  room c=518.4,-85.11-24 16:00:54.517 E/MinaPort11-24 16:00:54.517 E/MinaPort11-24 16:00:54.517 E/MinaPort(16405): pos 511-24 16:00:54.923 E/MinaPort(16405): pos 518.5 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 16:00:55.327 E/MinaPort11-24 16:00:55.327 E/MinaPort(16405): pos 520.8 -91.7  room c=518.4,-85.11-24 16:02:16.541 E/MinaPort(16405): pos 514.6 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 16:03:09.076 E/MinaPort(16405): pos 516.8 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 16:03:09.481 E/MinaPort(16405): pos 519.2 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+11-24 16:03:09.889 E/MinaPort11-24 16:03:09.889 E/MinaPort(16405): pos 521.6 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+.889 E/MinaPort(16405): pos 521.6 -91.7  room c=518.4,-85.6,0.0 half=25.6,26.4,1000.0
+6,0.0 half=25.6,26.4,1000.0
