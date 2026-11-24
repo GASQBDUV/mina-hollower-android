@@ -326,6 +326,7 @@ public class MapView extends View {
                 Bitmap b = ic == null ? null : ui().icon(ic);
                 float tx = px + 36;
                 if (b != null) { ui().drawIcon(c, b, px + 30, y + 52, 3, false); tx = px + 30 + b.getWidth() * 3 + 18; }
+                if (k == 0) { int wi = -1; for (int i = 0; i < arr.length(); i++) if (arr.getJSONObject(i).getString("s").equalsIgnoreCase(key)) wi = i; int wl = wi >= 0 && wi < 5 ? weaponLevel(wi) : 0; if (wl > 0) nm = nm + "  Lv " + wl; }
                 ui().text(c, nm, tx, y + 84, S, C_TEXT, true);
                 if (k == 1 && sn.length() > 0) ui().text(c, "Joules " + joules + "/" + maxJ, tx, y + 108, 2, C_TEAL, false);
             }
@@ -350,7 +351,67 @@ public class MapView extends View {
             int rows = (61 + cols - 1) / cols;
             y += rows * cell * 0.9f + 12;
             if (en.length() > 0 && y < H - ts * 1.6f - 10) ui().text(c, "Equipped: " + en, x0, y + 14, 2, 0xFFFFD34D, false);
+            if (en.length() > 0) y += 26;
+            drawAreas(c, inv, x0, y, W, H, ts);
         } catch (Throwable t) { android.util.Log.e("MinaPort", "inventory: " + t); }
+    }
+
+
+    // weapon level 1..3 (0 = not owned), formula decoded from Player::CanUseWeaponLevelAbility
+    private int weaponLevel(int w) {
+        int pick = u32(3108 + 4 * w), st = u32(3128 + 4 * w);
+        if (st < 0 || st > 31 || ((pick >>> st) & 1) == 0) return 0;
+        int lv = 1;
+        for (int L = 2; L <= 3; L++) { int sh = (L - 1) - ((st != 0 && st >= L - 1) ? 1 : 0); if (((pick >>> sh) & 1) != 0) lv = L; }
+        return lv;
+    }
+
+    private boolean bit64(int off, int b) { return b >= 0 && b < 64 && (((svb.getLong(off) >>> b) & 1L) != 0); }
+    private int collectedOf(int cat, org.json.JSONArray ids, org.json.JSONObject masks) throws org.json.JSONException {
+        int n = 0;
+        for (int i = 0; i < ids.length(); i++) {
+            boolean got = false; int id = ids.optInt(i, -1);
+            switch (cat) {
+                case 0: got = id >= 0 && id < 32 && ((u32(304) >>> id) & 1) != 0; break;
+                case 1: got = id >= 0 && id < 61 && u32(1136 + 4 * id) == 1; break;
+                case 2: got = bit64(496, id); break;
+                case 3: got = id >= 2 && id <= 16 && ((u32(3108 + 4 * ((id - 2) / 3)) >>> ((id - 2) % 3)) & 1) != 0; break;
+                case 4: got = id >= 0 && id < 32 && ((u32(368) >>> id) & 1) != 0; break;
+                case 6: got = ids.optString(i).equals("first3") ? (u32(396) & 7) == 7 : (id >= 0 && id < 32 && ((u32(396) >>> id) & 1) != 0); break;
+                case 7: got = id >= 0 && id < 32 && ((u32(2384) >>> id) & 1) != 0; break;
+                case 8: got = id >= 0 && id < 32 && ((u32(84) >>> id) & 1) != 0; break;
+                case 10: got = id >= 0 && id < 224 && ((u32(3080 + 4 * (id >> 5)) >>> (id & 31)) & 1) != 0; break;
+                case 11: got = id >= 0 && id + 1 < 32 && ((u32(3440) >>> (id + 1)) & 1) != 0; break;
+                case 13: got = bit64(512, id); break;
+                case 16: got = (sv[448] & 0xFF) != 0; break;
+                default: { String m = masks.optString(String.valueOf(id), null); if (m != null) got = (u32(3176) & (int) Long.decode(m).longValue()) != 0; }
+            }
+            if (got) n++;
+        }
+        return n;
+    }
+
+    private void drawAreas(Canvas c, org.json.JSONObject inv, float x0, float y, int W, int H, float ts) {
+        try {
+            org.json.JSONObject cp = inv.optJSONObject("completion");
+            if (cp == null) return;
+            org.json.JSONObject locsO = cp.getJSONObject("locations"), masks = cp.getJSONObject("upgrade_masks");
+            if (y > H - ts * 1.6f - 60) return;
+            ui().text(c, "Areas  (items found)", x0, y + 16, 3, C_TEXT, true);
+            y += 38;
+            int cols = 2; float cw = (W - 48) / cols, rh = 26;
+            for (int i = 0; i < LOC.length; i++) {
+                float gx = x0 + (i % cols) * cw, gy = y + (i / cols) * rh;
+                if (gy + rh > H - ts * 1.6f) break;
+                org.json.JSONObject lo = locsO.optJSONObject(LOC[i]); if (lo == null) continue;
+                int got = 0, tot = 0;
+                java.util.Iterator<String> it = lo.keys();
+                while (it.hasNext()) { String k = it.next(); org.json.JSONObject e = lo.getJSONObject(k); tot += e.getInt("total"); got += Math.min(e.getInt("total"), collectedOf(Integer.parseInt(k), e.getJSONArray("ids"), masks)); }
+                boolean seen = (sv[3405 + i] & 0xFF) != 0;
+                String nm = LOC[i];
+                ui().text(c, nm + " " + got + "/" + tot, gx, gy + 14, 2, !seen ? C_DIM : got >= tot ? 0xFFFFD34D : C_TEXT, false);
+            }
+        } catch (Throwable t) { android.util.Log.e("MinaPort", "areas: " + t); }
     }
 
     private boolean drawWorld(Canvas c, int W, int H, float ts) {

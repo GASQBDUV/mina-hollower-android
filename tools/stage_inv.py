@@ -19,6 +19,11 @@ for k, v in j['fields'].items():
     out['fields'][k] = v['off']
 for extra in ['sprites/UI_HUD_HUD/boneCounter_icon.png', 'sprites/UI_HUD_HUD/bonestoneCounter_icon.png', 'sprites/UI_HUD_vialIcon/vial_f0.png', 'sprites/UI_HUD_vialIcon/vialEmpty.png']:
     if os.path.exists(U + extra): flat(extra)
+import os
+cm = os.path.join(os.path.dirname(os.path.abspath(MAP)), 'completion-map.json')
+if os.path.exists(cm):
+    c = json.load(open(cm, encoding='utf-8'))
+    out['completion'] = {k: c[k] for k in ('upgrade_masks', 'location_order', 'locations', 'location_total')}
 json.dump(out, open(O + 'inv.json', 'w'), indent=0)
 print(len(out['weapons']), len(out['sidearms']), len(out['trinkets']), sorted(os.listdir(O))[:5])
 print({k: out['fields'][k] for k in out['fields'] if k in ('fHealth','sWeaponName','sSubWeaponName','sMoney','sSubWeaponCount','trinketEquipped','trinketCollected','sVialCount','sPlayerStatLevel','fPlayTime','sDeathCount')})

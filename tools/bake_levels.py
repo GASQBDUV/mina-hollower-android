@@ -82,12 +82,31 @@ def bake(name,data,outdir):
                 if l['name'].startswith('EXTRA_COLLISION') and c!=CLS_WALL: continue   # invisible enemy/limit collision, not terrain
                 k=(int(l['x'])//L.tileW+x,int(l['y'])//L.tileH+y)
                 if pr[c]>pr.get(cells.get(k,0),0): cells[k]=c
+    fallback=None
+    if not cells:
+        # no collision layers: frame from the drawable tile layers (same selection as bake_levels_color), else room bounds
+        from bake_levels_color import select_layers
+        fb,fallback=select_layers(L)
+        for l in fb:
+            g=layer_grid(L,l)
+            for y,row in enumerate(g):
+                for x,v in enumerate(row):
+                    if not v: continue
+                    px0=int(round(l['x']))+x*L.tileW; py0=int(round(l['y']))+y*L.tileH   # layer x/y need not be tile aligned
+                    for cx in {px0//L.tileW,(px0+L.tileW-1)//L.tileW}:
+                        for cy in {py0//L.tileH,(py0+L.tileH-1)//L.tileH}: cells[(cx,cy)]=CLS_OTHER
+        if not cells and L.rooms:
+            T=L.tileW
+            for r in L.rooms:
+                for tx in (int((r['cx']-r['w']/2)//T),int((r['cx']+r['w']/2-1)//T)):
+                    for ty in (int((-(r['cy']+r['h']/2))//T),int((-(r['cy']-r['h']/2)-1)//T)): cells[(tx,ty)]=CLS_EMPTY
     if not cells: return None
     xs=[k[0] for k in cells]; ys=[k[1] for k in cells]
     mx,Mx,my,My=min(xs),max(xs),min(ys),max(ys)
     W,H=Mx-mx+1,My-my+1
     im=Image.new('RGBA',(W*SCALE,H*SCALE),(0,0,0,0)); px=im.load()
     for (tx,ty),c in cells.items():
+        if c==CLS_EMPTY: continue
         for dy in range(SCALE):
             for dx in range(SCALE): px[(tx-mx)*SCALE+dx,(ty-my)*SCALE+dy]=COL[c]
     dr=ImageDraw.Draw(im)
@@ -105,7 +124,7 @@ def bake(name,data,outdir):
     info=dict(name=name,art_png=(name+'_art.png') if has_art else None,art_px_per_tile=L.tileW,tile=T,scale=SCALE,width_px=W*SCALE,height_px=H*SCALE,
         origin_wx=mx*T,origin_wy=-my*T,   # world coords (y up) of the PNG's top-left corner
         px_per_unit=SCALE/T,
-        level_tiles=[L.levelW,L.levelH],n_rooms=len(L.rooms),rooms=rooms,
+        level_tiles=[L.levelW,L.levelH],n_rooms=len(L.rooms),rooms=rooms,no_collision=fallback is not None,parallax_fallback=bool(fallback),
         legend={'floor':COL[CLS_FLOOR][:3],'wall':COL[CLS_WALL][:3],'other_surface':COL[CLS_OTHER][:3],'room_aabb':ROOM[:3]},
         formula='px=(wx-origin_wx)*px_per_unit; py=(origin_wy-wy)*px_per_unit')
     json.dump(info,open(os.path.join(outdir,name+'.json'),'w'),indent=1)
@@ -121,7 +140,7 @@ def main():
             base=nm[:-7].replace('/','__')
             try:
                 info=bake(base,bytes(b[dp:dp+sz]),O)
-                if info: idx[nm[:-7]]=dict(file=base,**{k:info[k] for k in ('origin_wx','origin_wy','width_px','height_px','px_per_unit','n_rooms')})
+                if info: idx[nm[:-7]]=dict(file=base,**{k:info[k] for k in ('origin_wx','origin_wy','width_px','height_px','px_per_unit','n_rooms','no_collision')})
                 print('ok ' if info else 'empty',nm)
             except Exception as e: print('FAIL',nm,repr(e))
     json.dump(idx,open(os.path.join(O,'index.json'),'w'),indent=1)

@@ -78,13 +78,23 @@ def is_water_layer(n):
     u=n.upper()
     return (u.startswith('WATER') or u.startswith('DEEP_WATER')) and not any(k in u for k in ('DECOR','FLOWER','MOON'))
 
+def select_layers(L):
+    """drawable layers sorted back->front. Returns (layers, parallax_fallback). Normal: parallax==0 only.
+    If a level has no such layer (parallax-only panels / cutscene scenes), fall back to all non-utility layers at their raw x,y."""
+    ok=lambda l: l['wt'] and not any(k in l['name'] for k in SKIP)
+    ls=[l for l in L.layers if l['parx']==0 and l['pary']==0 and ok(l)]
+    fb=False
+    if not ls:
+        ls=[l for l in L.layers if ok(l)]; fb=bool(ls)
+    ls.sort(key=lambda l:(l['depth'],l['i']))
+    return ls,fb
+
 def bake_color(name,L,info,pals,outdir):
     T=L.tileW; ti=tileinfo(L); atl=atlas_of(L)
     ow,oh=info['origin_wx'],info['origin_wy']; W,H=info['width_px'],info['height_px']
     out=np.zeros((H,W,4),np.uint8)
     used=set(); b=L.b
-    layers=[l for l in L.layers if l['parx']==0 and l['pary']==0 and l['wt'] and not any(k in l['name'] for k in SKIP)]
-    layers.sort(key=lambda l:(l['depth'],l['i']))
+    layers,_=select_layers(L)
     gpal=pals.get('palettes/global.pal.yc')
     for l in layers:
         n,pp=arr(b,l['off']+48)

@@ -148,6 +148,14 @@ public class SetupActivity extends Activity {
                 && nonEmptyDir(new File(gamedata, "shaders_gles")) && nonEmptyDir(new File(gamedata, "shaders_spv"));
     }
 
+    // Lenient check used for auto-launch: data pushed by the adb deploy flow must never force the setup screen.
+    private boolean exePresent() {
+        File gdroot = new File(getFilesDir(), "gdroot");
+        File gd = gdroot.isDirectory() ? internalGamedata() : new File("/sdcard/Mina/gamedata");
+        File exe = new File(new File(gd, APP), EXE);
+        return exe.isFile() && exe.length() > 0;
+    }
+
     private boolean isReady() {
         File gdroot = new File(getFilesDir(), "gdroot");
         if (gdroot.isDirectory()) return dataOk(internalGamedata());
@@ -157,7 +165,7 @@ public class SetupActivity extends Activity {
     // ---------------------------------------------------------------- UI
     @Override protected void onCreate(Bundle b) {
         super.onCreate(b);
-        if (isReady() && !getIntent().getBooleanExtra("setup", false)) { launchGame(); return; }
+        if (exePresent() && !getIntent().getBooleanExtra("setup", false)) { launchGame(); return; }
         buildUi();
         showIdle();
     }

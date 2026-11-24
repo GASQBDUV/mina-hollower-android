@@ -8,13 +8,18 @@
     <application android:label="@string/app_name" android:allowBackup="false" android:isGame="true"
         android:extractNativeLibs="true" android:requestLegacyExternalStorage="true"
         android:theme="@android:style/Theme.NoTitleBar.Fullscreen" android:hardwareAccelerated="true">
-        <activity android:name=".MinaActivity" android:exported="true"
-            android:screenOrientation="sensorLandscape" android:launchMode="singleTask"
-            android:configChanges="layoutDirection|locale|orientation|uiMode|screenLayout|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation">
+        <!-- Launcher: first-run setup. Starts the game immediately when the game data already exists. -->
+        <activity android:name=".SetupActivity" android:exported="true"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="orientation|screenSize|keyboard|keyboardHidden|navigation|uiMode|locale|layoutDirection">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".MinaActivity" android:exported="true"
+            android:screenOrientation="sensorLandscape" android:launchMode="singleTask"
+            android:configChanges="layoutDirection|locale|orientation|uiMode|screenLayout|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation">
         </activity>
     </application>
 </manifest>

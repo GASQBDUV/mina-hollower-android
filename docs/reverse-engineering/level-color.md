@@ -32,3 +32,10 @@ Local only (derived from game data). Totals: 54 levels, ~11 MB each variant; e.g
 ## Files
 tools/bake_levels_color.py; _levels/*_color.png, *_color_a.png, *_color_half.png (54 each); _levels/color_palettes.json
 Baked incl.: overworld/hub, hub_overworld_south/east/west, crypt_overworld, core/mansion, core/bayou, all other core/overworld/extra/ending levels with collision layers.
+
+## All 99 levels (no-collision levels)
+bake_levels.py now also bakes levels without collision layers: pixel frame = bounding tile cells of the drawable layers (same selection as the colour bake, `select_layers()` in bake_levels_color.py; tile cells that a non-8-aligned layer x/y straddles are both included), else room AABBs (checkpointCryptTutorial: 128x64 empty frame). Same convention (1 px = 1 authoring unit, origin_wx/origin_wy y-up as before). `_preview.png` for these is a plain occupancy map (drawn tiles in the "other" blue, room outline) - placeholder only, the panel prefers `_color.png`. index.json entries have the same schema plus `no_collision: true`.
+`select_layers()`: normal rule parallax==0; if a level has NO such layer (parallax-only panels / cutscene scenes) it falls back to all non-utility layers at their raw x/y (parallax ignored) so something is shown.
+Result: 95 of 99 levels baked (54 collision + 41 new). Not baked (no layers and no rooms, nothing to draw): checkpointPumpkinHands, checkpointIntroBeach, checkpointKlumpyDumpus, checkpointRhene.
+Commands (same as deploy): `python bake_levels.py <data> <out>` then `python bake_levels_color.py <data> <out>`. Deploy pushes index.json + *_preview.png + *_color.png = ~14 MB for 95 levels.
+Overlap: the no-collision levels (bigArt, panoramas, introCinematic, trainCabin BG, credits) sit in the same authoring coordinate space as real levels, so bboxes overlap heavily (many 100%). MapView.pickLevel only tests levels currently loaded (nativeLevels), so this is harmless as long as those scenes are not loaded together with the world; none of them are real world rooms.
