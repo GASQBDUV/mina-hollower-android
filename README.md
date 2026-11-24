@@ -143,7 +143,7 @@ You must own the game. The app reads from its private storage (`files/`):
 - `gdroot/gamedata/shaders_gles`, `shaders_spv` - converted from `shaders.pak.yc` with `ycd_extract` and
   [airlift](https://github.com/bmdhacks/airlift) (see `scripts/mina-shaders.sh`).
 - optional `mapassets/` - world map art, `locators_big.json`, `area_table.csv`, `levels/` - baked from your
-  data with `tools/bake_map.py` and `tools/bake_levels.py`. The panel also needs the game's UI assets extracted with `tools/extract_ui.py` (font, location plates, marker) and the icons staged with `tools/stage_inv.py`, pushed to `files/mapassets/ui/`, and the coloured level art from `tools/bake_levels_color.py` in `files/mapassets/levels/`. `deploy/deploy-to-device.ps1` does not push those yet.
+  data with `tools/bake_map.py` and `tools/bake_levels.py`. The panel also needs the game's UI assets extracted with `tools/extract_ui.py` (font, location plates, marker) and the icons staged with `tools/stage_inv.py`, pushed to `files/mapassets/ui/`, and the coloured level art from `tools/bake_levels_color.py` in `files/mapassets/levels/`. `deploy/deploy-to-device.ps1` bakes and pushes all of it (step 7b); the inventory view additionally needs an `inventory-map.json` (`-InventoryMap`), which is not in the repo because it holds game text, and without it the panel says "No inventory data".
 - optional `saveData.yc` - a PC save. Keep a backup of your original.
 
 With a device connected over ADB, `deploy/deploy-to-device.ps1` does all of this in one go (it supports

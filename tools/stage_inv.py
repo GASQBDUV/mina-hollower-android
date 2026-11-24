@@ -1,10 +1,9 @@
 import json, os, shutil
 import sys
-A = (sys.argv[1] if len(sys.argv) > 1 else 'analysis') + '/'  # folder with inventory-map.json and _ui/
-U = A + '_ui/'
-O = (sys.argv[2] if len(sys.argv) > 2 else 'uistage/inv') + '/'  # output: push to files/mapassets/ui/inv/
+# usage: stage_inv.py <inventory-map.json> <ui dir from extract_ui.py> <output dir>   (output goes to files/mapassets/ui/inv/)
+MAP, U, O = sys.argv[1], sys.argv[2].rstrip('/\\') + '/', sys.argv[3].rstrip('/\\') + '/'
 shutil.rmtree(O, ignore_errors=True); os.makedirs(O)
-j = json.load(open(A + 'inventory-map.json'))
+j = json.load(open(MAP))
 def flat(path):
     n = path.replace('sprites/', '').replace('/', '_')
     shutil.copy(U + path, O + n)

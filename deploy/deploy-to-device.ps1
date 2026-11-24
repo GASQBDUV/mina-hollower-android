@@ -35,6 +35,8 @@ param(
   [switch]$SkipData,
   [switch]$SkipShaders,
   [switch]$SkipMap,
+  [switch]$SkipPanelArt,            # skip the coloured level art, UI font/plates and inventory icons
+  [string]$InventoryMap,           # inventory-map.json (offsets + names; not in the repo). Default: ..\analysis\inventory-map.json
   [switch]$NoLaunch,
   [switch]$WhatIf
 )
@@ -88,6 +90,8 @@ function PushViaStage([string]$local, [string]$stageName, [string]$destRel, [str
 }
 
 if ($WhatIf) { Write-Host "*** DRY RUN (-WhatIf): nothing will be changed ***" -ForegroundColor Magenta }
+
+$ToolsDir = @('..\analysis\tools', '..\tools') | ForEach-Object { Join-Path $PSScriptRoot $_ } | Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1
 
 # ---------------------------------------------------------------- 1. adb + device
 Step '1/9 Checking adb and device'
@@ -212,10 +216,11 @@ else {
     if (-not $Python -and (Get-Command py -ErrorAction SilentlyContinue)) { $Python = 'py' }
   }
   if (-not $Python) { Fail 'Python not found (needed to bake the map). Use -Python <exe> or -SkipMap.' }
-  $bake = Join-Path $PSScriptRoot '..\analysis\tools\bake_map.py'
+  $bake = Join-Path $ToolsDir 'bake_map.py'
   $csv  = Join-Path $PSScriptRoot '..\analysis\area_table.csv'
-  foreach ($f in $bake, $csv) { if (-not (Test-Path -LiteralPath $f)) { Fail "Missing file: $f" } }
-  $bake = (Resolve-Path $bake).Path; $csv = (Resolve-Path $csv).Path
+  if (-not (Test-Path -LiteralPath $bake)) { Fail "Missing file: $bake" }
+  $bake = (Resolve-Path $bake).Path
+  if (Test-Path -LiteralPath $csv) { $csv = (Resolve-Path $csv).Path } else { Warn 'area_table.csv not found; area names will be missing from the panel title'; $csv = $null }
   $MapOut = [System.IO.Path]::GetFullPath($MapOutDir)
   if ($WhatIf) { Info "[WhatIf] $Python `"$bake`" `"$ResData`" `"$MapOut`"" }
   else {
@@ -229,11 +234,60 @@ else {
   }
   $stm = "$Stage/mina_stage_map"
   Invoke-AdbOrFail @('shell', "mkdir -p $stm") 'creating map staging dir' | Out-Null
-  foreach ($f in @((Join-Path $MapOut 'worldmap_big.png'), (Join-Path $MapOut 'locators_big.json'), $csv)) {
+  foreach ($f in @((Join-Path $MapOut 'worldmap_big.png'), (Join-Path $MapOut 'locators_big.json'), $csv | Where-Object { $_ })) {
     Invoke-AdbOrFail @('push', (Fwd $f), "$stm/") "pushing $f" | Out-Null
   }
   RunAsOrFail 'mkdir -p files/mapassets' 'creating files/mapassets'
   RunAsOrFail "cp -r $stm/. files/mapassets/" 'copying map assets'
+}
+
+# ---------------------------------------------------------------- 7b. panel art
+Step '7b/9 Panel art -> files/mapassets/levels and files/mapassets/ui'
+if ($SkipPanelArt -or $SkipMap) { Info 'skipped' }
+else {
+  $OutRoot = Split-Path -Parent ([System.IO.Path]::GetFullPath($MapOutDir))
+  $LvOut   = Join-Path $OutRoot 'levels_raw'
+  $LvPush  = Join-Path $OutRoot 'panel\levels'   # pushed as a directory, so its name becomes files/mapassets/levels
+  $UiRaw   = Join-Path $OutRoot 'ui_raw'
+  $UiPush  = Join-Path $OutRoot 'panel\ui'
+  $InvOut  = Join-Path $UiPush 'inv'
+  if (-not $InventoryMap) { $InventoryMap = Join-Path $PSScriptRoot '..\analysis\inventory-map.json' }
+  foreach ($s in 'bake_levels.py','bake_levels_color.py','extract_ui.py','stage_inv.py') {
+    if (-not (Test-Path -LiteralPath (Join-Path $ToolsDir $s))) { Fail "Missing tool: $(Join-Path $ToolsDir $s)" }
+  }
+  function Run-Tool([string]$name, [string[]]$toolArgs) {
+    $script = (Resolve-Path (Join-Path $ToolsDir $name)).Path
+    if ($WhatIf) { Info "[WhatIf] $Python `"$script`" $($toolArgs -join ' ')"; return }
+    Info "running: $name"
+    & $Python $script @toolArgs | Out-Null
+    if ($LASTEXITCODE -ne 0) { Fail "$name failed (see output above)." }
+  }
+  Run-Tool 'bake_levels.py'       @($ResData, $LvOut)
+  Run-Tool 'bake_levels_color.py' @($ResData, $LvOut)
+  Run-Tool 'extract_ui.py'        @($ResData, $UiRaw)
+  if (Test-Path -LiteralPath $InventoryMap) {
+    Run-Tool 'stage_inv.py' @((Resolve-Path $InventoryMap).Path, $UiRaw, $InvOut)
+  } else {
+    Warn "inventory-map.json not found ($InventoryMap): the inventory view will say 'No inventory data'. Pass -InventoryMap <file>."
+  }
+  if (-not $WhatIf) {
+    # keep only what the panel loads: level index + class and colour images, the two fonts, the plates and the marker
+    Remove-Item -Recurse -Force -ErrorAction SilentlyContinue $LvPush
+    New-Item -ItemType Directory -Force -Path $LvPush | Out-Null
+    Get-ChildItem -LiteralPath $LvOut -File | Where-Object { $_.Name -eq 'index.json' -or $_.Name -like '*_preview.png' -or $_.Name -like '*_color.png' } |
+      ForEach-Object { Copy-Item -LiteralPath $_.FullName -Destination $LvPush }
+    New-Item -ItemType Directory -Force -Path (Join-Path $UiPush 'fonts'), (Join-Path $UiPush 'plates') | Out-Null
+    foreach ($f in 'Gothic8px-Regular','Gothic8px-Bold') {
+      foreach ($e in 'png','json') { Copy-Item -LiteralPath (Join-Path $UiRaw "fonts\$f.$e") -Destination (Join-Path $UiPush 'fonts') -Force }
+    }
+    Copy-Item -Path (Join-Path $UiRaw 'plates\*.png') -Destination (Join-Path $UiPush 'plates') -Force
+    Copy-Item -LiteralPath (Join-Path $UiRaw 'sprites\UI_worldMap\minaMarker.png') -Destination (Join-Path $UiPush 'marker.png') -Force
+  }
+  if ($WhatIf) { Info "[WhatIf] push $LvPush -> files/mapassets/levels and $UiPush -> files/mapassets/ui" }
+  else {
+    PushViaStage $LvPush 'mina_stage_levels' 'files/mapassets' 'level art'
+    PushViaStage $UiPush 'mina_stage_ui'     'files/mapassets' 'panel UI assets'
+  }
 }
 
 # ---------------------------------------------------------------- 8. save
