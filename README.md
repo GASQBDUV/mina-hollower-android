@@ -10,8 +10,9 @@ graphics. Everything in this repository is glue, tooling and documentation; **no
 included**.
 
 > **Status: working prototype.** It boots, loads a real PC save and plays on a Retroid Pocket Duo and on an
-> Android emulator, and the second screen shows a live map. Audio, gamepad input, performance and
-> long-session stability on the device are **not yet verified** (see [Status](#status)).
+> Android emulator, and the second screen shows a live map. On the Duo, sound, the controls and moving between
+> areas were confirmed working by hand. Frame rate and long-session stability are **not yet measured**
+> (see [Status](#status)).
 
 <p align="center">
   <img src="docs/screenshots/04-duo-top-screen-gameplay.png" width="48%" alt="Gameplay on the Retroid Pocket Duo top screen">
@@ -30,6 +31,7 @@ position marker on the bottom screen. Screenshots taken with <code>adb screencap
 | Title, profile and name entry, menus, feats, inventory | Works (emulator) |
 | Loading a **PC Steam save** (`saveData.yc`) | Works (the save format is identical) |
 | Walking in the Ossex hub with the loaded save | Works (device and emulator) |
+| Audio, controls and moving between areas | Works on the Duo (confirmed by hand) |
 | Live player position and area read from game memory (10 Hz) | Works |
 | Second-screen **world map** with a marker for the current location (17 locations) | Works on device and emulator |
 | Second-screen **trail view** and **room view** (cropped level map around the player) | Works, rough (see below) |
@@ -43,17 +45,17 @@ Honest summary of what has and has not been tested.
 
 **Verified**
 - Retroid Pocket Duo (Android 16): installs, starts, renders at 1920x1080, tracks the player, shows the
-  world map on the real second display.
+  world map on the real second display. Confirmed by hand on the device: **audio, the controls, and
+  moving between different areas**.
 - Android x86_64 emulator (ARM translation, host GPU): the full flow from logo to gameplay, menus, save
   loading, about 45 minutes of automated walking and menu cycling without a crash, memory flat at ~1.2 GB.
 - Map marker order verified for three locations by changing the area id in memory and checking where the
   marker lands (`docs/screenshots/09-map-marker-teleport-test.png`).
 
 **Not verified**
-- Audio output.
-- Gamepad input on the device (keyboard events were used on the emulator).
-- Frame rate and battery on the device. The emulator reached only ~10 fps in software rendering.
-- Moving between areas (the tested save starts in an enclosed part of the hub), boss fights, long sessions.
+- Frame rate and battery on the device (no measurements yet; the emulator reached only ~10 fps).
+- Boss fights and long sessions. The area transitions and the second-screen views after them were only
+  checked by playing, not with automated crash logging.
 - The room view is a **class map** (floor / wall / other) baked from level data, not the game's art, and its
   cropping at level edges is basic.
 - The location order for the other 14 map locations is derived from the game's static data and checked for
@@ -148,7 +150,7 @@ game folder with a progress display is written and compile-checked, but not yet 
 
 ## Roadmap
 
-- Test audio, gamepad input and frame rate on the Duo, and move between areas.
+- Measure frame rate, battery and stability over a long session on the Duo.
 - Wire in the first-run setup screen.
 - Draw the room view from the game's real tile art instead of the class map.
 - Level lookup for all 99 levels (54 are baked; the rest have no collision layers).

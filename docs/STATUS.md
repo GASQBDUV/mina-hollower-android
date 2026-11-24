@@ -24,7 +24,8 @@ Adreno 722, OpenGL ES 3.2). "Emulator" means an Android 36 x86_64 AVD with ARM t
 - The saved game loads, the player walks in the Ossex hub, and the log shows the active levels
   (`levels/overworld/hub`, `hub_overworld_south`) and the position changing.
 - The second display shows the panel, and the world map view puts the marker on Ossex.
-- Not tested yet on the device: audio, gamepad, frame rate, area transitions.
+- Confirmed by hand afterwards: sound works, the controls work and moving between different areas works.
+- Not measured yet on the device: frame rate, battery, long-session stability.
 
 ## Verified on the emulator
 
