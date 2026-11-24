@@ -16,6 +16,7 @@ Adreno 722, OpenGL ES 3.2). "Emulator" means an Android 36 x86_64 AVD with ARM t
 | Player position and area read from game memory | emulator | `reverse-engineering/position-offsets.md` |
 | Second-screen world map with marker, area table and location order | emulator | `screenshots/09-map-marker-teleport-test.png` |
 | Tile levels decoded, world coordinate scale (0.1) found, room view | emulator | `reverse-engineering/level-to-world.md` |
+| Room view in the game's own tile art, panel in the game's own UI font and plates, inventory view from the save slot | device | `screenshots/06-bottom-screen-inventory.png`, `07-bottom-screen-room-view.png` |
 | All of the above running on a real device | device | `screenshots/04-duo-top-screen-gameplay.png`, `05-duo-bottom-screen-world-map.png` |
 
 ## Verified on the device (2026-11-24)
@@ -64,3 +65,17 @@ Adreno 722, OpenGL ES 3.2). "Emulator" means an Android 36 x86_64 AVD with ARM t
   forwarding shim loaded globally and a fallback lookup in the loader.
 - **Stale objects in memory scans.** Scanning for the player's vtable returned freed copies. The tracker now
   validates every candidate and re-checks each tick.
+
+## Second-screen polish (2026-11-24)
+
+- The panel now has three views: room, world map and inventory (the trail debug view was removed; all text is English).
+- Rendering: the position is read about 60 times per second and the panel follows the display frame rate while
+  the player moves, then drops to about 8 Hz when idle. On the Duo this measured about 63 fps with no janky
+  frames while moving, and the panel's CPU cost fell from about 20% of one core to about 5%.
+- The Duo's GPU clock sat at 1150 MHz until the device was switched to its default performance mode; after that
+  it ran at 796 MHz.
+- Level art is coloured with the global palette (every tile layer names `palettes/global.pal.yc`). Water palettes
+  are only verified for the bayou.
+- Inventory offsets come from the record-definition code and were checked against a real save: health 80 equals
+  8 x 10 roses, 6 keys collected and 6 spent. Weapon and sidearm names are `{flag, length, char*}` structs, not
+  inline text, so the native side resolves them. Which sidearm name maps to which icon was not checked in game.

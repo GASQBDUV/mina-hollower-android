@@ -134,7 +134,7 @@ public class SetupActivity extends Activity {
         }
     };
 
-    private String t(String sv, String en) { return "sv".equals(Locale.getDefault().getLanguage()) ? sv : en; }
+    private String t(String sv, String en) { return en; }  // English only
 
     // ---------------------------------------------------------------- data checks (mirrors MinaActivity.dataDir)
     private File internalGamedata() { return new File(new File(getFilesDir(), "gdroot"), "gamedata"); }

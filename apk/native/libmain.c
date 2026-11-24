@@ -197,7 +197,7 @@ static void* trackthread(void* a)
 	int nextscan = 0, backoff = 10, tick = 0, provisional = 0;
 	sleep(20);
 	for (;;) {
-		usleep(100000);
+		usleep(16000);
 		{ /* debug: files/probewr -> find WorldRegion objects and log c-strings starting with "levels/" reachable in first 0x400 bytes */
 			if (access("/data/user/0/com.mina.port/files/probewr", F_OK) == 0) {
 				remove("/data/user/0/com.mina.port/files/probewr");
@@ -222,8 +222,7 @@ static void* trackthread(void* a)
 				if (ok == 1 && rd(SAVESLOT_PTR, &ss, 8) && ss > 0x100000UL && rd(ss + 584, &cur, 4)) { *(volatile unsigned*)(ss + 584) = v; LOG("setarea %08x (was %08x)", v, (unsigned)cur); }
 			}
 		}
-		tick++;
-		poll_mapflags();
+		{ static int sub; if (++sub % 6 == 0) { tick++; poll_mapflags(); } }
 		float p[3];
 		if (mina && !mina_valid(mina, p)) { g_valid = 0; mina = 0; provisional = 0; nc = 0; nextscan = tick; backoff = 10; }
 		if (!mina && tick >= nextscan) {
@@ -253,9 +252,9 @@ static void* trackthread(void* a)
 			}
 		}
 		if (!mina_valid(mina, p)) { mina = 0; g_valid = 0; continue; }
-		{ static unsigned la; static int lt; if (g_area != la || ++lt > 300) { la = g_area; lt = 0; scan_levels(); } }
+		{ static unsigned la; static int lt; if (g_area != la || ++lt > 1800) { la = g_area; lt = 0; scan_levels(); } }
 		g_pos[0] = p[0]; g_pos[1] = p[1]; g_pos[2] = p[2]; g_valid = 1;
-		{ static float lp[2]; if (fabsf(p[0] - lp[0]) + fabsf(p[1] - lp[1]) > 2.0f) { { unsigned long rm = 0; float bb[6] = {0};
+		{ static float lp[2]; if (fabsf(p[0] - lp[0]) + fabsf(p[1] - lp[1]) > 12.0f) { { unsigned long rm = 0; float bb[6] = {0};
 				if (rd(0x105055fe0UL, &rm, 8) && rm > 0x100000UL && rd(rm + 512, bb, 24)) LOG("pos %.1f %.1f  room c=%.1f,%.1f,%.1f half=%.1f,%.1f,%.1f", p[0], p[1], bb[0], bb[1], bb[2], bb[3], bb[4], bb[5]);
 				else LOG("pos %.1f %.1f %.1f", p[0], p[1], p[2]); } lp[0] = p[0]; lp[1] = p[1]; } }
 	}
@@ -283,6 +282,25 @@ JNIEXPORT jint JNICALL Java_com_mina_port_MinaActivity_nativeMapFlags(JNIEnv* en
 	jbyte v[MF_SIZE];
 	for (int i = 0; i < MF_SIZE; i++) v[i] = (jbyte)g_mf[i];
 	(*env)->SetByteArrayRegion(env, out, 0, MF_SIZE, v);
+	return 1;
+}
+
+JNIEXPORT jint JNICALL Java_com_mina_port_MinaActivity_nativeSave(JNIEnv* env, jclass c, jbyteArray out)
+{
+	(void)c;
+	static unsigned char sv[4552 + 96];
+	unsigned long ss = 0;
+	if (!g_valid || !out || (*env)->GetArrayLength(env, out) < 4552 + 96) return 0;
+	if (!rd(SAVESLOT_PTR, &ss, 8) || ss < 0x100000UL || !rd(ss, sv, 4552)) return 0;
+	{ /* weapon / sidearm names are {u32 flag, u32 len, char* ptr} structs; resolve them into 3 x 32 bytes after the slot */
+		static const int offs[3] = { 312, 328, 344 };
+		memset(sv + 4552, 0, 96);
+		for (int k = 0; k < 3; k++) {
+			unsigned len = *(unsigned*)(sv + offs[k] + 4); unsigned long ptr = *(unsigned long*)(sv + offs[k] + 8);
+			if (len > 0 && len < 31 && ptr > 0x100000UL && ptr < 0x800000000000UL) rd(ptr, sv + 4552 + 32 * k, len);
+		}
+	}
+	(*env)->SetByteArrayRegion(env, out, 0, 4552 + 96, (const jbyte*)sv);
 	return 1;
 }
 

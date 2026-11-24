@@ -12,6 +12,7 @@ public class MinaActivity extends SDLActivity {
 
     static native int nativeState(float[] out);
     static native int nativeMapFlags(byte[] out);
+    static native int nativeSave(byte[] out);
     static native String nativeLevels();
 
     private android.app.Presentation panel;

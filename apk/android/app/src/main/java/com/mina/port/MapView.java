@@ -35,8 +35,38 @@ public class MapView extends View {
     private final File store;
 
     private final Paint p = new Paint();
+    private UiKit ui;
+    private UiKit ui() { if (ui == null) ui = new UiKit(getContext()); return ui; }
     private final Handler h = new Handler(Looper.getMainLooper());
-    private final Runnable tick = new Runnable() { public void run() { poll(); h.postDelayed(this, 100); } };
+    private final float[] tgt = new float[3];
+    private int frameNo = 0; private boolean haveCur = false; private int lastArea = 0;
+    private final android.view.Choreographer.FrameCallback fc = new android.view.Choreographer.FrameCallback() {
+        public void doFrame(long t) {
+            boolean busy = frame();
+            if (busy) android.view.Choreographer.getInstance().postFrameCallback(this);
+            else h.postDelayed(idleTick, 40);
+        }
+    };
+    private final Runnable idleTick = new Runnable() { public void run() { android.view.Choreographer.getInstance().postFrameCallback(fc); } };
+    private long lastDraw = 0;
+    private boolean frame() {
+        int a;
+        try { a = MinaActivity.nativeState(tgt); } catch (Throwable t) { a = 0; }
+        if ((frameNo++ % 15) == 0) { try { haveFlags = MinaActivity.nativeMapFlags(flags) != 0; } catch (Throwable t) { haveFlags = false; } }
+        if (a == 0) { if (area != 0) invalidate(); area = 0; haveCur = false; return false; }
+        if (!haveCur || a != lastArea || Math.abs(tgt[0] - cur[0]) + Math.abs(tgt[1] - cur[1]) > 30f) { cur[0] = tgt[0]; cur[1] = tgt[1]; cur[2] = tgt[2]; haveCur = true; }
+        else { cur[0] += (tgt[0] - cur[0]) * 0.4f; cur[1] += (tgt[1] - cur[1]) * 0.4f; cur[2] = tgt[2]; }
+        boolean moving = Math.abs(tgt[0] - cur[0]) + Math.abs(tgt[1] - cur[1]) > 0.02f;
+        if (!moving) { cur[0] = tgt[0]; cur[1] = tgt[1]; }
+        lastArea = a; area = a;
+        HashSet<Long> s = seen.get(a);
+        if (s == null) { s = new HashSet<>(); seen.put(a, s); }
+        if (s.add(key((int) Math.floor(cur[0] / CELL), (int) Math.floor(cur[1] / CELL)))) dirty = true;
+        long now = android.os.SystemClock.uptimeMillis();
+        if (moving || lastPx != cur[0] + cur[1] * 1.37f || now - lastDraw > 120) { invalidate(); lastDraw = now; lastPx = cur[0] + cur[1] * 1.37f; }
+        return moving;
+    }
+    private float lastPx = 0;
     private final Runnable saver = new Runnable() { public void run() { save(); h.postDelayed(this, SAVE_MS); } };
 
     private Bitmap bg;
@@ -58,12 +88,12 @@ public class MapView extends View {
 
     @Override protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        h.removeCallbacks(tick); h.removeCallbacks(saver);
-        h.post(tick); h.postDelayed(saver, SAVE_MS);
+        h.removeCallbacks(saver); android.view.Choreographer.getInstance().removeFrameCallback(fc);
+        android.view.Choreographer.getInstance().postFrameCallback(fc); h.postDelayed(saver, SAVE_MS);
     }
 
     @Override protected void onDetachedFromWindow() {
-        h.removeCallbacks(tick); h.removeCallbacks(saver);
+        h.removeCallbacks(saver); android.view.Choreographer.getInstance().removeFrameCallback(fc);
         save();
         super.onDetachedFromWindow();
     }
@@ -157,37 +187,211 @@ public class MapView extends View {
         if (e.getActionMasked() == android.view.MotionEvent.ACTION_UP) { mode = (mode + 1) % 3; invalidate(); }
         return true;
     }
+    // ---- shared look (navy panels, teal edges, cream text like the game UI) ----
+    static final int C_BG = 0xFF0B1220, C_BAR = 0xFF0D1B2A, C_EDGE = 0xFF2A6F8F, C_TEXT = 0xFFE8DCC0, C_DIM = 0xFF7F93A6, C_RED = 0xFFFF3030, C_TEAL = 0xFF4FD1C5;
+    private static String pretty(String s) {
+        if (s == null) return "?";
+        s = s.replace("levels/", "").replace("overworld/", "").replace("core/", "").replace(".tlb.yc", "").replace('_', ' ').replace("  ", " ");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            if (i > 0 && Character.isUpperCase(ch) && Character.isLowerCase(s.charAt(i - 1))) sb.append(' ');
+            sb.append(i == 0 ? Character.toUpperCase(ch) : ch);
+        }
+        return sb.toString();
+    }
+    private String curAreaName() {
+        int h = haveFlags ? ((flags[0] & 0xFF) | ((flags[1] & 0xFF) << 8) | ((flags[2] & 0xFF) << 16) | ((flags[3] & 0xFF) << 24)) : area;
+        return areaNames.get(h);
+    }
+    private float barH(float ts) { return ts * 1.9f; }
+    private void drawBar(Canvas c, int W, float ts, String title, String sub) {
+        p.setStyle(Paint.Style.FILL); p.setColor(C_BAR); c.drawRect(0, 0, W, barH(ts), p);
+        p.setColor(C_EDGE); c.drawRect(0, barH(ts) - 4, W, barH(ts), p);
+        if (ui().ok) {
+            float s2 = Math.max(2, Math.round(ts / 8f));
+            ui().text(c, title, 16, barH(ts) * 0.5f + 4 * s2, s2, C_TEXT, true);
+            if (sub != null) ui().text(c, sub, W - 16 - ui().width(sub, s2, false), barH(ts) * 0.5f + 4 * s2, s2, C_TEAL, false);
+            return;
+        }
+        p.setTypeface(android.graphics.Typeface.DEFAULT_BOLD); p.setTextSize(ts * 1.05f);
+        p.setColor(C_TEXT); c.drawText(title, 16, ts * 1.3f, p);
+        p.setTypeface(android.graphics.Typeface.DEFAULT); p.setTextSize(ts * 0.9f);
+        if (sub != null) { p.setColor(C_TEAL); c.drawText(sub, W - 16 - p.measureText(sub), ts * 1.3f, p); }
+        p.setTextSize(ts);
+    }
+    private void drawFooter(Canvas c, int W, int H, float ts, String hint) {
+        float fh = ts * 1.6f;
+        p.setStyle(Paint.Style.FILL); p.setColor(C_BAR); c.drawRect(0, H - fh, W, H, p);
+        p.setColor(C_EDGE); c.drawRect(0, H - fh, W, H - fh + 3, p);
+        if (ui().ok) { float s2 = Math.max(2, Math.round(ts / 10f)); ui().text(c, hint, 16, H - fh * 0.5f + 4 * s2, s2, C_DIM, false); }
+        else { p.setTextSize(ts * 0.8f); p.setColor(C_DIM); c.drawText(hint, 16, H - fh * 0.32f, p); }
+        float s = ts * 0.55f, gx = W - 16 - 3 * (s * 1.8f);
+        for (int i = 0; i < 3; i++) { p.setColor(i == mode ? C_TEXT : 0xFF2B3B4C); c.drawRect(gx + i * s * 1.8f, H - fh * 0.7f, gx + i * s * 1.8f + s, H - fh * 0.7f + s, p); }
+        p.setTextSize(ts);
+    }
+    private void drawMarker(Canvas c, float mx, float my, float r) {
+        float ph = (android.os.SystemClock.uptimeMillis() % 1400) / 1400f;
+        p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(Math.max(2, r * 0.25f)); p.setColor(C_RED); p.setAlpha((int) (200 * (1f - ph)));
+        float rr = r + ph * r * 2.6f; c.drawRect(mx - rr, my - rr, mx + rr, my + rr, p); p.setAlpha(255);
+        if (ui().ok) {
+            float bob = (float) Math.sin(android.os.SystemClock.uptimeMillis() / 180.0) * r * 0.25f;
+            if (ui().marker(c, mx, my - r * 0.6f + bob, Math.max(2, Math.round(r / 3f)))) { p.setStyle(Paint.Style.FILL); return; }
+        }
+        p.setStyle(Paint.Style.FILL); p.setColor(C_RED); c.drawRect(Math.round(mx - r), Math.round(my - r), Math.round(mx + r), Math.round(my + r), p);
+        p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(2); p.setColor(0xFFFFFFFF); c.drawRect(Math.round(mx - r), Math.round(my - r), Math.round(mx + r), Math.round(my + r), p);
+        p.setStyle(Paint.Style.FILL);
+    }
+    private int tagLoc = -1;
+    private void drawTag(Canvas c, String text, float x, float y, float ts, int W) {
+        if (ui().ok) {
+            float sc = Math.max(2, Math.round(ts / 10f)), pad = 5 * sc;
+            float tw = ui().width(text, sc, true), bw = tw + 2 * pad + 16 * sc, bh = 13 * sc + 16 * sc * 0.6f;
+            float l = Math.max(6, Math.min(W - bw - 6, x)), t = y - bh;
+            if (ui().plateBox(c, tagLoc, new RectF(l, t, l + bw, t + bh), sc)) {
+                ui().text(c, text, l + bw / 2 - tw / 2, t + bh / 2 + 4 * sc, sc, C_TEXT, true);
+                return;
+            }
+        }
+        p.setTextSize(ts * 0.85f); p.setTypeface(android.graphics.Typeface.DEFAULT_BOLD);
+        float tw = p.measureText(text), pad = ts * 0.4f;
+        float l = Math.max(6, Math.min(W - tw - 2 * pad - 6, x));
+        p.setStyle(Paint.Style.FILL); p.setColor(0xDD0D1B2A); c.drawRect(l, y - ts, l + tw + 2 * pad, y + ts * 0.45f, p);
+        p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(2); p.setColor(C_EDGE); c.drawRect(l, y - ts, l + tw + 2 * pad, y + ts * 0.45f, p);
+        p.setStyle(Paint.Style.FILL); p.setColor(C_TEXT); c.drawText(text, l + pad, y, p);
+        p.setTypeface(android.graphics.Typeface.DEFAULT); p.setTextSize(ts);
+    }
+
+    private final byte[] sv = new byte[4552 + 96]; private boolean haveSv = false; private long svAt = 0;
+    private java.nio.ByteBuffer svb; private boolean dbgInv = false;
+    private int u32(int o) { return svb.getInt(o); }
+    private static int pop(int v) { return Integer.bitCount(v); }
+    private String cstr(int o) { int k = o == 312 ? 0 : o == 328 ? 1 : 2; int b = 4552 + 32 * k, e = b; while (e < b + 31 && sv[e] != 0) e++; return new String(sv, b, e - b); }
+
+    private void drawInventory(Canvas c, int W, int H, float ts) {
+        p.setStyle(Paint.Style.FILL); p.setColor(C_BG); c.drawRect(0, 0, W, H, p);
+        drawBar(c, W, ts, "Inventory", null);
+        drawFooter(c, W, H, ts, "Inventory  \u2022  tap for next view");
+        long now = android.os.SystemClock.uptimeMillis();
+        if (now - svAt > 250) {
+            svAt = now;
+            try { haveSv = MinaActivity.nativeSave(sv) != 0; } catch (Throwable t) { haveSv = false; }
+            if (haveSv) svb = java.nio.ByteBuffer.wrap(sv).order(java.nio.ByteOrder.LITTLE_ENDIAN);
+        }
+        org.json.JSONObject inv = ui().inv();
+        if (!haveSv || inv == null || !ui().ok) {
+            if (ui().ok) ui().text(c, haveSv ? "No inventory data" : "Waiting for the game...", 24, barH(ts) + 60, 3, C_DIM, false);
+            return;
+        }
+        try {
+            final int S = 3;
+            float x0 = 24, y = barH(ts) + 20;
+            float maxHp = 8f * pop(u32(304)) * (((u32(3176) & 32) != 0) ? 1.25f : 1f);
+            float hp = svb.getFloat(288);
+            // health bar
+            float bw = W - 48, bh = 30;
+            p.setStyle(Paint.Style.FILL); p.setColor(0xFF2B0A10); c.drawRect(x0, y, x0 + bw, y + bh, p);
+            p.setColor(0xFFE8132E); c.drawRect(x0, y, x0 + bw * Math.max(0, Math.min(1, maxHp > 0 ? hp / maxHp : 0)), y + bh, p);
+            p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(3); p.setColor(C_TEXT); c.drawRect(x0, y, x0 + bw, y + bh, p); p.setStyle(Paint.Style.FILL);
+            ui().text(c, "Health " + Math.round(hp) + " / " + Math.round(maxHp), x0 + 12, y + 4 + 3 * S * 2.4f, S, 0xFFFFFFFF, true);
+            y += bh + 22;
+            // counters row
+            int bones = u32(408), vials = u32(392), maxVials = pop(u32(396));
+            int keys = pop(svb.getInt(496)) + pop(svb.getInt(500)) - u32(504);
+            int joules = u32(364), maxJ = Math.min(99, 10 * pop(u32(368)));
+            int bst = 0; for (int i = 0; i < 7; i++) bst += pop(u32(3080 + 4 * i));
+            android.graphics.Bitmap bi = ui().icon("UI_HUD_HUD_boneCounter_icon.png");
+            float cx = x0;
+            if (bi != null) { ui().drawIcon(c, bi, cx, y - 6, S, false); cx += bi.getWidth() * S + 8; }
+            String s1 = "Bones " + bones; ui().text(c, s1, cx, y + 20, S, C_TEXT, true); cx += ui().width(s1, S, true) + 40;
+            String s2 = "Vials " + vials + "/" + maxVials; ui().text(c, s2, cx, y + 20, S, C_TEXT, false); cx += ui().width(s2, S, false) + 40;
+            String s3 = "Keys " + keys; ui().text(c, s3, cx, y + 20, S, C_TEXT, false); cx += ui().width(s3, S, false) + 40;
+            String s4 = "Bonestones " + bst + "/20"; ui().text(c, s4, cx, y + 20, S, C_TEAL, false);
+            y += 44;
+            String lv = "Attack " + u32(372) + "    Defense " + u32(376) + "    Sidearms " + u32(380) + "    Deaths " + u32(592);
+            ui().text(c, lv, x0, y + 16, S, C_DIM, false);
+            y += 46;
+            // weapon + sidearm panels
+            String wn = cstr(312), sn = cstr(328);
+            if (!dbgInv) { dbgInv = true; android.util.Log.e("MinaPort", "inv strings w=[" + wn + "] s=[" + sn + "] s2=[" + cstr(344) + "]"); }
+            org.json.JSONArray ws = inv.getJSONArray("weapons"), ss = inv.getJSONArray("sidearms");
+            float pw = (W - 48 - 16) / 2f, ph = 120;
+            for (int k = 0; k < 2; k++) {
+                float px = x0 + k * (pw + 16);
+                ui().plateBox(c, 12, new RectF(px, y, px + pw, y + ph), 3);
+                String key = k == 0 ? wn : sn, label = k == 0 ? "Weapon" : "Sidearm", nm = "-", ic = null;
+                org.json.JSONArray arr = k == 0 ? ws : ss;
+                for (int i = 0; i < arr.length(); i++) { org.json.JSONObject o = arr.getJSONObject(i); if (o.getString("s").equalsIgnoreCase(key)) { nm = o.getString("name"); ic = o.getString("icon"); } }
+                ui().text(c, label, px + 36, y + 44, 2, C_DIM, false);
+                Bitmap b = ic == null ? null : ui().icon(ic);
+                float tx = px + 36;
+                if (b != null) { ui().drawIcon(c, b, px + 30, y + 52, 3, false); tx = px + 30 + b.getWidth() * 3 + 18; }
+                ui().text(c, nm, tx, y + 84, S, C_TEXT, true);
+                if (k == 1 && sn.length() > 0) ui().text(c, "Joules " + joules + "/" + maxJ, tx, y + 108, 2, C_TEAL, false);
+            }
+            y += ph + 22;
+            // trinkets
+            org.json.JSONArray tr = inv.getJSONArray("trinkets");
+            int owned = 0; for (int i = 0; i < 61; i++) if (u32(1136 + 4 * i) != 0) owned++;
+            ui().text(c, "Trinkets " + owned + "/61", x0, y + 16, S, C_TEXT, true);
+            y += 34;
+            boolean[] eq = new boolean[61];
+            StringBuilder en = new StringBuilder();
+            for (int i = 0; i < 6; i++) { int id = u32(1868 + 4 * i); if (id >= 134 && id < 195) { eq[id - 134] = true; if (en.length() > 0) en.append(", "); en.append(tr.getJSONObject(id - 134).getString("name")); } }
+            int cols = 13; float cell = (W - 48) / (float) cols;
+            for (int i = 0; i < 61 && i < tr.length(); i++) {
+                int col = i % cols, row = i / cols;
+                float gx = x0 + col * cell, gy = y + row * (cell * 0.9f);
+                Bitmap b = ui().icon(tr.getJSONObject(i).getString("icon"));
+                boolean have = u32(1136 + 4 * i) != 0;
+                if (eq[i]) { p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(3); p.setColor(0xFFFFD34D); c.drawRect(gx + 2, gy + 2, gx + cell - 4, gy + cell * 0.9f - 4, p); p.setStyle(Paint.Style.FILL); }
+                if (b != null) { int s = Math.max(1, (int) ((cell - 14) / Math.max(b.getWidth(), b.getHeight()))); ui().drawIcon(c, b, gx + (cell - b.getWidth() * s) / 2f, gy + (cell * 0.9f - b.getHeight() * s) / 2f, s, !have); }
+            }
+            int rows = (61 + cols - 1) / cols;
+            y += rows * cell * 0.9f + 12;
+            if (en.length() > 0 && y < H - ts * 1.6f - 10) ui().text(c, "Equipped: " + en, x0, y + 14, 2, 0xFFFFD34D, false);
+        } catch (Throwable t) { android.util.Log.e("MinaPort", "inventory: " + t); }
+    }
+
     private boolean drawWorld(Canvas c, int W, int H, float ts) {
         if (!worldTried) loadWorld();
         if (worldBmp == null || (mode != 1 && mode != 0)) return false;
         int bw = worldBmp.getWidth(), bh = worldBmp.getHeight();
-        float top = ts * 1.4f;
-        int sc = (int) Math.max(1, Math.floor(Math.min((W - 10f) / bw, (H - top - 6f) / bh)));
-        float ox = (int) ((W - bw * sc) / 2f), oy = (int) (top + (H - top - bh * sc) / 2f);
+        float top = barH(ts), foot = ts * 1.6f;
+        int sc = (int) Math.max(1, Math.floor(Math.min((W - 28f) / bw, (H - top - foot - 28f) / bh)));
+        float ox = (int) ((W - bw * sc) / 2f), oy = (int) (top + (H - top - foot - bh * sc) / 2f);
+        p.setStyle(Paint.Style.FILL); p.setColor(C_BG); c.drawRect(0, 0, W, H, p);
         android.graphics.Paint q = new android.graphics.Paint(); q.setFilterBitmap(false); q.setAntiAlias(false);
         c.drawBitmap(worldBmp, null, new RectF(ox, oy, ox + bw * sc, oy + bh * sc), q);
+        p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(4); p.setColor(C_EDGE); c.drawRect(ox - 3, oy - 3, ox + bw * sc + 3, oy + bh * sc + 3, p); p.setStyle(Paint.Style.FILL);
         int loc = (haveFlags && flags[7] != 0) ? (flags[6] & 0xFF) - 1 : -1;
+        for (int i = 0; i < LOC.length; i++) {
+            if (i == loc) continue;
+            float[] a = locs.get(LOC[i]); if (a == null) continue;
+            float mx = ox + (bw / 2f + a[0]) * sc, my = oy + (bh / 2f - a[1]) * sc, r = Math.max(3, sc * 2f);
+            boolean disc = haveFlags && i + 8 < flags.length && flags[8 + i] != 0;
+            p.setStyle(Paint.Style.FILL); p.setColor(disc ? C_TEAL : 0xAA10161F);
+            c.drawRect(Math.round(mx - r), Math.round(my - r), Math.round(mx + r), Math.round(my + r), p);
+            p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(2); p.setColor(disc ? 0xFFFFFFFF : 0xFF5C6B7A);
+            c.drawRect(Math.round(mx - r), Math.round(my - r), Math.round(mx + r), Math.round(my + r), p); p.setStyle(Paint.Style.FILL);
+        }
         String name = (loc >= 0 && loc < LOC.length) ? LOC[loc] : null;
         float[] a = name == null ? null : locs.get(name);
         if (a != null) {
             float mx = ox + (bw / 2f + a[0]) * sc, my = oy + (bh / 2f - a[1]) * sc;
-            float r = Math.max(4, sc * 4f);
-            p.setStyle(Paint.Style.FILL); p.setColor(0xFFFF3030);
-            c.drawRect(Math.round(mx - r), Math.round(my - r), Math.round(mx + r), Math.round(my + r), p);
-            p.setColor(0xFFFFFFFF); p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(2);
-            c.drawRect(Math.round(mx - r), Math.round(my - r), Math.round(mx + r), Math.round(my + r), p);
-            p.setStyle(Paint.Style.FILL);
+            drawMarker(c, mx, my, Math.max(5, sc * 3.2f));
+            tagLoc = loc; drawTag(c, pretty(name), mx + sc * 6, my - sc * 3, ts, W);
         }
-        p.setColor(0xFFCCCCCC);
-        String an = areaNames.get(haveFlags ? ((flags[0] & 0xFF) | ((flags[1] & 0xFF) << 8) | ((flags[2] & 0xFF) << 16) | ((flags[3] & 0xFF) << 24)) : area); c.drawText((an == null ? "?" : an) + "  →  " + (name == null ? "?" : name) + " (" + loc + ")  – tryck för spårvy", 10, ts, p);
+        drawBar(c, W, ts, pretty(curAreaName()), name == null ? null : pretty(name));
+        drawFooter(c, W, H, ts, "World map  \u2022  tap for next view");
         return true;
     }
-
 
     // ---- room map: crop of the baked level class map around the player (runtime units * 10 = authoring px) ----
     private static class Lv { String file; int ox, oy, w, h; android.graphics.BitmapRegionDecoder dec; }
     private final java.util.HashMap<String, Lv> lvIndex = new java.util.HashMap<>();
     private boolean lvTried = false;
+    private Bitmap cropBmp; private android.graphics.Rect cropRect; private Object cropOwner;
     private String levelsStr = ""; private long levelsAt = 0;
     private void loadLevelIndex() {
         lvTried = true;
@@ -225,26 +429,47 @@ public class MapView extends View {
         Lv v = pickLevel(cur[0], cur[1]);
         if (v == null) return false;
         try {
-            if (v.dec == null) v.dec = android.graphics.BitmapRegionDecoder.newInstance(
-                new java.io.File(getContext().getFilesDir(), "mapassets/levels/" + v.file + "_preview.png").getPath(), false);
+            if (v.dec == null) {
+                java.io.File cf = new java.io.File(getContext().getFilesDir(), "mapassets/levels/" + v.file + "_color.png");
+                java.io.File pf = new java.io.File(getContext().getFilesDir(), "mapassets/levels/" + v.file + "_preview.png");
+                v.dec = android.graphics.BitmapRegionDecoder.newInstance((cf.exists() ? cf : pf).getPath(), false);
+            }
             int px = Math.round(cur[0] * 10f) - v.ox, py = Math.round(v.oy - cur[1] * 10f);
-            float top = ts * 1.4f;
+            float top = barH(ts), foot = ts * 1.6f;
             int sc = 3;
-            int cw = (int) ((W - 4) / sc), ch = (int) ((H - top - 4) / sc);
+            int cw = (int) ((W - 4) / sc), ch = (int) ((H - top - foot - 4) / sc);
             int l = Math.max(0, Math.min(v.w - cw, px - cw / 2)), t = Math.max(0, Math.min(v.h - ch, py - ch / 2));
             android.graphics.Rect src = new android.graphics.Rect(l, t, Math.min(v.w, l + cw), Math.min(v.h, t + ch));
-            android.graphics.BitmapFactory.Options o = new android.graphics.BitmapFactory.Options();
-            Bitmap bm = v.dec.decodeRegion(src, o);
-            android.graphics.Paint q = new android.graphics.Paint(); q.setFilterBitmap(false); q.setAntiAlias(false);
+            if (cropBmp == null || cropOwner != v || !cropRect.contains(src)) {
+                android.graphics.Rect win = new android.graphics.Rect(Math.max(0, src.left - 200), Math.max(0, src.top - 200), Math.min(v.w, src.right + 200), Math.min(v.h, src.bottom + 200));
+                cropBmp = v.dec.decodeRegion(win, new android.graphics.BitmapFactory.Options());
+                cropRect = win; cropOwner = v;
+            }
+            Bitmap bm = cropBmp; final int bx = cropRect.left, by = cropRect.top;
+            p.setStyle(Paint.Style.FILL); p.setColor(C_BG); c.drawRect(0, 0, W, H, p);
             float ox = (W - src.width() * sc) / 2f, oy = top + 2;
-            c.drawBitmap(bm, null, new RectF(ox, oy, ox + src.width() * sc, oy + src.height() * sc), q);
-            float mx = ox + (px - l) * sc, my = oy + (py - t) * sc, r = 8;
-            p.setStyle(Paint.Style.FILL); p.setColor(0xFFFF3030);
-            c.drawRect(Math.round(mx - r), Math.round(my - r), Math.round(mx + r), Math.round(my + r), p);
-            p.setColor(0xFFFFFFFF); p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(2);
-            c.drawRect(Math.round(mx - r), Math.round(my - r), Math.round(mx + r), Math.round(my + r), p);
-            p.setStyle(Paint.Style.FILL); p.setColor(0xFFCCCCCC);
-            c.drawText(v.file.replace("levels__", "").replace("__", "/") + "   x " + Math.round(cur[0]) + "  y " + Math.round(cur[1]) + "   – tryck: världskarta", 10, ts, p);
+            android.graphics.Paint dim = new android.graphics.Paint(); dim.setFilterBitmap(false);
+            dim.setColorFilter(new android.graphics.ColorMatrixColorFilter(new float[] { .30f,0,0,0,0, 0,.30f,0,0,0, 0,0,.34f,0,6, 0,0,0,1,0 }));
+            android.graphics.Paint lit = new android.graphics.Paint(); lit.setFilterBitmap(false);
+            c.drawBitmap(bm, new android.graphics.Rect(src.left - bx, src.top - by, src.right - bx, src.bottom - by), new RectF(ox, oy, ox + src.width() * sc, oy + src.height() * sc), dim);
+            java.util.HashSet<Long> s = seen.get(area);
+            int ccx = (int) Math.floor(cur[0] / CELL), ccy = (int) Math.floor(cur[1] / CELL);
+            java.util.ArrayList<long[]> cells = new java.util.ArrayList<>();
+            if (s != null) for (long k : s) cells.add(new long[] { kx(k), ky(k) });
+            for (int dx = -1; dx <= 1; dx++) for (int dy = -1; dy <= 1; dy++) cells.add(new long[] { ccx + dx, ccy + dy });
+            for (long[] ce : cells) {
+                int x0 = (int) (ce[0] * 160) - v.ox, x1 = x0 + 160;
+                int y1 = (int) (v.oy - ce[1] * 160), y0 = y1 - 160;
+                int ix0 = Math.max(x0, src.left), ix1 = Math.min(x1, src.right), iy0 = Math.max(y0, src.top), iy1 = Math.min(y1, src.bottom);
+                if (ix0 >= ix1 || iy0 >= iy1) continue;
+                android.graphics.Rect sr = new android.graphics.Rect(ix0 - src.left, iy0 - src.top, ix1 - src.left, iy1 - src.top);
+                RectF dr = new RectF(ox + sr.left * sc, oy + sr.top * sc, ox + sr.right * sc, oy + sr.bottom * sc);
+                c.drawBitmap(bm, new android.graphics.Rect(sr.left + src.left - bx, sr.top + src.top - by, sr.right + src.left - bx, sr.bottom + src.top - by), dr, lit);
+            }
+            p.setStyle(Paint.Style.STROKE); p.setStrokeWidth(4); p.setColor(C_EDGE); c.drawRect(ox - 2, oy - 2, ox + src.width() * sc + 2, oy + src.height() * sc + 2, p); p.setStyle(Paint.Style.FILL);
+            drawMarker(c, ox + (px - l) * sc, oy + (py - t) * sc, 9);
+            String an0 = curAreaName(); String lvn = pretty(v.file.replace("__", "/")); drawBar(c, W, ts, an0 != null ? pretty(an0) : lvn, an0 != null ? lvn : null);
+            drawFooter(c, W, H, ts, "Room map  \u2022  tap for next view");
             return true;
         } catch (Throwable t) { android.util.Log.e("MinaPort", "room: " + t); v.dec = null; return false; }
     }
@@ -257,63 +482,8 @@ public class MapView extends View {
         p.setColor(0xFFCCCCCC);
         if (area != 0 && drawRoom(c, W, H, ts)) return;
         if (area != 0 && drawWorld(c, W, H, ts)) return;
-        if (area == 0) { c.drawText("Väntar på spelet...", 20, 20 + ts, p); return; }
-
-        HashSet<Long> s = seen.get(area);
-        int minx = Integer.MAX_VALUE, maxx = Integer.MIN_VALUE, miny = Integer.MAX_VALUE, maxy = Integer.MIN_VALUE;
-        if (s != null) for (long k : s) {
-            int x = kx(k), y = ky(k);
-            if (x < minx) minx = x; if (x > maxx) maxx = x;
-            if (y < miny) miny = y; if (y > maxy) maxy = y;
-        }
-        int ccx = (int) Math.floor(cur[0] / CELL), ccy = (int) Math.floor(cur[1] / CELL);
-        if (s == null || s.isEmpty()) { minx = maxx = ccx; miny = maxy = ccy; }
-        minx -= 3; miny -= 3; maxx += 3; maxy += 3;
-        int cw = maxx - minx + 1, ch = maxy - miny + 1;
-
-        float top = ts * 2.6f, bottom = ts * 1.8f;   // header and legend space
-        float availW = W - 20, availH = H - top - bottom;
-        int cs = (int) Math.max(2, Math.min(24, Math.floor(Math.min(availW / cw, availH / ch)))); // integer px per cell
-        float ox = (int) ((W - cw * cs) / 2f), oy = (int) (top + (availH - ch * cs) / 2f);
-
-        if (bg != null && bgRect != null) {
-            float l = ox + (bgRect.left / CELL - minx) * cs, r = ox + (bgRect.right / CELL - minx) * cs;
-            float t = oy + (maxy + 1 - bgRect.top / CELL) * cs, b = oy + (maxy + 1 - bgRect.bottom / CELL) * cs;
-            c.drawBitmap(bg, null, new RectF(Math.round(l), Math.round(Math.min(t, b)), Math.round(r), Math.round(Math.max(t, b))), p);
-        }
-
-        // faint grid frame
-        p.setColor(0xFF15202A);
-        c.drawRect(ox, oy, ox + cw * cs, oy + ch * cs, p);
-        p.setColor(0xFF2A6F8F);
-        if (s != null) for (long k : s) {
-            float x = ox + (kx(k) - minx) * cs, y = oy + (maxy - ky(k)) * cs;
-            c.drawRect(x, y, x + Math.max(1, cs - 1), y + Math.max(1, cs - 1), p);
-        }
-        // player
-        p.setColor(0xFFFF3030);
-        float px = ox + (cur[0] / CELL - minx) * cs, py = oy + (maxy + 1 - cur[1] / CELL) * cs;
-        float r = Math.max(3, cs * 0.6f);
-        c.drawRect(Math.round(px - r), Math.round(py - r), Math.round(px + r), Math.round(py + r), p);
-
-        // header
-        p.setColor(0xFFCCCCCC);
-        c.drawText(String.format("Område %08x", area), 20, 10 + ts, p);
-        c.drawText(String.format("x %.0f  y %.0f  celler %d", cur[0], cur[1], s == null ? 0 : s.size()), 20, 10 + ts * 2.1f, p);
-        if (haveFlags) {
-            String m = String.format("karta:%s  upptäckt %d  avslöjat %d", (flags[4] != 0) ? "ja" : "nej",
-                    popcnt(flags, 8, 17), popcnt(flags, 28, 18));
-            c.drawText(m, W - p.measureText(m) - 20, 10 + ts, p);
-        }
-
-        // legend
-        float ly = H - ts * 0.6f, lx = 20, sq = ts * 0.8f;
-        p.setColor(0xFF2A6F8F); c.drawRect(lx, ly - sq, lx + sq, ly, p);
-        p.setColor(0xFFCCCCCC); c.drawText("besökt", lx + sq + 8, ly, p);
-        lx += sq + 8 + p.measureText("besökt") + 30;
-        p.setColor(0xFFFF3030); c.drawRect(lx, ly - sq, lx + sq, ly, p);
-        p.setColor(0xFFCCCCCC); c.drawText("spelare", lx + sq + 8, ly, p);
-        lx += sq + 8 + p.measureText("spelare") + 30;
-        c.drawText("1 ruta = 16 enheter", lx, ly, p);
+        if (area == 0) { c.drawText("Waiting for the game...", 20, 20 + ts, p); return; }
+        if (mode == 2) { drawInventory(c, W, H, ts); return; }
+        c.drawText("No map data for this area", 20, 20 + ts, p);
     }
 }

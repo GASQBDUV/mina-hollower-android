@@ -34,7 +34,8 @@ position marker on the bottom screen. Screenshots taken with <code>adb screencap
 | Audio, controls and moving between areas | Works on the Duo (confirmed by hand) |
 | Live player position and area read from game memory (10 Hz) | Works |
 | Second-screen **world map** with a marker for the current location (17 locations) | Works on device and emulator |
-| Second-screen **trail view** and **room view** (cropped level map around the player) | Works, rough (see below) |
+| Second-screen **room view** (coloured level art around the player, unvisited areas dimmed) and **inventory** (health, weapon, sidearm, trinkets, counters read live from the save slot) | Works on the Duo |
+| Panel drawn with the game's own UI font, location plates and marker, at the display frame rate while moving | Works on the Duo |
 | Crash hunt on the emulator | 0 crashes in about 45 minutes, but the tester stayed inside one courtyard pocket |
 
 Details, with the evidence for each, are in [`docs/STATUS.md`](docs/STATUS.md).
@@ -53,11 +54,13 @@ Honest summary of what has and has not been tested.
   marker lands (`docs/screenshots/09-map-marker-teleport-test.png`).
 
 **Not verified**
-- Frame rate and battery on the device (no measurements yet; the emulator reached only ~10 fps).
+- Battery on the device. Measured so far: the panel costs about 5% of one CPU core (was about 20% before it only
+  redraws while you move); the game threads use about 27%. GPU load was not measurable.
 - Boss fights and long sessions. The area transitions and the second-screen views after them were only
   checked by playing, not with automated crash logging.
-- The room view is a **class map** (floor / wall / other) baked from level data, not the game's art, and its
-  cropping at level edges is basic.
+- The room view uses the game's tile art with the global palette. Water colours are a guess except in the bayou,
+  world-state layer variants and animated tiles are not drawn, and unbaked levels fall back to the nearest baked one.
+- Weapon upgrade level and per-area completion are not shown in the inventory (not decoded yet).
 - The location order for the other 14 map locations is derived from the game's static data and checked for
   three of them.
 
@@ -73,14 +76,14 @@ Java over JNI. Tapping the panel cycles three views:
 
 | View | What it shows |
 |---|---|
-| **Room** | A crop of the baked level map around the player (1 pixel = 0.1 world unit), with the active room box and a marker |
+| **Room** | The game's own tile art around the player (1 pixel = 0.1 world unit), visited and nearby cells lit, the rest dimmed, with Mina's marker |
 | **World map** | The game's own 17-location world map (decoded from your game data) with a marker at the current location |
-| **Trail** | A grid of the 16-unit cells you have walked in the current area, persisted between runs |
+| **Inventory** | Health, bones, vials, keys, bonestones, stat levels, equipped weapon and sidearm, and all 61 trinkets (owned ones lit, equipped ones outlined), read from the save slot in memory |
 
 <p align="center">
   <img src="docs/screenshots/07-bottom-screen-room-view.png" width="32%" alt="Room view">
   <img src="docs/screenshots/05-duo-bottom-screen-world-map.png" width="32%" alt="World map view">
-  <img src="docs/screenshots/06-bottom-screen-trail-view.png" width="32%" alt="Trail view">
+  <img src="docs/screenshots/06-bottom-screen-inventory.png" width="32%" alt="Inventory view">
 </p>
 
 How the offsets and coordinate transforms were found is documented in
@@ -140,7 +143,7 @@ You must own the game. The app reads from its private storage (`files/`):
 - `gdroot/gamedata/shaders_gles`, `shaders_spv` - converted from `shaders.pak.yc` with `ycd_extract` and
   [airlift](https://github.com/bmdhacks/airlift) (see `scripts/mina-shaders.sh`).
 - optional `mapassets/` - world map art, `locators_big.json`, `area_table.csv`, `levels/` - baked from your
-  data with `tools/bake_map.py` and `tools/bake_levels.py`. Without them the panel shows only the trail.
+  data with `tools/bake_map.py` and `tools/bake_levels.py`. The panel also needs the game's UI assets extracted with `tools/extract_ui.py` (font, location plates, marker) and the icons staged with `tools/stage_inv.py`, pushed to `files/mapassets/ui/`, and the coloured level art from `tools/bake_levels_color.py` in `files/mapassets/levels/`. `deploy/deploy-to-device.ps1` does not push those yet.
 - optional `saveData.yc` - a PC save. Keep a backup of your original.
 
 With a device connected over ADB, `deploy/deploy-to-device.ps1` does all of this in one go (it supports
@@ -150,9 +153,9 @@ game folder with a progress display is written and compile-checked, but not yet 
 
 ## Roadmap
 
-- Measure frame rate, battery and stability over a long session on the Duo.
+- Measure battery and stability over a long session on the Duo; try rendering at half resolution.
 - Wire in the first-run setup screen.
-- Draw the room view from the game's real tile art instead of the class map.
+- Decode weapon level and per-area completion for the inventory; bake the remaining levels.
 - Level lookup for all 99 levels (54 are baked; the rest have no collision layers).
 - Release build, 16 KB page-size check and signing.
 
